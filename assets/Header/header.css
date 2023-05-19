@@ -1,0 +1,21 @@
+.navbar-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.navbar-nav {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-nav .nav-item {
+    margin: 50px 10px;
+}
+
+@media (max-width: 768px) {
+    .navbar-nav .nav-item {
+        margin: 5px 0;
+    }
+}
