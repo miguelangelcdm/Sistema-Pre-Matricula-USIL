@@ -1,26 +1,26 @@
 <?php
 namespace controller;
 use Config;
-use Alumno;
+use Login;
+
 require_once ('configuration/Config.php');
-require_once ('model/Alumno.php');
+require_once ('model/Login.php');
 
-class AlumnoController{
+
+class LoginController{
     private $config;
-
     public function __construct(){ $this->config = new Config(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);}
-
     public function login($codigo_alumno, $password){
-        $alumno = new Alumno($codigo_alumno, $password, $this->config);
-        $credenciales_validas = $alumno->verificarCredenciales();
+        $login = new Login($codigo_alumno, $password, $this->config);
+        $credenciales_validas = $login->verificarCredenciales();
         if ($credenciales_validas) {
             require 'view/session.php'; /*valido renderizando*/ 
         } else {
-            require 'view/login.php'; /*no valido retorna*/ 
+            require 'view/login/login.php'; /*no valido retorna login*/ 
         }
     }
 
-    public function showRegistrationForm(){ require 'view/login.php'; }
-
-  
+    public function viewLogin(){
+        require 'view/login/login.php';
+    }
 }

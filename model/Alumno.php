@@ -1,55 +1,45 @@
-<?php
-require_once('configuration/Config.php');
+<?php 
 
+class Alumno{
+    private String $codigo_alumno;
+    private String $fullName;
+    private String $password;
+    private String $mallaId;
 
-class Alumno {
-    private $codigo_alumno;
-    private $password;
-    private $config;
-
-    public function __destruct(){ }
-
-    public function __construct($codigo_alumno, $password) {
+    //destructor
+    public function __destruct(){} 
+    public function __construct(String $codigo_alumno,
+                                String $fullName,String $password,String $mallaId){
         $this->codigo_alumno = $codigo_alumno;
+        $this->fullName = $fullName;
         $this->password = $password;
-        $this->config = new Config(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+        $this->mallaId = $mallaId;
     }
 
-    public function getCodigoAlumno() {
+    //getter and setter
+    public function getCodigo_alumno(){
         return $this->codigo_alumno;
     }
-
-    public function getPassword() {
+    public function setCodigo_alumno(String $codigo_alumno){
+        $this->codigo_alumno = $codigo_alumno;
+    }
+    public function getFullName(){
+        return $this->fullName;
+    }
+    public function setFullName(String $fullName){
+        $this->fullName = $fullName;
+    }
+    public function getPassword(){
         return $this->password;
     }
-
-    public function verificarCredenciales() {
-        $mysqli = $this->config->getMysqli();
-        $query = "CALL loginProcedure(?, ?)";
-        $stmt = $mysqli->prepare($query);
-        $stmt->bind_param('ss', $this->codigo_alumno, $this->password);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows === 1) {
-             return true; // Credenciales válidas
-        } else {
-            return false; // Credenciales inválidas
-        }
+    public function setPassword(String $password){
+        $this->password = $password;
+    }
+    public function getMallaId(){
+        return $this->mallaId;
+    }
+    public function setMallaId(String $mallaId){
+        $this->mallaId = $mallaId;
     }
 
-    public function getNameByUser($codigo_alumno){
-        $mysqli = $this->config->getMysqli();
-        $query = "SELECT name FROM alumno WHERE codigo_alumno =?";
-        $stmt = $mysqli->prepare($query);
-        $stmt->bind_param('s', $codigo_alumno);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows === 1) {
-            return $result->fetch_object()->name;
-        } else {
-            return false;
-        }
-    }
 }
-?>
-
