@@ -24,23 +24,21 @@ switch ($action) {
         }
         break;
 
-    /*case 'registro':
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // Verificar si se ha enviado el formulario de registro
-            $codigoAlumno = $_POST['codigo_alumno'];  // Obtener los datos enviados en el formulario
-            $password = $_POST['password'];
-            // Llamar al método de registro del controlador
-        } else {
-            
-           // $alumnoController->showRegistrationForm(); // Mostrar el formulario de registro
+    case 'logout':
+        if($_SESSION['logout']==true){
+            $logController->logout();
         }
         break;
-*/
+        
+    default:
+    break;
+/*
     // Otras acciones y enrutamientos del controlador...
     // ...
     default:
         // Acción desconocida, redireccionar a una página de error o hacer algo en consecuencia
         require 'view/login/Login.php'; // retornar a login por defecto o errorMessages 
-        break;
+        break;*/
 }
 
 

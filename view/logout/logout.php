@@ -1,3 +1,0 @@
-<figcaption>
-    
-</figcaption>

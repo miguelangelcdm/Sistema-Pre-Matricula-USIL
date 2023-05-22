@@ -8,7 +8,7 @@
       <a class="nav-link"></a>
     </li>
     <li class="nav-item">
-      <button type="button" class="btn btn-dark">Dark</button>
+      <a class="nav-link" href="logout">Cerrar sesion</a> 
     </li>
   </ul>
 </div>

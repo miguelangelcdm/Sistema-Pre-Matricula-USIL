@@ -66,7 +66,7 @@ class Curso {
     public function getCoursesByMallaId(String $mallaId) {
         $this->config = new Config(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         $mysqli = $this->config->getMysqli();
-        $stmt = $mysqli->prepare('CALL getCoursesByMallaId(?)');
+        $stmt = $mysqli->prepare('CALL getCoursesByMallaId(?)'); /**/
         $stmt->bind_param('s', $mallaId);
         $stmt->execute();
         $result = $stmt->get_result();
