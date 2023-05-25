@@ -1,0 +1,514 @@
+﻿idcursos;creditos;nombre;ciclo;horas;mallaid;codigo
+1;2;Fundamentos de Sistemas de Informática;1;4;PC IS-16;IIS41004
+2;2;Estructuras Discretas ;1;4;PC IS-16;IIS51006
+3;4;Fundamentos de Cálculo;1;6;PC IS-16;MAC41010
+4;4;Desarrollo Humano;1;4;PC IS-16;PSI53001
+5;4;Lenguaje I;1;4;PC IS-16;COM42008
+6;4;English I;1;6;PC IS-16;ENG42003
+7;4;Cálculo de una Variable;2;6;PC IS-16;MAC41001
+8;4;Business Process Management;2;4;PC IS-16;EGI51006
+9;2;Programación Orientada a Objetos;2;4;PC IS-16;IIS52011
+10;2;Taller de Software I;2;4;PC IS-16;IIS52001
+11;4;Lenguaje II;2;4;PC IS-16;COM42009
+12;4;English II;2;6;PC IS-16;ENG42005
+13;4;Análisis y Diseño de Datos;3;6;PC IS-16;EGI61002
+14;2;Estructura de Datos y Algoritmos;3;4;PC IS-16;IIS51002
+15;2;Taller de Software II;3;4;PC IS-16;IIS52002
+16;4;Cálculo de Varias Variables;3;6;PC IS-16;MAC41002
+17;4;Administración para los Negocios;3;4;PC IS-16;GES51001
+18;4;English III;3;6;PC IS-16;ENG42007
+19;2;Taller de Software III;4;4;PC IS-16;IIS52003
+20;4;Implementación y Gestión de Bases de Datos;4;6;PC IS-16;IIS52008
+21;2;Programación Multiplataforma;4;4;PC IS-16;IIS52010
+22;4;Estadística Descriptiva y Probabilidades;4;4;PC IS-16;EST41005
+23;4;Marketing;4;4;PC IS-16;MAR52008
+24;4;English IV;4;6;PC IS-16;ENG42009
+25;2;Modelamiento de Sistemas;5;4;PC IS-16;TND61001
+26;2;Tecnologías Emergentes;5;2;PC IS-16;TIC51001
+27;4;Arquitectura de Computadoras;5;6;PC IS-16;EGI51005
+28;4;Inferencia Estadística;5;4;PC IS-16;EST42006
+29;4;Física I;5;6;PC IS-16;FIS41003
+30;4;English V;5;6;PC IS-16;ENG42012
+31;2;Calidad de Software y Sistemas;6;4;PC IS-16;EGI61008
+32;4;Sistemas Operativos;6;4;PC IS-16;IIS52014
+33;2;Taller de Sistemas;6;4;PC IS-16;IIS52005
+34;2;Diseño para la Ingeniería;6;4;PC IS-16;ICV51027
+35;4;Física II;6;6;PC IS-16;FIS41004
+36;3;Etica y Ciudadanía;6;4;PC IS-16;ETM41007
+37;3;English VI: RREL;6;6;PC IS-16;ENG42032
+38;4;Ondas Electromagnéticas;7;4;PC IS-16;CFI51001
+39;2;Arquitectura Empresarial;7;4;PC IS-16;IIS54008
+40;4;Redes y Telecomunicaciones I;7;4;PC IS-16;IIS53001
+41;2;Gestión del Conocimiento;7;4;PC IS-16;IIS64010
+42;4;Economía General;7;4;PC IS-16;ECO51002
+43;2;Consultoría y Auditoría Informática ;8;2;PC IS-16;IIS64005
+44;2;Taller de Software IV;8;4;PC IS-16;IIS52004
+45;4;Investigación de Operaciones;8;6;PC IS-16;IIN63001
+46;4;Redes y Telecomunicaciones II;8;4;PC IS-16;IIS53002
+47;4;Finanzas Empresariales;8;6;PC IS-16;FIN52004
+48;4;Proyectos Integrador;9;6;PC IS-16;GES67045
+49;2;Perú Digital;9;4;PC IS-16;TII51003
+50;2;Gestión de Proyectos;9;4;PC IS-16;GES57022
+51;4;Introducción a los Modelos Estocásticos ;9;4;PC IS-16;EST52009
+52;4;Seguridad Informática;9;4;PC IS-16; IIS51011
+53;4;Aplicaciones Empresariales;10;6;PC IS-16;EGI61003
+54;4;Capstone Project;10;4;PC IS-16;IIS51009
+55;2;Gobierno de TIC;10;2;PC IS-16;TII61001
+56;2;Proyectos Globalizados;10;4;PC IS-16;GES67046
+57;4;Simulación de Sistemas ;10;6;PC IS-16;IIS52013
+58;4;Inteligencia Artificial;7;6;PC IS-16; IIS64015
+59;4;Robótica;8;6;PC IS-16; IIS64016
+60;4;Big Data ;9;6;PC IS-16;IIS64017
+61;4;Machine Intelligent;10;6;PC IS-16;IIS64018
+62;4;Introducción a la Tecnología Móvil;7;6;PC IS-16;TII51002
+63;4;Programación de Dispositivos Móviles ;8;6;PC IS-16;IIS52009
+64;4;Desarrollo de Aplicaciones Móviles ;9;6;PC IS-16;IIS62016
+65;4;Tópicos en Tecnología Móvil ;10;6;PC IS-16;IIS53003
+66;4;Administración de la Seguridad Informática ;7;4;PC IS-16;EGI51001
+67;4;Tópicos en Seguridad de la Información ;8;4;PC IS-16;IIS54001
+68;4;Cisco Network III;9;4;PC IS-16;IIS62015
+69;4;Cisco Network IV;10;4;PC IS-16; IIS62006
+70;2;Introducción a la Ingeniería Informática y de Sistemas;1;2;PC IS-19;IIS51012
+71;2;Introducción al Dibujo Técnico para Ingeniería;1;4;PC IS-19; IMA51019
+72;4;Fundamentos de Cálculo;1;6;PC IS-19;MAC41010
+73;4;Desarrollo Humano;1;4;PC IS-19;PSI53001
+74;4;Lenguaje I;1;4;PC IS-19;COM42008
+75;4;English I;1;6;PC IS-19;ENG42003
+76;4;Cálculo de una Variable;2;6;PC IS-19;MAC41001
+77;4;Química General;2;6;PC IS-19;QUI51001
+78;4;Estadística Descriptiva y Probabilidades;2;4;PC IS-19;EST41005
+79;4;Lenguaje II;2;4;PC IS-19;COM42009
+80;4;English II;2;6;PC IS-19;ENG42005
+81;4;Estructuras Discretas ;3;4;PC IS-19;IIS51003
+82;4;Física General;3;6;PC IS-19;FIS41001
+83;4;Comunicación Efectiva ;3;4;PC IS-19;COM52016
+84;4;Cálculo de Varias Variables;3;6;PC IS-19;MAC41002
+85;4;English III;3;6;PC IS-19;ENG42007
+86;3;Algoritmos y Estructuras de Programación ;4;2;PC IS-19;EGI51004
+87;2;Dibujo y Diseño Asistido por Computadora;4;3;PC IS-19;ICV51023
+88;4;Business Process Management;4;4;PC IS-19;EGI51006
+89;3;Etica y Ciudadanía;4;4;PC IS-19;ETM41007
+90;4;Álgebra Lineal;4;4;PC IS-19;MAC41014
+91;4;English IV;4;6;PC IS-19;ENG42009
+92;2;Taller de Software I;5;4;PC IS-19;IIS52001
+93;4;Análisis y Diseño de Datos;5;6;PC IS-19;EGI61002
+94;2;Tecnologías Emergentes;5;2;PC IS-19;TIC51001
+95;2;Arquitectura de Computadoras;5;4;PC IS-19;EGI61009
+96;2;Programación Orientada a Objetos;5;4;PC IS-19;IIS52011
+97;4;Administración para los Negocios;5;4;PC IS-19;GES51001
+98;4;English V;5;6;PC IS-19;ENG42012
+99;2;Estructura de Datos y Algoritmos;6;4;PC IS-19;IIS51002
+100;4;Implementación y Gestión de Bases de Datos;6;6;PC IS-19;IIS52008
+101;2;Perú Digital;6;4;PC IS-19;TII51003
+102;2;Taller de Software II;6;4;PC IS-19;IIS52002
+103;3;Reto de Ingeniería;6;4;PC IS-19;INV61057
+104;2;Seminario de Tecnología e Innovación;6;2;PC IS-19; INV61058
+105;2;Fundamentos del Método Científico;6;2;PC IS-19;INV51055
+106;3;English VI: RREL;6;6;PC IS-19;ENG42032
+107;4;Ondas Electromagnéticas;7;4;PC IS-19;CFI51001
+108;2;Programación Multiplataforma;7;4;PC IS-19;IIS52010
+109;4;Redes y Telecomunicaciones;7;6;PC IS-19;IIS53004
+110;2;Modelamiento de Sistemas;7;4;PC IS-19;TND61001
+111;4;Inferencia Estadística;7;4;PC IS-19;EST42006
+112;2;Arquitectura Empresarial;8;4;PC IS-19;IIS54008
+113;2;Taller de Software III;8;4;PC IS-19;IIS52003
+114;2;Sistemas Operativos;8;2;PC IS-19;IIS52024
+115;2;Calidad de Software y Sistemas;8;4;PC IS-19;EGI61008
+116;4;Marketing;8;4;PC IS-19;MAR52008
+117;4;Finanzas Empresariales;8;6;PC IS-19;FIN52004
+118;2;Proyectos Globalizados;9;4;PC IS-19;GES67046
+119;4;Ciberseguridad;9;6;PC IS-19;IIS64020
+120;2;Gestión de Proyectos;9;4;PC IS-19;GES57022
+121;4;Investigación de Operaciones;9;6;PC IS-19;IIN63001
+122;4;Economía General;9;4;PC IS-19;ECO51002
+123;4;Aplicaciones Empresariales;10;6;PC IS-19;EGI61003
+124;4;Capstone Project en Ingeniería Informática y de Sistemas;10;4;PC IS-19;IIS51013
+125;4;Simulación de Sistemas;10;6;PC IS-19;IIS52013
+126;4;Seminario de Tesis para Ingeniería;10;4;PC IS-19;INV61059
+127;4;Inteligencia Artificial;7;6;PC IS-19; IIS64015
+128;4;Robótica;8;6;PC IS-19; IIS64016
+129;4;Big Data ;9;6;PC IS-19;IIS64017
+130;4;Machine Learning ;10;6;PC IS-19;IIS64019
+131;4;Programación de Dispositivos Móviles ;7;6;PC IS-19;IIS52009
+132;4;Gestión de Datos y Soluciones Móviles Empresariales ;8;6;PC IS-19;IIS52021
+133;4;Arquitectura de Soluciones Móviles;9;6;PC IS-19; IIS52022
+134;4;Seguridad Móvil ;10;6;PC IS-19;IIS52023
+135;4;Network Management I ;8;4;PC IS-19;IIS53005
+136;4;Network Management II;9;4;PC IS-19;IIS53006
+137;4;Network Management III;10;4;PC IS-19;IIS53007
+138;3;Introducción a la Ciencia de la Computación;1;5;PC IS-22;SFW52019
+139;4;Estructuras Discretas I;1;6;PC IS-22;SFW52010
+140;4;Fundamentos de Cálculo;1;6;PC IS-22;MAC41010
+141;4;Desarrollo Humano;1;4;PC IS-22;PSI53001
+142;4;Lenguaje I;1;4;PC IS-22;COM42008
+143;4;English I;1;6;PC IS-22;ENG42003
+144;4;Cálculo de una Variable;2;6;PC IS-22;MAC41001
+145;4;Programación Orientada a Objetos I;2;6;PC IS-22;SFW52022
+146;4;Estadística Descriptiva y Probabilidades;2;4;PC IS-22;EST41005
+147;4;Lenguaje II;2;4;PC IS-22;COM42009
+148;4;English II;2;6;PC IS-22;ENG42005
+149;4;Programación Orientada a Objetos II;3;6;PC IS-22;SFW52023
+150;4;Business Process Management;3;4;PC IS-22;EGI51006
+151;4;Estructuras Discretas II;3;6;PC IS-22;SFW52011
+152;3;Desarrollo Basado en Plataformas;3;5;PC IS-22;SFW52007
+153;4;Cálculo de Varias Variables;3;6;PC IS-22;MAC41002
+154;4;English III;3;6;PC IS-22;ENG42007
+155;2;Algoritmos y Estructuras de Datos;4;2;PC IS-22;SFW52000
+156;2;Gerenciamiento de Datos I;4;4;PC IS-22;SFW52013
+157;2;Desarrollo de Sistemas Empresariales;4;2;PC IS-22;SFW52008
+158;2;Arquitectura de Computadoras;4;4;PC IS-22;EGI61009
+159;4;Álgebra Lineal;4;4;PC IS-22;MAC41014
+160;4;Física General;4;6;PC IS-22;FIS41001
+161;4;English IV;4;6;PC IS-22;ENG42009
+162;2;Gerenciamiento de Datos II;5;4;PC IS-22;SFW52014
+163;2;Análisis y Diseño de Sistemas I;5;4;PC IS-22;SFW52002
+164;2;Desarrollo de Negocios Electrónicos;5;4;PC IS-22;IIS52025
+165;4;Investigación Operativa I;5;6;PC IS-22;MAC42000
+166;4;Administración para los Negocios;5;4;PC IS-22;GES51001
+167;4;Marketing;5;4;PC IS-22;MAR52008
+168;4;English V;5;6;PC IS-22;ENG42012
+169;4;Análisis y Diseño de Sistemas II;6;6;PC IS-22;SFW52003
+170;3;Interacción Humano Computador;6;5;PC IS-22;SFW52018
+171;2;Sistemas Operativos;6;2;PC IS-22;IIS52024
+172;4;Inferencia Estadística;6;4;PC IS-22;EST42006
+173;4;Investigación Operativa II;6;6;PC IS-22;MAC42001
+174;3;English VI: RREL;6;6;PC IS-22;ENG42032
+175;2;Calidad de Software y Sistemas;7;4;PC IS-22;EGI61008
+176;2;Gerencia de Proyectos de Información;7;4;PC IS-22;IIS52028
+177;2;Estrategias de Sistemas de Información;7;2;PC IS-22; IIS52027
+178;4;Redes y Telecomunicaciones;7;6;PC IS-22;IIS53004
+179;3;Etica y Ciudadanía;7;4;PC IS-22;ETM41007
+180;4;Economía General;7;4;PC IS-22;ECO51002
+181;4;Seguridad Informática;8;4;PC IS-22;IIS51011
+182;2;Sistemas Inteligentes;8;2;PC IS-22;SFW52025
+183;2;Formación de Empresas de Base Tecnológica I;8;3;PC IS-22;SFW62006
+184;3;Proyecto de Final de Carrera I;8;4;PC IS-22;SFW62011
+185;2;Fundamentos del Método Científico;8;2;PC IS-22;INV51055
+186;4;Finanzas Empresariales;8;6;PC IS-22;FIN52004
+187;3;Formación de Empresas de Base Tecnológica II;9;4;PC IS-22;SFW62007
+188;4;Ciberseguridad;9;6;PC IS-22;IIS64020
+189;4;Consultoría y Auditoría Informática;9;2;PC IS-22;IIS64005
+190;3;Proyecto de Final de Carrera II;9;4;PC IS-22;SFW62012
+191;4;Diseño e Implementación en Ambientes Emergentes;9;6;PC IS-22;IIS52026
+192;3;Implicaciones de la Digitalización;10;4;PC IS-22;IIS52029
+193;2;Tecnologías Emergentes;10;2;PC IS-22;TIC51001
+194;3;Proyecto de Final de Carrera III;10;4;PC IS-22;SFW62013
+195;4;Seminario de Tesis para Ingeniería;10;4;PC IS-22;INV61059
+196;4;Big Data y Analítica de Datos;10;6;PC IS-22;IIS64022
+197;4;Fundamentos de Arquitectura Empresarial;7;6;PC IS-22;IIS64023
+198;4;Arquitectura De TI;8;6;PC IS-22;IIS64021
+199;4;Operaciones de Ciberseguridad;9;6;PC IS-22;IIS62018
+200;4;Gestión de la Ciberseguridad;10;6;PC IS-22;IIS62017
+201;3;Fundamentos De Programación;1;5;PC IS-23;SFW52000
+202;3;Fundamentos En Competencias Digitales;1;5;PC IS-23;
+203;4;Matemática;1;6;PC IS-23;MAT42000
+204;3;Realidad Nacional Y Globalización;1;4;PC IS-23;COM42000
+205;4;Lenguaje y Comunicación I;1;6;PC IS-23;GLB41000
+206;5;English I;1;8;PC IS-23;ENG42000
+207;4;Programación Orientada A Objetos I;2;6;PC IS-23;SFW52022
+208;2;Matemática Discreta;2;4;PC IS-23;SFW52000
+209;4;Cálculo de una Variable;2;6;PC IS-23;MAC41000
+210;4;Lenguaje y Comunicación II;2;6;PC IS-23;COM42000
+211;3;Administración para los Negocios;2;4;PC IS-23;GES51000
+212;5;English II;2;8;PC IS-23;ENG42000
+213;4;Programación y Estructuras De Datos;3;6;PC IS-23;SFW52000
+214;4;Gestión por Procesos;3;6;PC IS-23;IIS52000
+215;4;Álgebra Lineal Computacional;3;6;PC IS-23;SFW52000
+216;2;Electricidad y Ondas;3;4;PC IS-23;IIS52000
+217;3;Principios de Economía ;3;4;PC IS-23;ECO51000
+218;5;English III;3;6;PC IS-23;ENG42000
+219;4;Análisis y Diseño de Sistemas I;4;6;PC IS-23;IIS52000
+220;4;Estadística Descriptiva e Inferencia Estadística;4;6;PC IS-23;EST42000
+221;4;Gerenciamiento de Datos I;4;6;PC IS-23;SFW52000
+222;2;Arquitectura de Computadoras;4;4;PC IS-23;IIS52000
+223;3;Fundamentos Contables y Financieros;4;4;PC IS-23;CGE51000
+224;5;English IV;4;6;PC IS-23;ENG42000
+225;4;Programación Orientada a Objetos II;5;6;PC IS-23;SFW52023
+226;2;Arquitectura Empresarial;5;4;PC IS-23;IIS54000
+227;4;Gerenciamiento de Datos II;5;6;PC IS-23;SFW52000
+228;4;Interacción Humano Computador;5;6;PC IS-23;SFW52000
+229;3;Ética y Ciudadanía;5;3;PC IS-23;ETM41000
+230;3;Marketing;5;3;PC IS-23;MAR52000
+231;4;Análisis y Diseño de Sistemas II;6;6;PC IS-23;SFW52003
+232;2;Gobierno de TI;6;4;PC IS-23;SFW52000
+233;2;Gobierno de Datos ;6;4;PC IS-23;IIS52000
+234;4;Sistemas Operativos;6;6;PC IS-23;IIS52000
+235;4;Metodología de la Investigación Científica;6;4;PC IS-23;INV41000
+236;4;Desarrollo Basado en Plataformas;7;6;PC IS-23;SFW52000
+237;4;Gestión de Sistemas de Información;7;6;PC IS-23;IIS64000
+238;2;Gestión del Conocimiento;7;4;PC IS-23;IIS64000
+239;4;Redes y Telecomunicaciones I;7;6;PC IS-23;IIS53000
+240;3;Fundamentos del Liderazgo Sostenible;7;4;PC IS-23;RSO41000
+241;4;Agentes Inteligentes;8;6;PC IS-23;SFW52000
+242;4;Seguridad de la Información;8;6;PC IS-23;IIS64000
+243;2;Gestión de Proyectos para Computación;8;4;PC IS-23;SFW62000
+244;4;Cloud Computing;8;6;PC IS-23;SFW62000
+245;3;Oportunidades de Negocios;8;3;PC IS-23;GES41000
+246;4;Internet of Things;9;6;PC IS-23;SFW62000
+247;4;Visualización de Datos;9;6;PC IS-23;SFW62000
+248;4;Proyecto para Computación I;9;6;PC IS-23;SFW62000
+249;2;Tecnologías Emergentes;9;4;PC IS-23;TIC51000
+250;2;Computación en la Sociedad;9;4;PC IS-23;SFW62000
+251;4;Big Data y Analítica de Datos;10;6;PC IS-23;IIS64022
+252;4;Estrategias de Sistemas de Información;10;6;PC IS-23;IIS52000
+253;4;Proyecto para Computación II;10;6;PC IS-23;SFW62000
+254;2;Emprendimiento e Innovación Tecnológica;10;4;PC IS-23;SFW62000
+255;2;Desarrollo de Negocios Electrónicos;10;4;PC IS-23;IIS52025
+256;4;Procesamiento Digital de Señales;6;6;PC IS-23;SFW52000
+257;4;Robótica I;6;6;PC IS-23;SFW52000
+258;4;Procesamiento de Imágenes Digitales;7;6;PC IS-23;SFW52000
+259;4;Robótica II;7;6;PC IS-23;SFW52000
+260;4;Visión Computacional;8;6;PC IS-23;SFW62017
+261;4;Redes y Telecomunicaciones II;8;6;PC IS-23;IIS53000
+262;4;Tópicos en Procesamiento de Lenguaje Natural;9;6;PC IS-23;SFW62000
+263;4;Redes y Telecomunicaciones III;9;6;PC IS-23;IIS53000
+264;4;Tópicos en Analítica de Datos no Estructurados;10;6;PC IS-23;SFW62000
+265;4;Gestión de la Ciberseguridad;10;6;PC IS-23;IIS62017
+266;4;Administración para los Negocios;5;4;PC SW-19; GES51001
+267;4;English V;5;6;PC SW-19;ENG42012
+268;4;Inferencia Estadística;5;4;PC SW-19; EST42006
+269;2;Ingeniería de Datos;5;4;PC SW-19;SFW51002
+270;2;Ingeniería de Software;5;4;PC SW-19;SFW51004
+271;4;Marketing ;5;4;PC SW-19;MAR52008
+272;3;English VI: RREL;6;6;PC SW-19;ENG42032
+273;2;Fundamentos del Método Científico;6;4;PC SW-19;INV51055
+274;4;Inteligencia de Negocios;6;4;PC SW-19; GSI61009
+275;4;Introducción a los Modelos Estocásticos;6;2;PC SW-19;EST52009
+276;2;Proyecto de Software I;6;2;PC SW-19; SFW51001
+277;3;Reto de Ingeniería;6;6;PC SW-19;INV61057
+278;2;Seminario de Tecnología e Innovación;6;6;PC SW-19; INV61058
+279;2;Ciencia de Datos;7;4;PC SW-19;SFW51007
+280;3;Investigación de Operaciones;7;4;PC SW-19;IIN63001
+281;3;Modelamiento de Sistemas;7;4;PC SW-19;TND61001
+282;4;Proyecto de Software II;7;6;PC SW-19;SFW51003
+283;4;Redes y Telecomunicaciones;7;6;PC SW-19;IIS53004
+284;4;Arquitectura de Software;8;6;PC SW-19;SFW51013
+285;4;Diseño de Software;8;6;PC SW-19;SFW51005
+286;4;Finanzas Empresariales;8;6;PC SW-19;FIN52004
+287;4;Software Quality Assurance;8;6;PC SW-19;SFW61002
+288;3;Ciberseguridad;9;4;PC SW-19; IIS64020
+289;4;Economía General;9;6;PC SW-19;ECO51002
+290;4;Gestión de Proyectos de Software;9;6;PC SW-19;GES67080
+291;3;Implementación de Software;9;4;PC SW-19; SFW51008
+292;2;User Experience;9;2;PC SW-19;SFW51006
+293;4;Capstone Project en Ingeniería de Software;10;4;PC SW-19;GES67079
+294;4;Negocios y Modelos Digitales;10;4;PC SW-19;EGI61005
+295;4;Seminario de Tesis para Ingeniería;10;4;PC SW-19;INV61059
+296;4;Software Factory;10;4;PC SW-19;SFW61001
+297;4;Inteligencia Artificial;7;6;PC SW-19; IIS64015
+298;4;Robótica;8;6;PC SW-19; IIS64016
+299;4;Big Data ;9;6;PC SW-19;IIS64017
+300;4;Machine Learning ;10;6;PC SW-19;IIS64019
+301;4;Programación de Dispositivos Móviles ;7;6;PC SW-19;IIS52009
+302;4;Gestión de Datos y Soluciones Móviles Empresariales ;8;6;PC SW-19;IIS52021
+303;4;Arquitectura de Soluciones Móviles;9;6;PC SW-19; IIS52022
+304;4;Seguridad Móvil ;10;6;PC SW-19;IIS52023
+305;4;Introducción a los Videojuegos;7;6;PC SW-19;SFW51009
+306;4;Programación de Videojuegos Multidimensionales;8;4;PC SW-19;SFW51010
+307;4;Realidad Virtual y Aumentada;9;6;PC SW-19; SFW51012
+308;4;Gestión de Negocios de Videojuegos;10;6;PC SW-19;SFW51011
+309;3;Introducción a la Ciencia de la Computación;1;5;PC SW-22;SFW52019
+310;4;Estructuras Discretas I;1;6;PC SW-22;SFW52010
+311;4;Fundamentos de Cálculo;1;6;PC SW-22;MAC41010
+312;4;Desarrollo Humano;1;4;PC SW-22;PSI53001
+313;4;Lenguaje I;1;4;PC SW-22;COM42008
+314;4;English I;1;6;PC SW-22;ENG42003
+315;4;Cálculo de una Variable;2;6;PC SW-22;MAC41001
+316;4;Estructuras Discretas II;2;6;PC SW-22;SFW52011
+317;4;Programación Orientada a Objetos I;2;6;PC SW-22;SFW52022
+318;4;Lenguaje II;2;4;PC SW-22;COM42009
+319;4;English II;2;6;PC SW-22;ENG42005
+320;4;Programación Orientada a Objetos II;3;6;PC SW-22;SFW52023
+321;2;Arquitectura de Computadoras;3;4;PC SW-22;EGI61009
+322;4;Cálculo de Varias Variables;3;6;PC SW-22;MAC41002
+323;3;Desarrollo Basado en Plataformas;3;5;PC SW-22;SFW52007
+324;4;Administración para los Negocios;3;4;PC SW-22;GES51001
+325;4;English III;3;6;PC SW-22;ENG42007
+326;2;Algoritmos y Estructuras de Datos;4;2;PC SW-22;SFW52000
+327;3;Teoría de Computación;4;5;PC SW-22;SFW52026
+328;2;Gerenciamiento de Datos I;4;4;PC SW-22;SFW52013
+329;4;Sistemas Operativos;4;4;PC SW-22;IIS52014
+330;4;Economía General;4;4;PC SW-22;ECO51002
+331;4;Estadística Descriptiva y Probabilidades;4;4;PC SW-22;EST41005
+332;4;English IV;4;6;PC SW-22;ENG42009
+333;2;Gerenciamiento de Datos II;5;4;PC SW-22;SFW52014
+334;2;Análisis y Diseño de Algoritmos;5;4;PC SW-22;SFW52001
+335;3;Ingeniería de Software I;5;5;PC SW-22;SFW52015
+336;2;Compiladores;5;4;PC SW-22;SFW52005
+337;4;Física General;5;6;PC SW-22;FIS41001
+338;4;Marketing;5;4;PC SW-22;MAR52008
+339;4;English V;5;6;PC SW-22;ENG42012
+340;4;Ingeniería de Software II;6;6;PC SW-22;SFW52016
+341;2;Programación Competitiva;6;4;PC SW-22;SFW52021
+342;3;Estructura de Datos Avanzada;6;4;PC SW-22;SFW52009
+343;3;Sistemas de Información;6;2;PC SW-22;SFW52024
+344;2;Sistemas Inteligentes;6;2;PC SW-22;SFW52025
+345;4;Finanzas Empresariales;6;6;PC SW-22;FIN52004
+346;3;English VI: RREL;6;6;PC SW-22;ENG42032
+347;2;Experiencia de Usuario (UX);7;4;PC SW-22;SFW52012
+348;3;Ingeniería de Software III;7;4;PC SW-22;SFW52017
+349;3;Metodología de la Investigación en Computación;7;4;PC SW-22;SFW52020
+350;4;Redes y Telecomunicaciones;7;6;PC SW-22;IIS53004
+351;4;Biología;7;6;PC SW-22;BSC51001
+352;4;Álgebra Lineal;7;4;PC SW-22;MAC41014
+353;4;Computación Paralela y Distribuida;8;6;PC SW-22;SFW62005
+354;2;Computación en la Sociedad;8;2;PC SW-22;SFW62003
+355;2;Formación de Empresas de Base Tecnológica I;8;3;PC SW-22;SFW62006
+356;2;Matemática Aplicada a la Computación;8;3;PC SW-22;SFW62010
+357;3;Proyecto de Final de Carrera I;8;4;PC SW-22;SFW62011
+358;3;Seguridad en Computación;8;5;PC SW-22;SFW62014
+359;3;Formación de Empresas de Base Tecnológica II;9;4;PC SW-22;SFW62007
+360;4;Big Data y Analítica de Datos;9;6;PC SW-22;IIS64022
+361;4;Bioinformática;9;6;PC SW-22;SFW62000
+362;3;Proyecto de Final de Carrera II;9;4;PC SW-22;SFW62012
+363;2;Fundamentos del Método Científico;9;2;PC SW-22;INV51055
+364;2;Internet de las Cosas;10;4;PC SW-22;SFW62009
+365;2;Cloud Computing;10;4;PC SW-22;SFW62002
+366;3;Formación de Empresas de Base Tecnológica III;10;4;PC SW-22;SFW62008
+367;3;Proyecto de Final de Carrera III;10;4;PC SW-22;SFW62013
+368;4;Seminario de Tesis para Ingeniería;10;4;PC SW-22;INV61059
+369;3;Etica y Ciudadanía;10;4;PC SW-22;ETM41007
+370;4;Computación Gráfica;7;4;PC SW-22;SFW52006
+371;4;Aprendizaje Automático;7;4;PC SW-22;SFW52004
+372;4;Visión Computacional;8;4;PC SW-22;SFW62017
+373;4;Biología Computacional;8;4;PC SW-22;SFW62001
+374;4;Tópicos en Computación Gráfica;9;4;PC SW-22;SFW62015
+375;4;Tópicos en Ingeniería de Software;9;4;PC SW-22;SFW62016
+376;4;Robótica;10;4;PC SW-22;IIS64024
+377;4;Computacion Evolutiva;10;4;PC SW-22;SFW62004
+378;4;C.M.: Oportunidades de Negocios;6;4;PC SW-22;GES61009
+379;4;C.M.: Plan de Negocios;7;4;PC SW-22;GES61010
+380;4;C.M.: Incubación I;8;4;PC SW-22;GES61007
+381;4;C.M.: Incubación II;9;4;PC SW-22;GES61008
+382;4;C.M.: Fundamentos del Desarrollo Sostenible;6;4;PC SW-22;RSO61004
+383;4;C.M.: Gestión de la Responsabilidad Social;6;4;PC SW-22;RSO61005
+384;4;C.M.: Diseño y Eval. de Proyectos de RR.SS.;7;4;PC SW-22;RSO61003
+385;4;C.M.: Responsabilidad Social y Políticas Públicas;8;4;PC SW-22;RSO61007
+386;4;Metodología de la Investigación;7;4;PC SW-22;INV51002
+387;4;C.M.: Diseño y Validación de Instrumentos de Evaluación;8;4;PC SW-22;INV61009
+388;4;C.M.: Análisis e Interpretación de Datos;9;4;PC SW-22;EGI61007
+389;4;C.M.: Elaboración de Inf. de Investigación;10;4;PC SW-22;INV61002
+390;3;Fundamentos De Programación;1;5;PC SW-23;SFW52019
+391;3;Fundamentos En Competencias Digitales;1;5;PC SW-23;SFW52010
+392;4;Matemática;1;6;PC SW-23;MAC41010
+393;4;Realidad Nacional Y Globalización;1;4;PC SW-23;PSI53001
+394;3;Lenguaje y Comunicación I;1;6;PC SW-23;COM42008
+395;5;English I;1;8;PC SW-23;ENG42003
+396;4;Programación Orientada a Objetos I;2;6;PC SW-23;MAC41001
+397;2;Matemática Discreta;2;6;PC SW-23;SFW52011
+398;4;Cálculo de una Variable;2;6;PC SW-23;SFW52022
+399;4;Lenguaje y Comunicación II;2;4;PC SW-23;COM42009
+400;3;Administración para los Negocios;2;0;PC SW-23;
+401;5;English II;2;6;PC SW-23;ENG42005
+402;4;Programación y Estructuras de Datos;3;6;PC SW-23;SFW52023
+403;2;Ingeniería de Software I;3;4;PC SW-23;EGI61009
+404;4;Álgebra Lineal Computacional;3;6;PC SW-23;MAC41002
+405;3;Teoría de Computación;3;5;PC SW-23;SFW52007
+406;3;Principios de Economía ;3;4;PC SW-23;GES51001
+407;5;English III;3;6;PC SW-23;ENG42007
+408;4;Estructura de Datos Avanzada;4;2;PC SW-23;SFW52000
+409;4;Estadística Descriptiva e Inferencia Estadística;4;5;PC SW-23;SFW52026
+410;4;Gerenciamiento de Datos I;4;4;PC SW-23;SFW52013
+411;2;Experiencia de Usuario (UX);4;4;PC SW-23;IIS52014
+412;3;Fundamentos Contables y Financieros;4;4;PC SW-23;ECO51002
+413;5;English IV;4;4;PC SW-23;EST41005
+414;4;Programación Orientada a Objetos II;5;4;PC SW-23;SFW52014
+415;2;Ingeniería de Software II;5;4;PC SW-23;SFW52001
+416;4;Gerenciamiento de Datos II;5;5;PC SW-23;SFW52015
+417;4;Interacción Humano Computador;5;4;PC SW-23;SFW52005
+418;3;Ética y Ciudadanía;5;6;PC SW-23;FIS41001
+419;3;Marketing;5;4;PC SW-23;MAR52008
+420;4;Ingeniería de Software III;6;6;PC SW-23;SFW52016
+421;2;Programación Competitiva;6;4;PC SW-23;SFW52021
+422;2;Análisis y Diseño de Algoritmos;6;4;PC SW-23;SFW52009
+423;4;Sistemas Operativos;6;2;PC SW-23;SFW52024
+424;4;Metodología de la Investigación Científica;6;2;PC SW-23;SFW52025
+425;4;Desarrollo Basado en Plataformas;7;4;PC SW-23;SFW52012
+426;4;Gestión de Sistemas de Información;7;4;PC SW-23;SFW52017
+427;2;Compiladores;7;4;PC SW-23;SFW52020
+428;4;Redes y Telecomunicaciones I;7;6;PC SW-23;IIS53004
+429;3;Fundamentos del Liderazgo Sostenible;7;6;PC SW-23;BSC51001
+430;4;Agentes Inteligentes;8;6;PC SW-23;SFW62005
+431;4;Seguridad de la Información;8;2;PC SW-23;SFW62003
+432;2;Gestión de Proyectos para Computación;8;3;PC SW-23;SFW62006
+433;4;Cloud Computing;8;3;PC SW-23;SFW62010
+434;3;Oportunidades de Negocios;8;4;PC SW-23;SFW62011
+435;4;Internet of Things;9;4;PC SW-23;SFW62007
+436;4;Visualización de Datos;9;6;PC SW-23;IIS64022
+437;4;Proyecto para Computación I;9;6;PC SW-23;SFW62000
+438;2;Tecnologías Emergentes;9;4;PC SW-23;SFW62012
+439;2;Computación en la Sociedad;9;2;PC SW-23;INV51055
+440;4;Big Data y Analítica de Datos;10;4;PC SW-23;SFW62009
+441;4;Estrategias de Sistemas de Información;10;4;PC SW-23;SFW62002
+442;4;Proyecto para Computación II;10;4;PC SW-23;SFW62008
+443;2;Emprendimiento e Innovación Tecnológica;10;4;PC SW-23;SFW62013
+444;2;Desarrollo de Negocios Electrónicos;10;4;PC SW-23;INV61059
+445;4;Procesamiento Digital de Señales;6;6;PC SW-23;IIS64023
+446;4;Robótica I;6;6;PC SW-23;IIS64020
+447;4;Procesamiento de Imágenes Digitales;7;6;PC SW-23;IIS64019
+448;4;Robótica II;7;6;PC SW-23;IIS64020
+449;3;Introducción a la Ciencia de la Computación;1;5;PC CDx-23;SFW52019
+450;4;Estructuras Discretas I;1;6;PC CDx-23;SFW52010
+451;4;Matemática;1;6;PC CDx-23;MAT42000
+452;4;Lenguaje y Comunicación I;1;6;PC CDx-23;COM42000
+453;3;Realidad Nacional y Globalización;1;4;PC CDx-23;GLB41000
+454;5;English I;1;6;PC CDx-23;ENG42000
+455;2;Algoritmos y Estructuras de Datos;2;4;PC CDx-23;SFW52000
+456;4;Estructuras Discretas II;2;6;PC CDx-23;SFW52011
+457;4;Cálculo de una Variable;2;6;PC CDx-23;MAC41001
+458;4;Lenguaje y Comunicación II;2;6;PC CDx-23;COM42000
+459;3;Administración para los Negocios;2;4;PC CDx-23;GES51000
+460;5;English II;2;8;PC CDx-23;ENG42000
+461;4;Programación Orientada a Objetos I;3;6;PC CDx-23;SFW52022
+462;2;Gerenciamiento de Datos I;3;4;PC CDx-23;SFW52013
+463;4;Cálculo de Varias Variables;3;6;PC CDx-23;MAC41002
+464;4;Estadística Descriptiva e Inferencia Estadistica;3;6;PC CDx-23;EST42000
+465;3;Principios de Economía;3;4;PC CDx-23;ECO51000
+466;5;English III;3;8;PC CDx-23;ENG42000
+467;4;Programación Orientada a Objetos II;4;6;PC CDx-23;SFW52023
+468;4;Fundamentos de Ciencia de Datos;4;6;PC CDx-23;CDX52561
+469;3;Desarrollo Basado en Plataformas;4;6;PC CDx-23;SFW52007
+470;4;Álgebra Lineal Computacional;4;4;PC CDx-23;CDX52562
+471;3;Fundamentos Contables y Financieros;4;4;PC CDx-23;CGE51000
+472;5;English IV;4;4;PC CDx-23;ENG42000
+473;4;Inteligencia Artificial;5;6;PC CDx-23;IIS64015
+474;2;Gerenciamiento de Datos II;5;4;PC CDx-23;SFW52014
+475;4;Análisis Exploratorio de Datos I;5;6;PC CDx-23;CDX52221
+476;4;Desarrollo de Software;5;6;PC CDx-23;CDX52421
+477;3;Ética y Ciudadanía;5;3;PC CDx-23;ETM41000
+478;3;Marketing;5;3;PC CDx-23;MAR52000
+479;4;Minería de Datos;6;6;PC CDx-23;CDX62231
+480;3;Gerenciamiento de Datos III;6;5;PC CDx-23;CDX62241
+481;4;Análisis Exploratorio de Datos II;6;6;PC CDx-23;CDX62221
+482;3;Interacción Humano Computador;6;5;PC CDx-23;SFW52018
+483;4;Metodología de la Investigación Científica;6;3;PC CDx-23;INV41000
+484;4;Aprendizaje Automático I;7;6;PC CDx-23;CDX62321
+485;2;Cloud Computing;7;3;PC CDx-23;SFW62002
+486;4;Visualización de Datos;7;4;PC CDx-23;CDX6251
+487;3;Seguridad en Computación;7;3;PC CDx-23;SFW62014
+488;3;Fundamentos del Liderazgo Sostenible;7;4;PC CDx-23;RSO41000
+489;4;Aprendizaje Automático II;8;6;PC CDx-23;CDX62322
+490;3;Gobierno de Datos;8;6;PC CDx-23;CDX62242
+491;4;Procesamiento de Lenguaje Natural;8;6;PC CDx-23;CDX62323
+492;4;Gestión de Proyectos para Ciencia de Datos;8;6;PC CDx-23;CDX62151
+493;3;Oportunidades de Negocio;8;3;PC CDx-23;GES41000
+494;4;Aprendizaje Profundo;9;6;PC CDx-23;CDX62324
+495;2;Computación en la Sociedad;9;2;PC CDx-23;SFW62003
+496;4;Sistemas de Recuperación de Información;9;6;PC CDx-23;CDX62325
+497;4;Proyecto para Ciencia de Datos I;9;6;PC CDx-23;CDX62152
+498;2;Formación de Empresas de Base Tecnológica I;9;3;PC CDx-23;SFW62006
+499;4;Analítica de Negocios para la Toma de Decisiones;10;6;PC CDx-23;CDX62243
+500;2;Internet de las Cosas;10;4;PC CDx-23;SFW62009
+501;4;Computación Paralela y Distribuida;10;6;PC CDx-23;SFW62005
+502;4;Proyecto para Ciencia de Datos II;10;6;PC CDx-23;CDX62153
+503;3;Formación de Empresas de Base Tecnológica II;10;4;PC CDx-23;SFW62007
+504;4;Procesamiento Digital de Señales;6;6;PC CDx-23;CDX62531
+505;4;Ingeniería de Características;6;6;PC CDx-23;CDX62326
+506;4;Procesamiento de Imágenes Digitales;7;6;PC CDx-23;CDX62512
+507;4;Tópicos de Análisis de Datos;7;6;PC CDx-23;CDX62244
+508;4;Visión Computacional;8;6;PC CDx-23;SFW62017
+509;4;Machine Learning Probabilístico;8;6;PC CDx-23;CDX62327
+510;4;Tópicos en Procesamiento de Lenguaje Natural;9;6;PC CDx-23;CDX62245
+511;4;Machine Learning Interpretable;9;6;PC CDx-23;CDX62328
+512;4;Tópicos en Analítica de Datos no Estructurados;10;6;PC CDx-23;CDX62246
+513;4;Tópicos en Machine Learning;10;6;PC CDx-23;CDX62329

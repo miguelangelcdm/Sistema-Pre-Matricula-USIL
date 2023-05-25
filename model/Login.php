@@ -34,7 +34,7 @@ class Login {
              return true; // Credenciales válidas
         } else {
             return false; // Credenciales inválidas
-        }
+        }        
     }
 
     public function getNameByUser($codigo_alumno){

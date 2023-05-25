@@ -116,10 +116,10 @@ INSERT INTO `detalle_malla` (`codigo_alumno`, `nombre_apellido`, `mallaId`, `nom
 -- Estructura de tabla para la tabla `login`
 --
 
-CREATE TABLE `login` (
-  `codigo_alumno` varchar(50) NOT NULL,
-  `PASSWORD` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- CREATE TABLE `login` (
+--   `codigo_alumno` varchar(50) NOT NULL,
+--   `PASSWORD` varchar(50) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas
@@ -147,8 +147,8 @@ ALTER TABLE `detalle_malla`
 --
 -- Indices de la tabla `login`
 --
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`codigo_alumno`);
+-- ALTER TABLE `login`
+--   ADD PRIMARY KEY (`codigo_alumno`);
 
 --
 -- Restricciones para tablas volcadas
@@ -164,9 +164,9 @@ ALTER TABLE `detalle_malla`
 --
 -- Filtros para la tabla `login`
 --
-ALTER TABLE `login`
-  ADD CONSTRAINT `fk_loginID` FOREIGN KEY (`codigo_alumno`) REFERENCES `alumno` (`codigo_alumno`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
+-- ALTER TABLE `login`
+--   ADD CONSTRAINT `fk_loginID` FOREIGN KEY (`codigo_alumno`) REFERENCES `alumno` (`codigo_alumno`) ON DELETE CASCADE ON UPDATE CASCADE;
+-- COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
