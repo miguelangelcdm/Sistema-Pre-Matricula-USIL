@@ -23,10 +23,12 @@
                 <input type="text" class="form-control border-0 shadow-none" placeholder="Search..."
                     aria-label="Search..." /> -->
                     <img src="../assets/img/elements/usil.png" alt="" style="max-width:50px; margin-right:0.5rem">
-                    <a class="navbar-brand" href="javascript:void(0)">Sistema de Pseudomatricula</a>
+                    <a class="navbar-brand" href="javascript:void(0)">Sistema de Pseudomatrícula</a>
             </div>
             <div class="nav-item d-flex align-items-center">
-              Bienvenido, Usuario:
+              <div>
+                <img src="../assets/img/icons/unicons/logout.png" alt="" style="max-width:20px">
+              </div>
             </div>
         </div>
     </div>

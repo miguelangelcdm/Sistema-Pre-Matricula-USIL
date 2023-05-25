@@ -59,7 +59,6 @@
               <h4 class="mb-2">Bienvenido al sistema de</h4>
               <h4 class="mb-2">Pseudo-Matricula USIL! 👋</h4>
               <p class="mb-3">Ingresa tus datos de alumno y tu contraseña de infosil</p>
-
               <form id="formAuthentication" class="mb-3" action="index.php" method="POST">
                 <div class="mb-3">
                   <label for="email" class="form-label">Codigo de Alumno</label>
