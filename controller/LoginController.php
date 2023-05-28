@@ -29,7 +29,6 @@ class LoginController{
         echo  $_SESSION['message'] ;
     }
 
-
     public function viewLogin(){
         require 'view/login/login.php';
     }
