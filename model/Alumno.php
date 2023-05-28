@@ -5,15 +5,15 @@ class Alumno{
     private String $fullName;
     private String $password;
     private String $mallaId;
+    private String $carrera;
 
     //destructor
     public function __destruct(){} 
-    public function __construct(String $codigo_alumno,
-                                String $fullName,String $password,String $mallaId){
+    public function __construct(String $codigo_alumno, String $fullName,String $password,String $carrera){
         $this->codigo_alumno = $codigo_alumno;
         $this->fullName = $fullName;
         $this->password = $password;
-        $this->mallaId = $mallaId;
+        $this->carrera = $carrera;
     }
 
     //getter and setter
@@ -40,6 +40,12 @@ class Alumno{
     }
     public function setMallaId(String $mallaId){
         $this->mallaId = $mallaId;
+    }
+    public function getCarrera(){
+        return $this->carrera;
+    }
+    public function setCarrera(String $carrera){
+        $this->carrera = $carrera;
     }
 
 }
