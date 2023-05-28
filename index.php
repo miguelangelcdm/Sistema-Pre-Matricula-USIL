@@ -1,9 +1,9 @@
 <?php
 use controller\LoginController;
-$nombreArchivo = 'config.txt';
+//$nombreArchivo = 'config.txt';
 
 // Lee el contenido completo del archivo y lo almacena en una variable
-$contenido = file_get_contents($nombreArchivo);
+//$contenido = file_get_contents($nombreArchivo);
 require_once('controller/LoginController.php');
 
 // Configuración de la base de datos

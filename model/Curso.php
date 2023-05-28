@@ -4,9 +4,10 @@ require_once('model/Alumno.php');
 
 class Curso {
     private int $idcurso;
-    private String $codigo_curso;
+    private String $codigo;
     private int $creditos;
-    private String $nombre_curso;
+    private String $nombre;
+    private int $horas;
     private int $ciclo;
     private String $mallaId;
     private $config;
@@ -15,20 +16,21 @@ class Curso {
     public function __destruct() {}
 
     // Constructor
-    public function __construct(String $codigo_curso, int $creditos, String $nombre_curso, int $ciclo) {
-        $this->codigo_curso = $codigo_curso;
+    public function __construct(String $codigo, int $creditos, String $nombre, int $ciclo,int $horas) {
+        $this->codigo = $codigo;
         $this->creditos = $creditos;
-        $this->nombre_curso = $nombre_curso;
+        $this->nombre = $nombre;
         $this->ciclo = $ciclo;
+        $this->horas=$horas;
     }
 
     // Getter and Setter
-    public function getCodigo_curso() {
-        return $this->codigo_curso;
+    public function getcodigo() {
+        return $this->codigo;
     }
 
-    public function setCodigo_curso(String $codigo_curso) {
-        $this->codigo_curso = $codigo_curso;
+    public function setcodigo(String $codigo) {
+        $this->codigo = $codigo;
     }
 
     public function getCreditos() {
@@ -40,11 +42,11 @@ class Curso {
     }
 
     public function getNombre_curso() {
-        return $this->nombre_curso;
+        return $this->nombre;
     }
 
-    public function setNombre_curso(String $nombre_curso) {
-        $this->nombre_curso = $nombre_curso;
+    public function setNombre_curso(String $nombre) {
+        $this->nombre = $nombre;
     }
 
     public function getCiclo() {
@@ -62,6 +64,15 @@ class Curso {
     public function setMallaId(String $mallaId) {
         $this->mallaId = $mallaId;
     }
+
+    public function getHoras() {
+        return $this->horas;
+    }
+
+    public function setHoras(int $horas) {
+        $this->horas = $horas;
+    }
+
 
     public function getCoursesByMallaId(String $mallaId) {
         $this->config = new Config(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);

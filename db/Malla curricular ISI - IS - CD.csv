@@ -1,4 +1,4 @@
-﻿idcursos;creditos;nombre;ciclo;horas;mallaid;codigo
+﻿idcurso;creditos;nombre;ciclo;horas;mallaid;codigo
 1;2;Fundamentos de Sistemas de Informática;1;4;PC IS-16;IIS41004
 2;2;Estructuras Discretas ;1;4;PC IS-16;IIS51006
 3;4;Fundamentos de Cálculo;1;6;PC IS-16;MAC41010

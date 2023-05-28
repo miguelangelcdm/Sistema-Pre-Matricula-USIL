@@ -15,19 +15,35 @@
                 <div class="d-flex" style="height:100%;justify-content:space-around">
                   <div class="card mb-4" style="width:25%">
                     <h5 class="card-header">Malla</h5>
-                    <div class="card-body">
-                      <div>
-                        <label for="defaultFormControlInput" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="defaultFormControlInput" placeholder="John Doe"
-                          aria-describedby="defaultFormControlHelp">
-                        <div id="defaultFormControlHelp" class="form-text">
-                          We'll never share your details with anyone else.
-                        </div>
+                    <div class="card-body">                                                        
+                      <div class="mb-3">
+                        <form method="post" action="view/detalle/detalle.php">
+                        <label for="exampleFormControlSelect1" class="form-label">Seleccionar Malla</label>
+                        <?php
+                        use controller\CursosController;                        
+                        require_once('controller/CursoController.php');
+                        $obj = new CursosController();
+                        $data = $obj->getMallas();
+
+                        echo "<select name='mallaid' class='form-select' id='exampleFormControlSelect1' aria-label='Default select example'>";
+
+                        if (empty($data)) {
+                            echo "<option value=''>No hay datos disponibles</option>";
+                        } else {
+                            foreach($data as $row){
+                                echo "<option value='" . $row['mallaid'] . "'>" . $row['mallaid'] . "</option>";
+                            }
+                        }
+                        echo "</select>";                      
+                        ?> 
                       </div>
                     </div>
-                    <button type="button" class="btn btn-primary" style="max-width:150px;margin:1rem">Confirmar</button>
+                    <input type="submit" class="btn btn-primary" style="max-width:150px;margin:1rem" value="Filtrar" name="btn_malla"></input>
+                    </form>                    
+                    <a type="button" class="btn btn-primary" style="max-width:150px;margin:1rem"  name="btn_malla" href="view/detalle/constancia.php">Confirmar</a>
                   </div>
                   
+
                   <div class="card mb-4" style="width:70%">
                     <h5 class="card-header">Listado de Cursos</h5>
                     <div class="card-body">
@@ -36,7 +52,7 @@
                         <div class="table-responsive text-nowrap">
                           <table class="table table-hover">
                         <!-- selector -->
-                        <div class="datatable-dropdow"> 
+                        <div class="datatable-dropdow">
                           <label>
                             <select class="datatable-selector">
                               <option value="5">5</option>
@@ -48,7 +64,6 @@
                             "CANTIDAD"
                           </label>
                         <div>
-                            
                             <!-- BUSCAR -->
                           <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                             <div class="input-group">
@@ -57,65 +72,40 @@
                             </div>
                           </form>
                           <!-- BUSCAR-->
-                          
-                            
                             <thead>
                               <tr>
+                                <th>Codigo</th>
                                 <th>Nombre</th>
                                 <th>Creditos</th>
-                                <th>Cilco</th>
+                                <th>Ciclo</th>
+                                <th>Horas</th>
                                 <th>Agregar</th>
                               </tr>
                             </thead>
+
                             <tbody class="table-border-bottom-0">
                               <tr>
-                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> 
-                                <strong>Angular Project</strong></td>
-                                <td>Albert Cook</td>
-                                </td>
-                                <td><span class="badge bg-label-primary me-1">Active</span></td>
-                                <td class="dt-checkboxes-cell" style>
-                                    <input type="checkbox" class="dt-checkboxes form-check-input">
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>React Project</strong>
-                                </td>
-                                <td>Barry Hunter</td>
-                                </td>
-                                <td><span class="badge bg-label-success me-1">Completed</span></td>
-                                <td class="dt-checkboxes-cell" style>
-                                    <input type="checkbox" class="dt-checkboxes form-check-input">
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td><i class="fab fa-vuejs fa-lg text-success me-3"></i> <strong>VueJs Project</strong>
-                                </td>
-                                <td>Trevor Baker</td>
-                                </td>
-                                <td><span class="badge bg-label-info me-1">Scheduled</span></td>
-                                <td class="dt-checkboxes-cell" style>
-                                    <input type="checkbox" class="dt-checkboxes form-check-input">
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <i class="fab fa-bootstrap fa-lg text-primary me-3"></i> <strong>Bootstrap
-                                    Project</strong>
-                                </td>
-                                <td>Jerry Milton</td>
-                        
-                                  </ul>
-                                </td>
-                                <td><span class="badge bg-label-warning me-1">Pending</span></td>
-                                <td class="dt-checkboxes-cell" style>
-                                    <input type="checkbox" class="dt-checkboxes form-check-input">
-                                  </div>
-                                </td>
-                              </tr>
+                              <?php
+                                require_once('controller/CursoController.php');
+                                if(!isset($_POST['btn_malla'])){
+                                  echo "<tr>";
+                                  echo "<td colspan='6'>No hay cursos disponibles</td>";
+                                  echo "</tr>";
+                                    
+                                }else{
+                                  $mallaId=$_POST['mallaid'];                                    
+                                  $objCurso=new CursosController();
+                                  $lcursos=$objCurso->getCursos($mallaId);
+                                  foreach($lcursos as $row){
+                                    echo "<td align='center'>".$row['codigo']."</td>";
+                                    echo "<td align='center'>".$row['nombre']."</td>";
+                                    echo "<td align='center'>".$row['creditos']."</td>";
+                                    echo "<td align='center'>".$row['ciclo']."</td>";
+                                    echo "<td align='center'>".$row['horas']."</td>";
+                                    echo "<td class='dt-checkboxes-cell' style><input type='checkbox' class='dt-checkboxes form-check-input'></td>";
+                                  }
+                                }                                                                  
+                              ?>                            
                             </tbody>
                           </table>
                         </div>
@@ -164,7 +154,7 @@
                   </div>
                 </div>
               </div>
-              
+
             <!--/ Layout Demo -->
           </div>
           <!-- / Content -->
