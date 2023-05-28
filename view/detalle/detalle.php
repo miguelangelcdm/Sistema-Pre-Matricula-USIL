@@ -26,6 +26,7 @@
                     </div>
                     <button type="button" class="btn btn-primary" style="max-width:150px;margin:1rem">Confirmar</button>
                   </div>
+                  
                   <div class="card mb-4" style="width:70%">
                     <h5 class="card-header">Listado de Cursos</h5>
                     <div class="card-body">
@@ -33,51 +34,47 @@
                         <h5 class="card-header">Hoverable rows</h5>
                         <div class="table-responsive text-nowrap">
                           <table class="table table-hover">
+                        <!-- selector -->
+                        <div class="datatable-dropdow"> 
+                          <label>
+                            <select class="datatable-selector">
+                              <option value="5">5</option>
+                              <option value="10" selected>10</option>
+                              <option value="15">15</option>
+                              <option value="20">20</option>
+                              <option value="25">25</option>
+                            </select>
+                            "CANTIDAD"
+                          </label>
+                        <div>
+                            
+                            <!-- BUSCAR -->
+                          <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                            <div class="input-group">
+                              <input class="form-control" type="text" placeholder="BUSCAR" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                              <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                            </div>
+                          </form>
+                          <!-- BUSCAR-->
+                          
+                            
                             <thead>
                               <tr>
-                                <th>Project</th>
-                                <th>Client</th>
-                                <th>Users</th>
-                                <th>Status</th>
-                                <th>Actions</th>
+                                <th>Nombre</th>
+                                <th>Creditos</th>
+                                <th>Cilco</th>
+                                <th>Agregar</th>
                               </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
                               <tr>
-                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular
-                                    Project</strong></td>
+                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> 
+                                <strong>Angular Project</strong></td>
                                 <td>Albert Cook</td>
-                                <td>
-                                  <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                      class="avatar avatar-xs pull-up" title="" data-bs-original-title="Lilian Fuller">
-                                      <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle">
-                                    </li>
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                      class="avatar avatar-xs pull-up" title=""
-                                      data-bs-original-title="Sophia Wilkerson">
-                                      <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle">
-                                    </li>
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                      class="avatar avatar-xs pull-up" title=""
-                                      data-bs-original-title="Christina Parker">
-                                      <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle">
-                                    </li>
-                                  </ul>
                                 </td>
                                 <td><span class="badge bg-label-primary me-1">Active</span></td>
-                                <td>
-                                  <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                      data-bs-toggle="dropdown">
-                                      <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                      <a class="dropdown-item" href="javascript:void(0);"><i
-                                          class="bx bx-edit-alt me-1"></i> Edit</a>
-                                      <a class="dropdown-item" href="javascript:void(0);"><i
-                                          class="bx bx-trash me-1"></i> Delete</a>
-                                    </div>
+                                <td class="dt-checkboxes-cell" style>
+                                    <input type="checkbox" class="dt-checkboxes form-check-input">
                                   </div>
                                 </td>
                               </tr>
@@ -85,37 +82,10 @@
                                 <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>React Project</strong>
                                 </td>
                                 <td>Barry Hunter</td>
-                                <td>
-                                  <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                      class="avatar avatar-xs pull-up" title="" data-bs-original-title="Lilian Fuller">
-                                      <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle">
-                                    </li>
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                      class="avatar avatar-xs pull-up" title=""
-                                      data-bs-original-title="Sophia Wilkerson">
-                                      <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle">
-                                    </li>
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                      class="avatar avatar-xs pull-up" title=""
-                                      data-bs-original-title="Christina Parker">
-                                      <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle">
-                                    </li>
-                                  </ul>
                                 </td>
                                 <td><span class="badge bg-label-success me-1">Completed</span></td>
-                                <td>
-                                  <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                      data-bs-toggle="dropdown">
-                                      <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                      <a class="dropdown-item" href="javascript:void(0);"><i
-                                          class="bx bx-edit-alt me-1"></i> Edit</a>
-                                      <a class="dropdown-item" href="javascript:void(0);"><i
-                                          class="bx bx-trash me-1"></i> Delete</a>
-                                    </div>
+                                <td class="dt-checkboxes-cell" style>
+                                    <input type="checkbox" class="dt-checkboxes form-check-input">
                                   </div>
                                 </td>
                               </tr>
@@ -123,37 +93,10 @@
                                 <td><i class="fab fa-vuejs fa-lg text-success me-3"></i> <strong>VueJs Project</strong>
                                 </td>
                                 <td>Trevor Baker</td>
-                                <td>
-                                  <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                      class="avatar avatar-xs pull-up" title="" data-bs-original-title="Lilian Fuller">
-                                      <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle">
-                                    </li>
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                      class="avatar avatar-xs pull-up" title=""
-                                      data-bs-original-title="Sophia Wilkerson">
-                                      <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle">
-                                    </li>
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                      class="avatar avatar-xs pull-up" title=""
-                                      data-bs-original-title="Christina Parker">
-                                      <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle">
-                                    </li>
-                                  </ul>
                                 </td>
                                 <td><span class="badge bg-label-info me-1">Scheduled</span></td>
-                                <td>
-                                  <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                      data-bs-toggle="dropdown">
-                                      <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                      <a class="dropdown-item" href="javascript:void(0);"><i
-                                          class="bx bx-edit-alt me-1"></i> Edit</a>
-                                      <a class="dropdown-item" href="javascript:void(0);"><i
-                                          class="bx bx-trash me-1"></i> Delete</a>
-                                    </div>
+                                <td class="dt-checkboxes-cell" style>
+                                    <input type="checkbox" class="dt-checkboxes form-check-input">
                                   </div>
                                 </td>
                               </tr>
@@ -163,37 +106,12 @@
                                     Project</strong>
                                 </td>
                                 <td>Jerry Milton</td>
-                                <td>
-                                  <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                      class="avatar avatar-xs pull-up" title="" data-bs-original-title="Lilian Fuller">
-                                      <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle">
-                                    </li>
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                      class="avatar avatar-xs pull-up" title=""
-                                      data-bs-original-title="Sophia Wilkerson">
-                                      <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle">
-                                    </li>
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                      class="avatar avatar-xs pull-up" title=""
-                                      data-bs-original-title="Christina Parker">
-                                      <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle">
-                                    </li>
+                        
                                   </ul>
                                 </td>
                                 <td><span class="badge bg-label-warning me-1">Pending</span></td>
-                                <td>
-                                  <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                      data-bs-toggle="dropdown">
-                                      <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                      <a class="dropdown-item" href="javascript:void(0);"><i
-                                          class="bx bx-edit-alt me-1"></i> Edit</a>
-                                      <a class="dropdown-item" href="javascript:void(0);"><i
-                                          class="bx bx-trash me-1"></i> Delete</a>
-                                    </div>
+                                <td class="dt-checkboxes-cell" style>
+                                    <input type="checkbox" class="dt-checkboxes form-check-input">
                                   </div>
                                 </td>
                               </tr>
@@ -201,24 +119,55 @@
                           </table>
                         </div>
                       </div>
-                      <!-- <div>
-                          <label for="defaultFormControlInput" class="form-label">Name</label>
-                          <input type="text" class="form-control" id="defaultFormControlInput" placeholder="John Doe"
-                            aria-describedby="defaultFormControlHelp">
-                          <div id="defaultFormControlHelp" class="form-text">
-                            We'll never share your details with anyone else.
-                          </div>
-                        </div> -->
+                      <div class="d-flex justify-content-between row">
+                      <div class="col-sm-12 col-md-6">
+                      </div>
+                      <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 7 of 100 entries</div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                      <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                        <ul class="pagination">
+                          <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous">
+                            <a href="#" aria-controls="DataTables Table_0" data-dt-idx="previous" tabindex="0" class="page-link">Previous</a>
+                          </li>
+                          <li class="paginate_button page-item active">
+                            <a href="#" aria-controls="DataTables Table_0" data-dt-idx="0" tabindex="0" class="page-link">1</a>
+                          </li>
+                          <li class="paginate_button page-item">
+                            <a href="#" aria-controls="DataTables Table_0" data-dt-idx="1" tabindex="0" class="page-link">2</a>
+                          </li>
+                          <li class="paginate_button page-item">
+                            <a href="#" aria-controls="DataTables Table_0" data-dt-idx="2" tabindex="0" class="page-link">3</a>
+                          </li>
+                          <li class="paginate_button page-item">
+                            <a href="#" aria-controls="DataTables Table_0" data-dt-idx="3" tabindex="0" class="page-link">4</a>
+                          </li>
+                          <li class="paginate_button page-item">
+                            <a href="#" aria-controls="DataTables Table_0" data-dt-idx="4" tabindex="0" class="page-link">5</a>
+                          </li>
+                          <li class="paginate_button page-item disabled" id="DataTables_Table_0_ellipsis">
+                            <a href="#" aria-controls="DataTables Table_0" data-dt-idx="ellipsis" tabindex="0" class="page-link"></a>
+                          </li>
+                          <li class="paginate_button page-item">
+                            <a href="#" aria-controls="DataTables Table_0" data-dt-idx="14" tabindex="0" class="page-link">15</a>
+                          </li>
+                          <li class="paginate_button page-item next" id="DataTables_Table_0_next">
+                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="next" tabindex="0" class="page-link">Next</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                     </div>
                   </div>
                 </div>
-
               </div>
-            </div>
+              
             <!--/ Layout Demo -->
           </div>
           <!-- / Content -->
-
+          
           <!-- <div class="content-backdrop fade"></div> -->
         </div>
         <!-- Content wrapper -->
