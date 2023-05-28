@@ -14,14 +14,27 @@
                 <div class="d-flex" id="lays" style="height:100%;justify-content:space-around">
                   <div class="card mb-4" style="width:25%">
                     <h5 class="card-header">Malla</h5>
-                    <div class="card-body">
-                      <div>
-                        <label for="defaultFormControlInput" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="defaultFormControlInput" placeholder="John Doe"
-                          aria-describedby="defaultFormControlHelp">
-                        <div id="defaultFormControlHelp" class="form-text">
-                          We'll never share your details with anyone else.
-                        </div>
+                    <div class="card-body">                                                        
+                      <div class="mb-3">
+                        <form method="post" action="view/detalle/detalle.php">
+                        <label for="exampleFormControlSelect1" class="form-label">Seleccionar Malla</label>
+                        <?php
+                        use controller\CursosController;                        
+                        require_once('controller/CursoController.php');
+                        $obj = new CursosController();
+                        $data = $obj->getMallas();
+
+                        echo "<select name='mallaid' class='form-select' id='exampleFormControlSelect1' aria-label='Default select example'>";
+
+                        if (empty($data)) {
+                            echo "<option value=''>No hay datos disponibles</option>";
+                        } else {
+                            foreach($data as $row){
+                                echo "<option value='" . $row['mallaid'] . "'>" . $row['mallaid'] . "</option>";
+                            }
+                        }
+                        echo "</select>";                      
+                        ?> 
                       </div>
                     </div>
                     <a href="view/detalle/constancia.php" type="button" class="btn btn-primary"
