@@ -40,7 +40,7 @@
 
                                                                 <th>IDCurso</th>
                                                                 <th>Creditos</th>
-                                                                <th>Nombre</th>
+                                                                <th>Nombres</th>
                                                                 <th>Ciclo</th>
                                                                 <th>Malla</th>
                                                                 <th>Turno</th>
