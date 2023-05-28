@@ -3,6 +3,7 @@ require_once('configuration/Config.php');
 require_once('model/Alumno.php');
 
 class Curso {
+    private int $idcurso;
     private String $codigo_curso;
     private int $creditos;
     private String $nombre_curso;
@@ -14,12 +15,11 @@ class Curso {
     public function __destruct() {}
 
     // Constructor
-    public function __construct(String $codigo_curso, int $creditos, String $nombre_curso, int $ciclo, String $mallaId) {
+    public function __construct(String $codigo_curso, int $creditos, String $nombre_curso, int $ciclo) {
         $this->codigo_curso = $codigo_curso;
         $this->creditos = $creditos;
         $this->nombre_curso = $nombre_curso;
         $this->ciclo = $ciclo;
-        $this->mallaId = $mallaId;
     }
 
     // Getter and Setter
