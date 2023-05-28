@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport"
@@ -42,6 +43,8 @@
 </head>
 
 <body>
+  <?php require 'view/header/header.php'; ?>
+  <!-- Layout wrapper -->
   <div class="layout-wrapper layout-content-navbar layout-without-menu">
     <div class="layout-container" style="min-height:87vh">
       <!-- Layout container -->
@@ -53,40 +56,30 @@
             <!-- Layout Demo -->
             <div class="layout-demo-wrapper" style="height:100%">
               <div class="card card-body" style="height:100%; background-color: rgba(255, 255, 255, 0.6);">
-                <h1>Constancia de Pseudomatrícula <span><i class="fa-computer-classic me-2"></i></span></h1>
-                <div class="d-flex" id="lays" style="height:100%;justify-content:space-around">
-                  <div class="card" style="width:28%">
-                    <h5 class="card-header">Datos del Alumno:</h5>
-                    <div class="card-body">
-                      <div class="demo-inline-spacing mt-3">
-                        <ul class="list-group">
-                          <li class="list-group-item d-flex align-items-center">
-                            <i class="bx bx-user me-2"></i>
-                            Miguelangel Garay Dueñas
-                          </li>
-                          <li class="list-group-item d-flex align-items-center">
-                            <i class="bx bx-hard-hat me-2"></i>
-                            Ingenieria de Sistemas e Informática
-                          </li>
-                          <li class="list-group-item d-flex align-items-center">
-                            <i class="bx bx-list-ul me-2"></i>
-                            Malla:
-                          </li>
-                          <li class="list-group-item d-flex align-items-center">
-                            <i class="bx bx-purchase-tag-alt me-2"></i>
-                            Cursos Matriculados:
-                          </li>
-                          <li class="list-group-item d-flex align-items-center">
-                            <i class="bx bx-closet me-2"></i>
-                            Créditos Matriculados:
-                          </li>
-                        </ul>
+                <!-- <h1>Bloques a aperturar <span><i class="fa-computer-classic me-2"></i></span></h1> -->
+                <div class="d-flex" id="lays" style="height:100%;justify-content:space-between">
+                  <div class="d-flex flex-column" style="width:40%">
+                    <div class="card card-body mb-3" style="max-height:25%">
+                      <div class="mb-3">
+                        <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                          <option selected="">Seleccione una malla</option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </select>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                    <div class="card" style="height:100%">
+                      <h5 class="card-header">Listado de Cursos</h5>
+                      <div class="card-body">
+
                       </div>
                     </div>
                   </div>
 
-                  <div class="card" style="width:70%">
-                    <h5 class="card-header">Listado de Cursos</h5>
+                  <div class="card" style="width:58%">
+                    <h5 class="card-header">Alumnos</h5>
                     <div class="card-body">
                       <div class="card mt-3 p-3" style="height:90%">
                         <div class="table-responsive text-nowrap">
@@ -102,6 +95,7 @@
       </div>
     </div>
   </div>
+  <?php require 'view/footer/footer.php'; ?>
 </body>
 
 </html>
