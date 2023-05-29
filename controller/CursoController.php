@@ -20,16 +20,16 @@ class CursosController{
         return $obj->getCurso($mallaId);
        
     }
-    public function getAllCursos(){
-        //get all courses from database
-        $obj=new cursoDAO();
-        return $obj->getAllCursos();       
-    }
     public function getMallas(){
         //get all courses from database
         $obj=new cursoDAO();
         return $obj->getMalla();
        
+    }
+    public function getAllCursos(){
+        //get all courses from database
+        $obj=new cursoDAO();
+        return $obj->getAllCursos();
     }
 }
 

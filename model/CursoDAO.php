@@ -16,6 +16,16 @@ class cursoDAO{
             throw $e;
         }
     }
+    function getMalla(){
+        try {
+            $obj = conexion::singleton();
+            $data = $obj->prepare("SELECT distinct(mallaid) FROM cursos");
+            $data->execute();
+            return $data->fetchAll(PDO::FETCH_ASSOC);
+        } catch(Exception $e) {
+            throw $e;
+        }
+    }
 
     function getAllCursos() {
         try {
@@ -27,16 +37,5 @@ class cursoDAO{
             throw $e;
         }
     }
-    function getMalla(){
-        try {
-            $obj = conexion::singleton();
-            $data = $obj->prepare("SELECT distinct(mallaid) FROM cursos");
-            $data->execute();
-            return $data->fetchAll(PDO::FETCH_ASSOC);
-        } catch(Exception $e) {
-            throw $e;
-        }
-    }
-    
 }
 ?>
