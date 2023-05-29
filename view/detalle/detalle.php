@@ -8,12 +8,12 @@
         <!-- Content wrapper -->
         <div class="content-wrapper">
           <!-- Content -->
-          <div class="container-xxl flex-grow-1 container-p-y" style="max-width:100%">
+          <div class="container-xxl flex-grow-1 container-p-y" style="max-width:100%;padding-top:0.3rem!important;">
             <!-- Layout Demo -->
             <div class="layout-demo-wrapper" style="height:100%">
               <div class="card card-body" style="height:100%;width:100%; background-color: rgba(255, 255, 255, 0.6);">
-                <div class="d-flex" style="height:100%;justify-content:space-between">
-                  <div class="card" style="width:25%">
+                <div class="d-flex" id="lays" style="height:100%;justify-content:space-between">
+                  <div class="card" id="firstbot" style="width:25%">
                     <h5 class="card-header">Malla</h5>
                     <div class="card-body">
                       <div class="mb-3">
@@ -45,18 +45,17 @@
                     <a type="button" class="btn btn-primary" style="max-width:150px;margin:1rem" name="btn_malla"
                       href="view/detalle/constancia.php">Confirmar</a>
                   </div>
-
-
                   <div class="card" style="width:72%">
-                    <div class="card-datatable table-responsive pt-0">
+                    <div class="card-datatable table-responsive py-0">
                       <table class="datatables-basic table border-top">
                         <thead>
                           <tr>
                             <th>Codigo</th>
                             <th>Nombre</th>
-                            <th>Creditos</th>
                             <th>Ciclo</th>
                             <th>Horas</th>
+                            <th>Creditos</th>
+                            <th>Turno</th>
                             <th>Agregar</th>
                           </tr>
                         </thead>
@@ -68,13 +67,22 @@
                             $lcursos = $objCurso->getAllCursos();
                             if (!empty($lcursos)) {
                               foreach ($lcursos as $row) {
+                                if (isset($row['checked']) && $row['checked']) {
+                                  $counter += $row['creditos'];
+                                }
                                 echo "<tr>";
                                 echo "<td align='center'>" . $row['codigo'] . "</td>";
-                                echo "<td align='center'>" . $row['nombre'] . "</td>";
-                                echo "<td align='center'>" . $row['creditos'] . "</td>";
+                                echo "<td>" . $row['nombre'] . "</td>";
                                 echo "<td align='center'>" . $row['ciclo'] . "</td>";
                                 echo "<td align='center'>" . $row['horas'] . "</td>";
-                                echo "<td class='dt-checkboxes-cell'><input type='checkbox' class='dt-checkboxes form-check-input'></td>";
+                                echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
+                                echo "<td align='center'><select id='smallSelect' class='form-select form-select-sm'>
+                                <option value='1'>Indistinto</option>
+                                <option value='2'>Mañana</option>
+                                <option value='3'>Tarde</option>
+                                <option value='4'>Noche</option>
+                              </select></td>";
+                                echo "<td class='dt-checkboxes-cell' style='text-align:center'><input type='checkbox' class='dt-checkboxes form-check-input' onchange='updateCounter(this, " . $row['creditos'] . ")'></td>";
                                 echo "</tr>";
                               }
                             } else {
@@ -87,13 +95,23 @@
                             $objCurso = new CursosController();
                             $lcursos = $objCurso->getCursos($mallaId);
                             foreach ($lcursos as $row) {
+                              
+                              if (isset($row['checked']) && $row['checked']) {
+                                $counter += $row['creditos'];
+                              }
                               echo "<tr>";
                               echo "<td align='center'>" . $row['codigo'] . "</td>";
                               echo "<td align='center'>" . $row['nombre'] . "</td>";
-                              echo "<td align='center'>" . $row['creditos'] . "</td>";
                               echo "<td align='center'>" . $row['ciclo'] . "</td>";
                               echo "<td align='center'>" . $row['horas'] . "</td>";
-                              echo "<td class='dt-checkboxes-cell'><input type='checkbox' class='dt-checkboxes form-check-input'></td>";
+                              echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
+                              echo "<td align='center'><select id='smallSelect' class='form-select form-select-sm'>
+                                <option value='1'>Indistinto</option>
+                                <option value='2'>Mañana</option>
+                                <option value='3'>Tarde</option>
+                                <option value='4'>Noche</option>
+                              </select></td>";
+                              echo "<td class='dt-checkboxes-cell' style='text-align:center'><input type='checkbox' class='dt-checkboxes form-check-input' onchange='updateCounter(this, " . $row['creditos'] . ")'></td>";
                               echo "</tr>";
                             }
                           }
