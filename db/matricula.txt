@@ -1,0 +1,108 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema matricula
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema matricula
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `matricula` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `matricula` ;
+
+-- -----------------------------------------------------
+-- Table `matricula`.`alumno`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `matricula`.`alumno` (
+  `codigo_alumno` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(50) NOT NULL,
+  `fullName` VARCHAR(50) NULL,
+  `carrera` VARCHAR(45) NULL,
+  PRIMARY KEY (`codigo_alumno`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `matricula`.`cursos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `matricula`.`cursos` (
+  `idcursos` INT NOT NULL,
+  `creditos` INT NULL,
+  `nombre` VARCHAR(100) NULL,
+  `ciclo` INT NULL,
+  `horas` INT NULL,
+  `mallaid` VARCHAR(20) NULL,
+  `codigo` VARCHAR(20) NULL,
+  PRIMARY KEY (`idcursos`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `matricula`.`matricula`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `matricula`.`matricula` (
+  `alumno_codigo_alumno` VARCHAR(50) NOT NULL,
+  `cursos_idcursos` INT NOT NULL,
+  PRIMARY KEY (`alumno_codigo_alumno`, `cursos_idcursos`),
+  INDEX `fk_matricula_cursos1_idx` (`cursos_idcursos` ASC) VISIBLE,
+  CONSTRAINT `fk_matricula_alumno`
+    FOREIGN KEY (`alumno_codigo_alumno`)
+    REFERENCES `matricula`.`alumno` (`codigo_alumno`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_matricula_cursos1`
+    FOREIGN KEY (`cursos_idcursos`)
+    REFERENCES `matricula`.`cursos` (`idcursos`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+USE `matricula` ;
+
+-- -----------------------------------------------------
+-- procedure getCoursesByCicloAndMallaId
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `matricula`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getCoursesByCicloAndMallaId`(IN `num_ciclo` INT, `codigo_malla` VARCHAR(10))
+SELECT c.nombre_curso,c.creditos,c.mallaId FROM curso c 
+    WHERE  c.ciclo = num_ciclo AND c.mallaId = codigo_malla$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure getCoursesByMallaId
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `matricula`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getCoursesByMallaId`(IN `codigoMalla` VARCHAR(10))
+SELECT c.nombre_curso,c.mallaId FROM curso c 
+    WHERE c.mallaId = codigoMalla$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure loginProcedure
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `matricula`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `loginProcedure`(IN `codeUser` VARCHAR(50), IN `passUser` VARCHAR(50))
+SELECT alumno.fullName FROM alumno WHERE codeUser = codigo_alumno and passUser = password$$
+
+DELIMITER ;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

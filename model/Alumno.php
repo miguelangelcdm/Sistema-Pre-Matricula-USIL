@@ -15,7 +15,6 @@ class Alumno{
         $this->password = $password;
         $this->carrera = $carrera;
     }
-
     //getter and setter
     public function getCodigo_alumno(){
         return $this->codigo_alumno;

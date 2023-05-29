@@ -6,12 +6,10 @@ $nombreArchivo = 'config.txt';
 $contenido = file_get_contents($nombreArchivo);
 require_once('controller/LoginController.php');
 
-// Configuración de la base de datos
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASSWORD', $contenido);
 define('DB_NAME', 'matricula');
-
 $action = isset($_GET['action']) ? $_GET['action'] : 'login';
 $logController = new LoginController();
 
@@ -24,15 +22,13 @@ switch ($action) {
             $logController->login($codigoAlumno, $password);
         } else {
             $logController->viewLogin(); // Mostrar el formulario de inicio de sesión
+            
         }
         break;
 
     case 'logout':
-        if($_SESSION['logout']==true){
-            $logController->logout();
-        }
+        $logController->logout();
         break;
-        
     default:
     break;
 /*
