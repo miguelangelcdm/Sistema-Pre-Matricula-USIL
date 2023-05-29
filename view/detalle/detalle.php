@@ -30,6 +30,7 @@
                           if (empty($data)) {
                             echo "<option value=''>No hay datos disponibles</option>";
                           } else {
+                            echo "<option value=''>Selecciona una malla</option>";
                             foreach ($data as $row) {
                               echo "<option value='" . $row['mallaid'] . "'>" . $row['mallaid'] . "</option>";
                             }
@@ -59,57 +60,27 @@
                         <tbody class="table-border-bottom-0">
                           <?php
                           // require_once('controller/CursoController.php');
-                          if (!isset($_POST['btn_malla'])) {
-                            $objCurso = new CursosController();
-                            $lcursos = $objCurso->getAllCursos();
-                            if (!empty($lcursos)) {
-                              foreach ($lcursos as $row) {
-                                if (isset($row['checked']) && $row['checked']) {
-                                  $counter += $row['creditos'];
-                                }
-                                echo "<tr>";
-                                echo "<td align='center'>" . $row['mallaid'] . "</td>";
-                                echo "<td align='center'>" . $row['codigo'] . "</td>";
-                                echo "<td>" . $row['nombre'] . "</td>";
-                                echo "<td align='center'>" . $row['ciclo'] . "</td>";
-                                echo "<td align='center'>" . $row['horas'] . "</td>";
-                                echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
-                                echo "<td align='center'><select id='smallSelect' class='form-select form-select-sm'>
-                                <option value='1'>Indistinto</option>
-                                <option value='2'>Mañana</option>
-                                <option value='3'>Tarde</option>
-                                <option value='4'>Noche</option>
-                              </select></td>";
-                                echo "<td class='dt-checkboxes-cell' style='text-align:center'><input type='checkbox' class='dt-checkboxes form-check-input' onchange='updateCounter(this, " . $row['creditos'] . ")'></td>";
-                                echo "</tr>";
-                              }
-                            } else {
-                              echo "<tr>";
-                              echo "<td colspan='6'>No hay cursos disponibles</td>";
-                              echo "</tr>";
-                            }
-                          } else {
-                            $mallaId = $_POST['mallaid'];
-                            $objCurso = new CursosController();
-                            $lcursos = $objCurso->getCursos($mallaId);
+                          $objCurso = new CursosController();
+                          $lcursos = $objCurso->getallCursos();
+                          if (!empty($lcursos)) {
+
                             foreach ($lcursos as $row) {
-                              
                               if (isset($row['checked']) && $row['checked']) {
                                 $counter += $row['creditos'];
                               }
                               echo "<tr>";
                               echo "<td align='center'>" . $row['mallaid'] . "</td>";
                               echo "<td align='center'>" . $row['codigo'] . "</td>";
-                              echo "<td align='center'>" . $row['nombre'] . "</td>";
+                              echo "<td>" . $row['nombre'] . "</td>";
                               echo "<td align='center'>" . $row['ciclo'] . "</td>";
                               echo "<td align='center'>" . $row['horas'] . "</td>";
                               echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
                               echo "<td align='center'><select id='smallSelect' class='form-select form-select-sm'>
-                                <option value='1'>Indistinto</option>
-                                <option value='2'>Mañana</option>
-                                <option value='3'>Tarde</option>
-                                <option value='4'>Noche</option>
-                              </select></td>";
+                              <option value='1'>Indistinto</option>
+                              <option value='2'>Mañana</option>
+                              <option value='3'>Tarde</option>
+                              <option value='4'>Noche</option>
+                            </select></td>";
                               echo "<td class='dt-checkboxes-cell' style='text-align:center'><input type='checkbox' class='dt-checkboxes form-check-input' onchange='updateCounter(this, " . $row['creditos'] . ")'></td>";
                               echo "</tr>";
                             }
@@ -126,31 +97,13 @@
         </div>
       </div>
     </div>
-    <!-- / Layout wrapper -->
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../assets/vendor/js/bootstrap.js"></script>
-    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="../assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-
-    <!-- Main JS -->
-    <script src="../assets/js/main.js"></script>
-
-    <!-- Page JS -->
-
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </div>
 </body>
+
 <!-- JavaScript para la búsqueda dinámica -->
-<!-- <script>
+<script>
   // Obtener referencia al campo de búsqueda
-  var searchInput = document.getElementById('searchInput');
+  var searchInput = document.getElementById('exampleFormControlSelect1');
 
   // Obtener referencia a la tabla
   var table = document.getElementsByTagName('table')[0];
@@ -159,75 +112,47 @@
   var rows = table.getElementsByTagName('tr');
 
   // Agregar evento input al campo de búsqueda
-  searchInput.addEventListener('input', function(event) {
-    var searchText = event.target.value.toLowerCase();
 
+  // searchInput.addEventListener('change', function (event) {
+  //   var searchText = event.target.value.toLowerCase();
+  //   // Recorrer todas las filas de la tabla
+  //   for (var i = 1; i < rows.length; i++) {
+  //     var row = rows[i];
+  //     var rowData = row.getElementsByTagName('td');
+  //     var found = false;
+  //     // Verificar si el texto de búsqueda coincide con alguna celda de la fila
+  //     for (var j = 0; j < rowData.length; j++) {
+  //       var cellData = rowData[j].textContent.toLowerCase();
+  //       if (cellData ===searchText) {
+  //         found = true;
+  //         break;
+  //       }
+  //     }
+
+  //     // Mostrar u ocultar la fila según si se encuentra el texto de búsqueda
+  //     if (found) {
+  //       row.style.display = '';
+  //     } else {
+  //       row.style.display = 'none';
+  //     }
+  //   }
+  // });
+  searchInput.addEventListener('change', function (event) {
+    var searchText = event.target.value;
     // Recorrer todas las filas de la tabla
     for (var i = 1; i < rows.length; i++) {
       var row = rows[i];
       var rowData = row.getElementsByTagName('td');
-      var found = false;
-
-      // Verificar si el texto de búsqueda coincide con alguna celda de la fila
-      for (var j = 0; j < rowData.length; j++) {
-        var cellData = rowData[j].textContent.toLowerCase();
-        if (cellData.includes(searchText)) {
-          found = true;
-          break;
-        }
-      }
+      var cellData = rowData[0].textContent; // Assuming the 'mallaid' column is the first column (index 0)
 
       // Mostrar u ocultar la fila según si se encuentra el texto de búsqueda
-      if (found) {
+      if (cellData === searchText) {
         row.style.display = '';
       } else {
-        row.style.display = 'none';
+        row.hidden = true;
       }
     }
   });
+
 </script>
-<script>
-  var filtroSelect = document.getElementById('filtro-select');
-  var filasTabla = document.querySelectorAll('tbody tr');
-
-  filtroSelect.addEventListener('change', function() {
-    var filtroSeleccionado = filtroSelect.value;
-
-    filasTabla.forEach(function(fila) {
-      var valorFiltro = fila.querySelector('[data-filtro]').getAttribute('data-filtro');
-      if (filtroSeleccionado === 'todos' || valorFiltro === filtroSeleccionado) {
-        fila.style.display = '';
-      } else {
-        fila.style.display = 'none';
-      }
-    });
-  });
-</script> -->
-
-<!-- JavaScript para el filtrado dinámico -->
-<!-- <script>
-  var selectMalla = document.getElementById('exampleFormControlSelect1');
-  var rows = table.getElementsByTagName('tr');
-
-  selectMalla.addEventListener('change', function(event) {
-    var selectedValue = event.target.value.toLowerCase();
-
-    // Recorrer todas las filas de la tabla
-    for (var i = 1; i < rows.length; i++) {
-      var row = rows[i][0].textContent.toLowerCase();
-      if (row.includes(selectedValue)) {
-        found = true;
-        break;
-      }
-
-      // Mostrar u ocultar la fila según si se encuentra el texto de búsqueda
-      if (found) {
-        row.style.display = '';
-      } else {
-        row.style.display = 'none';
-      }
-    }
-  });
-</script> -->
-
 
