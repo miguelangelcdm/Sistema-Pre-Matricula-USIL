@@ -1,4 +1,5 @@
-<body>
+<body class="bg2">
+
   <!-- Layout wrapper -->
   <div class="layout-wrapper layout-content-navbar layout-without-menu">
     <div class="layout-container" style="min-height:87vh">
@@ -7,83 +8,102 @@
         <!-- Content wrapper -->
         <div class="content-wrapper">
           <!-- Content -->
-          <div class="container-xxl flex-grow-1 container-p-y" style="max-width:100%;padding-bottom:0!important">
+          <div class="container-xxl flex-grow-1 container-p-y" style="max-width:100%">
             <!-- Layout Demo -->
-            <div class="layout-demo-wrapper bg2" style="height:100%">
-              <div class="card card-body" style="height:100%; background-color: rgba(255, 255, 255, 0.6);">
-                <div class="d-flex" id="lays" style="height:100%;justify-content:space-around">
-                  <div class="card mb-4" style="width:25%">
+            <div class="layout-demo-wrapper" style="height:100%">
+              <div class="card card-body" style="height:100%;width:100%; background-color: rgba(255, 255, 255, 0.6);">
+                <div class="d-flex" style="height:100%;justify-content:space-between">
+                  <div class="card" style="width:25%">
                     <h5 class="card-header">Malla</h5>
-                    <div class="card-body">                                                        
+                    <div class="card-body">
                       <div class="mb-3">
                         <form method="post" action="view/detalle/detalle.php">
-                        <label for="exampleFormControlSelect1" class="form-label">Seleccionar Malla</label>
-                        <?php
-                        use controller\CursosController;                        
-                        require_once('controller/CursoController.php');
-                        $obj = new CursosController();
-                        $data = $obj->getMallas();
+                          <label for="exampleFormControlSelect1" class="form-label">Seleccionar Malla</label>
+                          <?php
+                          use controller\CursosController;
 
-                        echo "<select name='mallaid' class='form-select' id='exampleFormControlSelect1' aria-label='Default select example'>";
+                          require_once('controller/CursoController.php');
+                          $obj = new CursosController();
+                          $data = $obj->getMallas();
 
-                        if (empty($data)) {
+                          echo "<select name='mallaid' class='form-select' id='exampleFormControlSelect1' aria-label='Default select example'>";
+
+                          if (empty($data)) {
                             echo "<option value=''>No hay datos disponibles</option>";
-                        } else {
-                            foreach($data as $row){
-                                echo "<option value='" . $row['mallaid'] . "'>" . $row['mallaid'] . "</option>";
+                          } else {
+                            foreach ($data as $row) {
+                              echo "<option value='" . $row['mallaid'] . "'>" . $row['mallaid'] . "</option>";
                             }
-                        }
-                        echo "</select>";                      
-                        ?> 
+                          }
+                          echo "</select>";
+                          ?>
                       </div>
                     </div>
-                    <a href="view/detalle/constancia.php" type="button" class="btn btn-primary"
-                      style="max-width:150px;margin:1rem">Confirmar</a>
+                    <input type="submit" class="btn btn-primary" style="max-width:150px;margin:1rem" value="Filtrar"
+                      name="btn_malla"></input>
+                    </form>
+                    <a type="button" class="btn btn-primary" style="max-width:150px;margin:1rem" name="btn_malla"
+                      href="view/detalle/constancia.php">Confirmar</a>
                   </div>
-                  <div class="card mb-4" style="width:70%">
-                    <h5 class="card-header">Listado de Cursos</h5>
-                    <div class="card-body">
-                      <div class="card-datatable table-responsive pt-0">
-                        <table class="datatables-basic table border-top">
-                          <thead>
-                            <tr>
-                              <th>Nombre</th>
-                              <th>Creditos</th>
-                              <th>Ciclo</th>
-                              <th>Turno</th>
-                              <th>Agregar</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>
-                                <i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                <strong>POO</strong>
-                              </td>
-                              <td>4</td>
-                              <td>3</td>
-                              <td style="width:20%">
-                                <select class="form-select" id="exampleFormControlSelect1"
-                                  aria-label="Default select example">
-                                  <option selected="">Indistinto</option>
-                                  <option value="1">Mañana</option>
-                                  <option value="2">Tarde</option>
-                                  <option value="3">Noche</option>
-                                </select>
-                              </td>
-                              <td class="dt-checkboxes-cell" style="text-align:center">
-                                <input type="checkbox" class="dt-checkboxes form-check-input">
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+
+
+                  <div class="card" style="width:72%">
+                    <div class="card-datatable table-responsive pt-0">
+                      <table class="datatables-basic table border-top">
+                        <thead>
+                          <tr>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Creditos</th>
+                            <th>Ciclo</th>
+                            <th>Horas</th>
+                            <th>Agregar</th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                          <?php
+                          // require_once('controller/CursoController.php');
+                          if (!isset($_POST['btn_malla'])) {
+                            $objCurso = new CursosController();
+                            $lcursos = $objCurso->getAllCursos();
+                            if (!empty($lcursos)) {
+                              foreach ($lcursos as $row) {
+                                echo "<tr>";
+                                echo "<td align='center'>" . $row['codigo'] . "</td>";
+                                echo "<td align='center'>" . $row['nombre'] . "</td>";
+                                echo "<td align='center'>" . $row['creditos'] . "</td>";
+                                echo "<td align='center'>" . $row['ciclo'] . "</td>";
+                                echo "<td align='center'>" . $row['horas'] . "</td>";
+                                echo "<td class='dt-checkboxes-cell'><input type='checkbox' class='dt-checkboxes form-check-input'></td>";
+                                echo "</tr>";
+                              }
+                            } else {
+                              echo "<tr>";
+                              echo "<td colspan='6'>No hay cursos disponibles</td>";
+                              echo "</tr>";
+                            }
+                          } else {
+                            $mallaId = $_POST['mallaid'];
+                            $objCurso = new CursosController();
+                            $lcursos = $objCurso->getCursos($mallaId);
+                            foreach ($lcursos as $row) {
+                              echo "<tr>";
+                              echo "<td align='center'>" . $row['codigo'] . "</td>";
+                              echo "<td align='center'>" . $row['nombre'] . "</td>";
+                              echo "<td align='center'>" . $row['creditos'] . "</td>";
+                              echo "<td align='center'>" . $row['ciclo'] . "</td>";
+                              echo "<td align='center'>" . $row['horas'] . "</td>";
+                              echo "<td class='dt-checkboxes-cell'><input type='checkbox' class='dt-checkboxes form-check-input'></td>";
+                              echo "</tr>";
+                            }
+                          }
+                          ?>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <!--/ Layout Demo -->
             </div>
           </div>
         </div>

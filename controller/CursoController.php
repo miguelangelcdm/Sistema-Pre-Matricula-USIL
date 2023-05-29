@@ -26,6 +26,11 @@ class CursosController{
         return $obj->getMalla();
        
     }
+    public function getAllCursos(){
+        //get all courses from database
+        $obj=new cursoDAO();
+        return $obj->getAllCursos();
+    }
 }
 
 

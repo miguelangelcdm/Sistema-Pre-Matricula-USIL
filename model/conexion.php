@@ -5,7 +5,7 @@ class conexion{
     public   function __construct(){
         $dns='mysql:dbname=matricula;host=localhost';
         $user='root';
-        $pass='root';
+        $pass='blackN10';
         try{
             self::$cn=new PDO($dns,$user,$pass);
             //self::$cn->exec("SET CHARACTER SETR utf8"); el servidor que tengo no l o necesita
