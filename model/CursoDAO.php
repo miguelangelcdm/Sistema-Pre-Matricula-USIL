@@ -16,7 +16,6 @@ class cursoDAO{
             throw $e;
         }
     }
-
     function getMalla(){
         try {
             $obj = conexion::singleton();
