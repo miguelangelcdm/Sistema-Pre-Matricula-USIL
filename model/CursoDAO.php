@@ -17,6 +17,16 @@ class cursoDAO{
         }
     }
 
+    function getAllCursos() {
+        try {
+            $obj = conexion::singleton();
+            $data = $obj->prepare("SELECT * FROM cursos");
+            $data->execute();
+            return $data;
+        } catch(Exception $e) {
+            throw $e;
+        }
+    }
     function getMalla(){
         try {
             $obj = conexion::singleton();
