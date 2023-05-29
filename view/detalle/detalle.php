@@ -1,7 +1,7 @@
 <body class="bg2">
 
   <!-- Layout wrapper -->
-  <div class="layout-wrapper layout-content-navbar layout-without-menu">
+  <div class="layout-wrapper layout-content-navbar layout-without-menu" style="flex-direction: column;">
     <div class="layout-container" style="min-height:87vh">
       <!-- Layout container -->
       <div class="layout-page">
@@ -17,8 +17,7 @@
                     <h5 class="card-header">Malla</h5>
                     <div class="card-body">
                       <div class="mb-3">
-                        <form method="post" action="view/detalle/detalle.php">
-                          <label for="exampleFormControlSelect1" class="form-label">Seleccionar Malla</label>
+                          <label class="form-label">Seleccionar Malla</label>
                           <?php
                           use controller\CursosController;
 
@@ -26,7 +25,7 @@
                           $obj = new CursosController();
                           $data = $obj->getMallas();
 
-                          echo "<select name='mallaid' class='form-select' id='exampleFormControlSelect1' aria-label='Default select example'>";
+                          echo "<select name='mallaid' class='form-select' id='select-malla' aria-label='Default select example'>";
 
                           if (empty($data)) {
                             echo "<option value=''>No hay datos disponibles</option>";
@@ -40,9 +39,6 @@
                           ?>
                       </div>
                     </div>
-                    <input type="submit" class="btn btn-primary" style="max-width:150px;margin:1rem" value="Filtrar"
-                      name="btn_malla"></input>
-                    </form>
                     <a type="button" class="btn btn-primary" style="max-width:150px;margin:1rem" name="btn_malla"
                       href="view/detalle/constancia.php">Confirmar</a>
                   </div>
@@ -67,6 +63,7 @@
                           $objCurso = new CursosController();
                           $lcursos = $objCurso->getallCursos();
                           if (!empty($lcursos)) {
+
                             foreach ($lcursos as $row) {
                               if (isset($row['checked']) && $row['checked']) {
                                 $counter += $row['creditos'];
@@ -115,6 +112,7 @@
   var rows = table.getElementsByTagName('tr');
 
   // Agregar evento input al campo de búsqueda
+
   // searchInput.addEventListener('change', function (event) {
   //   var searchText = event.target.value.toLowerCase();
   //   // Recorrer todas las filas de la tabla
@@ -157,3 +155,4 @@
   });
 
 </script>
+

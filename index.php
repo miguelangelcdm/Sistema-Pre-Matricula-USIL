@@ -1,14 +1,14 @@
 <?php
 use controller\LoginController;
-$nombreArchivo = 'config.txt';
+// $nombreArchivo = 'config.txt';
 
 // Lee el contenido completo del archivo y lo almacena en una variable
-$contenido = file_get_contents($nombreArchivo);
+// $contenido = file_get_contents($nombreArchivo);
 require_once('controller/LoginController.php');
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASSWORD', $contenido);
+define('DB_PASSWORD', 'root');
 define('DB_NAME', 'matricula');
 $action = isset($_GET['action']) ? $_GET['action'] : 'login';
 $logController = new LoginController();
