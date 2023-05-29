@@ -206,7 +206,7 @@ table.dataTable thead th,
 table.dataTable thead td,
 table.dataTable tfoot th,
 table.dataTable tfoot td {
-  text-align: left;
+  text-align: center;
 }
 table.dataTable thead th.dt-head-left,
 table.dataTable thead td.dt-head-left,
@@ -437,6 +437,7 @@ div.dataTables_wrapper .card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0.9rem;
 }
 div.dataTables_wrapper div.dataTables_info {
   padding-top: 0.5rem;
