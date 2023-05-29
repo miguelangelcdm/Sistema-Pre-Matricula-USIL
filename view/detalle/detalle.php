@@ -37,7 +37,22 @@
                           }
                           echo "</select>";
                           ?>
+                          <label class="form-label">Seleccionar Ciclo</label>
+                          <select  class='form-select' id='select-ciclo' aria-label='Default select example'>
+                          <option value='' selected>Seleccione Ciclo</option>
+                          <option value='1'>1</option>
+                          <option value='2'>2</option>
+                          <option value='3'>3</option>
+                          <option value='4'>4</option>
+                          <option value='5'>5</option>
+                          <option value='6'>6</option>
+                          <option value='7'>7</option>
+                          <option value='8'>8</option>
+                          <option value='9'>9</option>
+                          <option value='10'>10</option>
+                          </select>
                       </div>
+
                     </div>
                     <a type="button" class="btn btn-primary" style="max-width:150px;margin:1rem" name="btn_malla"
                       href="view/detalle/constancia.php">Confirmar</a>
@@ -100,59 +115,4 @@
   </div>
 </body>
 
-<!-- JavaScript para la búsqueda dinámica -->
-<script>
-  // Obtener referencia al campo de búsqueda
-  var searchInput = document.getElementById('exampleFormControlSelect1');
-
-  // Obtener referencia a la tabla
-  var table = document.getElementsByTagName('table')[0];
-
-  // Obtener todas las filas de la tabla
-  var rows = table.getElementsByTagName('tr');
-
-  // Agregar evento input al campo de búsqueda
-
-  // searchInput.addEventListener('change', function (event) {
-  //   var searchText = event.target.value.toLowerCase();
-  //   // Recorrer todas las filas de la tabla
-  //   for (var i = 1; i < rows.length; i++) {
-  //     var row = rows[i];
-  //     var rowData = row.getElementsByTagName('td');
-  //     var found = false;
-  //     // Verificar si el texto de búsqueda coincide con alguna celda de la fila
-  //     for (var j = 0; j < rowData.length; j++) {
-  //       var cellData = rowData[j].textContent.toLowerCase();
-  //       if (cellData ===searchText) {
-  //         found = true;
-  //         break;
-  //       }
-  //     }
-
-  //     // Mostrar u ocultar la fila según si se encuentra el texto de búsqueda
-  //     if (found) {
-  //       row.style.display = '';
-  //     } else {
-  //       row.style.display = 'none';
-  //     }
-  //   }
-  // });
-  searchInput.addEventListener('change', function (event) {
-    var searchText = event.target.value;
-    // Recorrer todas las filas de la tabla
-    for (var i = 1; i < rows.length; i++) {
-      var row = rows[i];
-      var rowData = row.getElementsByTagName('td');
-      var cellData = rowData[0].textContent; // Assuming the 'mallaid' column is the first column (index 0)
-
-      // Mostrar u ocultar la fila según si se encuentra el texto de búsqueda
-      if (cellData === searchText) {
-        row.style.display = '';
-      } else {
-        row.hidden = true;
-      }
-    }
-  });
-
-</script>
 

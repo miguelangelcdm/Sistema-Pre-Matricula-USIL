@@ -18,6 +18,11 @@ $(function () {
           searchable: false,
         },
         {
+          // For Turno
+          targets: 0,
+          visible:false,
+        },
+        {
           // For Checkboxes
           targets: 7,
           orderable: false,
@@ -43,6 +48,23 @@ $(function () {
         },
       ],
     });
+    // Dropdown de mallas
+    var searchInput = document.getElementById("select-malla");
+    // Event listener for external dropdown
+    searchInput.addEventListener("change", function (event) {
+      var searchText = event.target.value.toLowerCase();
+
+      // Filter the DataTable based on the selected value
+      dt_basic.column(0).search(searchText, true, false).draw();
+    });
+    //Dropdown Ciclo
+    var ciclo = document.getElementById("select-ciclo");
+    ciclo.addEventListener("change", function (event) {
+      var searchciclo = event.target.value.toLowerCase();
+
+      // Filter the DataTable based on the selected value
+      dt_basic.column(3).search(searchciclo, true, false).draw();
+    });
 
     var initialCounterValue = parseInt($(".head-label .counter").text());
     counter = initialCounterValue || 0;
@@ -57,7 +79,7 @@ $(function () {
     // Acumulador de cursos seleccionados
     dt_basic_table.on("change", ".dt-checkboxes", function () {
       var creditos = parseInt(
-        $(this).closest("tr").find("td:nth-child(3)").text()
+        $(this).closest("tr").find("td:nth-child(5)").text()
       );
       updateCounter(this, creditos);
     });
@@ -86,7 +108,7 @@ $(function () {
     var checkboxes = $(".datatables-basic tbody .dt-checkboxes");
     checkboxes.each(function () {
       var rowCreditos = parseInt(
-        $(this).closest("tr").find("td:nth-child(3)").text()
+        $(this).closest("tr").find("td:nth-child(5)").text()
       );
       if (counterValue + rowCreditos > maxCreditos) {
         // Disable checkboxes that are not checked
