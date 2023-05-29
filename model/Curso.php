@@ -74,10 +74,28 @@ class Curso {
     }
 
 
+    // public function getCoursesByMallaId(String $mallaId) {
+    //     $this->config = new Config(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+    //     $mysqli = $this->config->getMysqli();
+    //     $stmt = $mysqli->prepare('CALL getCoursesByMallaId(?)'); /**/
+    //     $stmt->bind_param('s', $mallaId);
+    //     $stmt->execute();
+    //     $result = $stmt->get_result();
+    //     if ($result->num_rows > 0) {
+    //         $courses = [];
+    //         while ($row = $result->fetch_assoc()) {
+    //             $courses[] = $row;
+    //         }
+    //         return $courses;
+    //     } else {
+    //         return false;
+    //     }
+    // }
     public function getCoursesByMallaId(String $mallaId) {
         $this->config = new Config(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         $mysqli = $this->config->getMysqli();
-        $stmt = $mysqli->prepare('CALL getCoursesByMallaId(?)'); /**/
+        $query = 'SELECT * FROM cursos WHERE mallaId = ?';
+        $stmt = $mysqli->prepare($query);
         $stmt->bind_param('s', $mallaId);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -91,6 +109,7 @@ class Curso {
             return false;
         }
     }
+    
 
     public function getCoursesByCicloAndMallaId(int $ciclo, String $mallaId) {
         $this->config = new Config(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);

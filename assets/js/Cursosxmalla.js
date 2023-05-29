@@ -11,15 +11,15 @@ $(function () {
     var dt_basic = dt_basic_table.DataTable({
       columnDefs: [
         {
-          // For Checkboxes
-          targets: 5,
+          // For Turno
+          targets: 6,
           orderable: false,
           responsivePriority: 3,
           searchable: false,
         },
         {
           // For Checkboxes
-          targets: 6,
+          targets: 7,
           orderable: false,
           responsivePriority: 3,
           searchable: false,

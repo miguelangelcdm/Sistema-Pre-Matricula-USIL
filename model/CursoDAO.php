@@ -38,5 +38,16 @@ class cursoDAO{
             throw $e;
         }
     }
+    function getCursoByMalla($mallaid) {
+        try {
+            $obj = conexion::singleton();
+            $data = $obj->prepare("SELECT * FROM cursos WHERE mallaid LIKE :mallaid");
+            $data->bindParam(":mallaid", $mallaid);
+            $data->execute();
+            return $data->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }
 ?>
