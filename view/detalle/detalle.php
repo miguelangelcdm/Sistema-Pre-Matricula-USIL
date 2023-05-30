@@ -14,31 +14,29 @@
               <div class="card card-body" style="height:100%;width:100%; background-color: rgba(255, 255, 255, 0.6);">
                 <div class="d-flex" id="lays" style="height:100%;justify-content:space-between">
                   <div class="card" id="firstbot" style="width:25%">
-                    <h5 class="card-header">Malla</h5>
+                    <h5 class="card-header">Filtros</h5>
                     <div class="card-body">
                       <div class="mb-3">
-                          <label class="form-label">Seleccionar Malla</label>
-                          <?php
-                          use controller\CursosController;
+                        <?php
+                        use controller\CursosController;
 
-                          require_once('controller/CursoController.php');
-                          $obj = new CursosController();
-                          $data = $obj->getMallas();
+                        require_once('controller/CursoController.php');
+                        $obj = new CursosController();
+                        $data = $obj->getMallas();
 
-                          echo "<select name='mallaid' class='form-select' id='select-malla' aria-label='Default select example'>";
+                        echo "<select name='mallaid' class='form-select mt-3' id='select-malla' aria-label='Default select example'>";
 
-                          if (empty($data)) {
-                            echo "<option value=''>No hay datos disponibles</option>";
-                          } else {
-                            echo "<option value=''>Selecciona una malla</option>";
-                            foreach ($data as $row) {
-                              echo "<option value='" . $row['mallaid'] . "'>" . $row['mallaid'] . "</option>";
-                            }
+                        if (empty($data)) {
+                          echo "<option value=''>No hay datos disponibles</option>";
+                        } else {
+                          echo "<option value=''>Selecciona una malla</option>";
+                          foreach ($data as $row) {
+                            echo "<option value='" . $row['mallaid'] . "'>" . $row['mallaid'] . "</option>";
                           }
-                          echo "</select>";
-                          ?>
-                          <label class="form-label">Seleccionar Ciclo</label>
-                          <select  class='form-select' id='select-ciclo' aria-label='Default select example'>
+                        }
+                        echo "</select>";
+                        ?>
+                        <select class='form-select mt-3' id='select-ciclo' aria-label='Default select example'>
                           <option value='' selected>Seleccione Ciclo</option>
                           <option value='1'>1</option>
                           <option value='2'>2</option>
@@ -50,16 +48,16 @@
                           <option value='8'>8</option>
                           <option value='9'>9</option>
                           <option value='10'>10</option>
-                          </select>
+                        </select>
                       </div>
 
                     </div>
-                    <a type="button" class="btn btn-primary" style="max-width:150px;margin:1rem" name="btn_malla"
-                      href="view/detalle/constancia.php">Confirmar</a>
+                    <a type="button" class="btn btn-primary" style="margin:1rem" name="btn_malla"
+                      href="view/detalle/bloques.php">Listado de bloques</a>
                   </div>
                   <div class="card" style="width:72%">
                     <div class="card-datatable table-responsive py-0">
-                      <table class="datatables-basic table border-top">
+                      <table class="datatables-basic table border-top" id="main-dt">
                         <thead>
                           <tr>
                             <th>Malla</th>
@@ -77,11 +75,12 @@
                           // require_once('controller/CursoController.php');
                           $objCurso = new CursosController();
                           $lcursos = $objCurso->getallCursos();
+                          $selectedCourses = [];
                           if (!empty($lcursos)) {
-
                             foreach ($lcursos as $row) {
                               if (isset($row['checked']) && $row['checked']) {
                                 $counter += $row['creditos'];
+                                $selectedCourses[] = $row;
                               }
                               echo "<tr>";
                               echo "<td align='center'>" . $row['mallaid'] . "</td>";
@@ -90,11 +89,11 @@
                               echo "<td align='center'>" . $row['ciclo'] . "</td>";
                               echo "<td align='center'>" . $row['horas'] . "</td>";
                               echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
-                              echo "<td align='center'><select id='smallSelect' class='form-select form-select-sm'>
-                              <option value='1'>Indistinto</option>
-                              <option value='2'>Mañana</option>
-                              <option value='3'>Tarde</option>
-                              <option value='4'>Noche</option>
+                              echo "<td align='center'><select id='turnoSelect' class='form-select form-select-sm'>
+                              <option value='Indistinto'>Indistinto</option>
+                              <option value='Mañana'>Mañana</option>
+                              <option value='Tarde'>Tarde</option>
+                              <option value='Noche'>Noche</option>
                             </select></td>";
                               echo "<td class='dt-checkboxes-cell' style='text-align:center'><input type='checkbox' class='dt-checkboxes form-check-input' onchange='updateCounter(this, " . $row['creditos'] . ")'></td>";
                               echo "</tr>";
@@ -103,6 +102,36 @@
                           ?>
                         </tbody>
                       </table>
+                      <!-- Modal con cursos -->
+                      <div class="modal fade" id="modalCursos" tabindex="-1" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="modalCenterTitle">Cursos Matriculados</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <table class="datatables-basic2 table border-top" id="selectedCoursesTable">
+                                <thead>
+                                  <tr>
+                                    <!-- <th>Malla</th> -->
+                                    <th>Codigo</th>
+                                    <th>Nombre</th>
+                                    <th>Ciclo</th>
+                                    <th>Horas</th>
+                                    <th>Creditos</th>
+                                    <th>Turno</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="table-border-bottom-0">
+                                  <!-- Js Generated Content -->
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -113,6 +142,5 @@
       </div>
     </div>
   </div>
+  </div>
 </body>
-
-

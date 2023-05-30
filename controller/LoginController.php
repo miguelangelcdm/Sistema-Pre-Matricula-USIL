@@ -3,7 +3,6 @@ namespace controller;
 use Config;
 use Login;
 
-
 require_once ('configuration/Config.php');
 require_once ('model/Login.php');
 
