@@ -12,6 +12,18 @@
         <a class="navbar-brand" href="javascript:void(0)">Sistema de Pseudomatrícula</a>
       </div>
       <div class="nav-item d-flex align-items-center">
+        <h6>
+          <?php
+            use controller\AlumnoController;
+            require_once 'controller/AlumnoController.php';
+            
+            $obj = new AlumnoController();
+            global $user;
+            $user = $obj->findById($id);
+            // $name=$user['fullName'];
+            echo $user['fullName'];
+          ?>
+        </h6>
         <a href="index.php?action=logout">
           <img src="../assets/img/icons/unicons/logout.png" alt="" style="max-width:20px">
         </a>

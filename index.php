@@ -21,8 +21,7 @@ switch ($action) {
             $password = $_POST['password'];        // Llamar al método de inicio de sesión del controlador
             $logController->login($codigoAlumno, $password);
         } else {
-            $logController->viewLogin(); // Mostrar el formulario de inicio de sesión
-            
+            $logController->viewLogin(); // Mostrar el formulario de inicio de sesión            
         }
         break;
 
