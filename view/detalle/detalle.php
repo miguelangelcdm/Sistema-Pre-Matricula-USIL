@@ -17,28 +17,32 @@
                     <h5 class="card-header">Malla</h5>
                     <div class="card-body">
                       <div class="mb-3">
-                          <label class="form-label">Seleccionar Malla</label>
-                          <?php
-                          use controller\CursosController;
-
+                        <label class="form-label">Seleccionar Malla</label>
+                        <?php
+                        use controller\CursosController;
+                        if (!isset($_POST['registerMatricula'])) {
                           require_once('controller/CursoController.php');
-                          $obj = new CursosController();
-                          $data = $obj->getMallas();
+                          require_once('controller/MatriculaController.php');
+                        }
+                                        
+                        $obj = new CursosController();
+                        $carrera = $user['carrera'];
+                        $data = $obj->getMallas($carrera);
 
-                          echo "<select name='mallaid' class='form-select' id='select-malla' aria-label='Default select example'>";
+                        echo "<select name='mallaid' class='form-select' id='select-malla' aria-label='Default select example'>";
 
-                          if (empty($data)) {
-                            echo "<option value=''>No hay datos disponibles</option>";
-                          } else {
-                            echo "<option value=''>Selecciona una malla</option>";
-                            foreach ($data as $row) {
-                              echo "<option value='" . $row['mallaid'] . "'>" . $row['mallaid'] . "</option>";
-                            }
+                        if (empty($data)) {
+                          echo "<option value=''>No hay datos disponibles</option>";
+                        } else {
+                          echo "<option value=''>Selecciona una malla</option>";
+                          foreach ($data as $row) {
+                            echo "<option value='" . $row['mallaid'] . "'>" . $row['mallaid'] . "</option>";
                           }
-                          echo "</select>";
-                          ?>
-                          <label class="form-label">Seleccionar Ciclo</label>
-                          <select  class='form-select' id='select-ciclo' aria-label='Default select example'>
+                        }
+                        echo "</select>";
+                        ?>
+                        <label class="form-label">Seleccionar Ciclo</label>
+                        <select class='form-select' id='select-ciclo' aria-label='Default select example'>
                           <option value='' selected>Seleccione Ciclo</option>
                           <option value='1'>1</option>
                           <option value='2'>2</option>
@@ -50,15 +54,33 @@
                           <option value='8'>8</option>
                           <option value='9'>9</option>
                           <option value='10'>10</option>
-                          </select>
+                        </select>
                       </div>
-
                     </div>
-                    <a type="button" class="btn btn-primary" style="max-width:150px;margin:1rem" name="btn_malla"
-                      href="view/detalle/constancia.php">Confirmar</a>
+                    <form action="view/constancia.php" method="POST">
+                      <input type="hidden" name="action" value="constancia">
+                      <input type="submit" value="Constancia" class="btn btn-primary" style="max-width:150px;margin:1rem" name="btn_malla">
+                    </form>
                   </div>
                   <div class="card" style="width:72%">
                     <div class="card-datatable table-responsive py-0">
+                    <?php
+                    
+                    
+
+                    if (isset($_POST['registerMatricula'])) {
+                      require_once('../../controller/CursoController.php');
+                      require_once('../../controller/MatriculaController.php');
+                      $alumno_codigo_alumno = $_POST['alumno_codigo_alumno'];
+                      $cursos_seleccionados = $_POST['cursos_seleccionados'];
+
+                      $objM = new MatriculaController();
+                      $objM->registrarMatricula($alumno_codigo_alumno, $cursos_seleccionados);
+                    }
+
+                    ?>
+
+                    <form action="view/detalle/detalle.php" method="POST">
                       <table class="datatables-basic table border-top">
                         <thead>
                           <tr>
@@ -74,35 +96,55 @@
                         </thead>
                         <tbody class="table-border-bottom-0">
                           <?php
-                          // require_once('controller/CursoController.php');
                           $objCurso = new CursosController();
-                          $lcursos = $objCurso->getallCursos();
-                          if (!empty($lcursos)) {
+                          $lcursos = $objCurso->getCursos($carrera);
+                          $idalu = $user['codigo_alumno'];
+                          echo "<input type='hidden' name='alumno_codigo_alumno' value='" . $idalu . "'>";
 
+                          if (!empty($lcursos)) {
+                            $counter = 0; // Initialize the counter variable
                             foreach ($lcursos as $row) {
                               if (isset($row['checked']) && $row['checked']) {
                                 $counter += $row['creditos'];
                               }
-                              echo "<tr>";
+
+                              echo "<tr id='fila-" . $row['idcurso'] . "'>";
                               echo "<td align='center'>" . $row['mallaid'] . "</td>";
                               echo "<td align='center'>" . $row['codigo'] . "</td>";
                               echo "<td>" . $row['nombre'] . "</td>";
                               echo "<td align='center'>" . $row['ciclo'] . "</td>";
                               echo "<td align='center'>" . $row['horas'] . "</td>";
                               echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
-                              echo "<td align='center'><select id='smallSelect' class='form-select form-select-sm'>
-                              <option value='1'>Indistinto</option>
-                              <option value='2'>Mañana</option>
-                              <option value='3'>Tarde</option>
-                              <option value='4'>Noche</option>
-                            </select></td>";
-                              echo "<td class='dt-checkboxes-cell' style='text-align:center'><input type='checkbox' class='dt-checkboxes form-check-input' onchange='updateCounter(this, " . $row['creditos'] . ")'></td>";
+                              echo "<td align='center'>
+                                    <select id='smallSelect' class='form-select form-select-sm' name='turno_" . $row['idcurso'] . "'>
+                                      <option value='1'>Indistinto</option>
+                                      <option value='2'>Mañana</option>
+                                      <option value='3'>Tarde</option>
+                                      <option value='4'>Noche</option>
+                                    </select>
+                                  </td>";
+                              echo "<td class='dt-checkboxes-cell' style='text-align:center'>
+                                    <input type='checkbox' class='dt-checkboxes form-check-input' onchange='updateCounter(this, " . $row['creditos'] . ")' name='cursos_seleccionados[]' value='" . $row['idcurso'] . "'>
+                                  </td>";
                               echo "</tr>";
                             }
                           }
                           ?>
                         </tbody>
+                        <tfoot>
+                          <tr>
+                            <td colspan="6"></td>
+                            <td style="background-color: aliceblue; text-align: right; font-weight: bold;">Total Créditos:</td>
+                            <td style="text-align: center;"><span id="creditos-counter">0</span></td>
+                          </tr>
+                          <tr>
+                            <td colspan="8" style="text-align: right;">
+                              <input type="submit" class="btn btn-primary" style="max-width:150px;margin:1rem" name="registerMatricula" value="Registrar">
+                            </td>
+                          </tr>
+                        </tfoot>
                       </table>
+                    </form>
                     </div>
                   </div>
                 </div>
@@ -114,5 +156,3 @@
     </div>
   </div>
 </body>
-
-

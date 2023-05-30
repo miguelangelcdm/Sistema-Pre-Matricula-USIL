@@ -43,7 +43,7 @@
 </head>
 
 <body>
-  <?php require 'view/header/header.php'; ?>
+  <?php require '../../view/header/header.php'; ?>
   <!-- Layout wrapper -->
   <div class="layout-wrapper layout-content-navbar layout-without-menu">
     <div class="layout-container" style="min-height:87vh">
