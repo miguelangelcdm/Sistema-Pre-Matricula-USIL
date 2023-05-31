@@ -18,7 +18,7 @@ class MatriculaDAO
             // $data->bindParam(1,$objMatricula->getCursoId());  
             $data->execute();
         } catch (Exception $e) {
-            throw $e->getMessage();
+            throw new Exception($e->getMessage());
         }
     }
 }

@@ -70,7 +70,6 @@
                   </div>
                   <div class="card" style="width:72%">
                     <div class="card-datatable table-responsive py-0">
-
                       <form action="view/detalle/constancia.php" method="POST" id="myForm">
                         <table class="datatables-basic table border-top" id="main-dt">
                           <thead>

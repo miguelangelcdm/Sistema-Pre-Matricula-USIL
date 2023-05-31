@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
           },
         },
       ],
-      dom: '<"card-header px-3"<"head-label text-center d-flex align-items-center justify-content-between"><"dt-action-buttons text-end">><"d-flex justify-content-between align-items-center row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+      dom: '<"card-header px-3"<"head-label text-center d-flex align-items-center justify-content-between"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
       // dom: '<"card-header px-3"<"d-flex align-items-center justify-content-between"<"head-label text-center"<"dt-action-buttons text-end"B>><"d-flex align-items-center"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>>t<"d-flex justify-content-between row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
       pageLength: 100,
       lengthMenu: [100],
@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
           text: '<i class="bx bx-list-check"></i> <span class="d-none d-lg-inline-block">Confirmar</span>',
           className: "create-new btn btn-primary",
         },
+        
       ],
     });
     // Dropdown de mallas
