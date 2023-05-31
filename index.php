@@ -9,7 +9,7 @@ require_once('controller/LoginController.php');
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASSWORD', $contenido);
+define('DB_PASSWORD', 'root');
 define('DB_NAME', 'matricula');
 $action = isset($_GET['action']) ? $_GET['action'] : 'login';
 $logController = new LoginController();

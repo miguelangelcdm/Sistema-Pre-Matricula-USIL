@@ -15,7 +15,7 @@
         <h6>
           <?php
             use controller\AlumnoController;
-            require_once 'controller/AlumnoController.php';
+            require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/controller/AlumnoController.php');
             
             $obj = new AlumnoController();
             global $user;

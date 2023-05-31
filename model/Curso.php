@@ -1,6 +1,9 @@
 <?php
-require_once('configuration/Config.php');
-require_once('model/Alumno.php');
+
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/configuration/Config.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/model/Alumno.php');
+
+
 
 class Curso {
     private int $idcurso;

@@ -45,6 +45,26 @@
                           }
                         }
                         echo "</select>";
+                        //session_start();
+
+// Verificar si la sesión está iniciada
+if (session_status() === PHP_SESSION_ACTIVE) {
+    // Verificar si la variable $_SESSION['user_id'] está definida
+    if (isset($_SESSION['user_id'])) {
+        // Obtener el valor de 'user_id'
+        $userId = $_SESSION['user_id'];
+
+        // Utilizar el valor de 'user_id' como sea necesario
+        echo "User ID: " . $userId;
+    } else {
+        // La variable $_SESSION['user_id'] no está definida
+        echo "No se ha establecido el ID de usuario en la sesión";
+    }
+} else {
+    // La sesión no está iniciada
+    echo "No se ha iniciado sesión";
+}
+
                         ?>
                         <select class='form-select mt-3' id='select-ciclo' aria-label='Default select example'>
                           <option value='' selected>Seleccione Ciclo</option>
@@ -62,16 +82,16 @@
                         </select>
                       </div>
                     </div>
-                    <form action="view/detalle/constancia.php" method="POST">
+                    <!-- <form action="view/detalle/constancia.php" method="POST">
                       <input type="hidden" name="action" value="constancia">
                       <input type="submit" value="Constancia" class="btn btn-primary"
                         style="max-width:150px;margin:1rem" name="btn_malla">
-                    </form>
+                    </form> -->
                   </div>
                   <div class="card" style="width:72%">
                     <div class="card-datatable table-responsive py-0">
 
-                      <form action="view/detalle/constancia.php" method="POST" id="myForm">
+
                         <table class="datatables-basic table border-top" id="main-dt">
                           <thead>
                             <tr>
@@ -87,51 +107,52 @@
                             </tr>
                           </thead>
                           <tbody class="table-border-bottom-0">
-                            <?php
-                            $lcursos = $obj->getCursos($carrera);
-                            $idalu = $user['codigo_alumno'];
-                            echo "<input type='text' hidden=true name='alumno_codigo_alumno' value='" . $idalu . "'>";
+<?php
+$lcursos = $obj->getCursos($carrera);
+$idalu = $user['codigo_alumno'];
 
-                            if (!empty($lcursos)) {
-                              $counter = 0; // Initialize the counter variable
-                            
-                              foreach ($lcursos as $row) {
-                                if (isset($row['checked']) && $row['checked']) {
-                                  $counter += $row['creditos'];
-                                  $selectedCourses[] = $row;
-                                }
+if (!empty($lcursos)) {
+    $counter = 0; // Inicializar la variable de contador
 
-                                echo "<tr id='fila-" . $row['idcurso'] . "'>";
-                                echo "<td align='center'>" . $row['mallaid'] . "</td>";
-                                echo "<td align='center'>" . $row['codigo'] . "</td>";
-                                echo "<td>" . $row['nombre'] . "</td>";
-                                echo "<td align='center'>" . $row['ciclo'] . "</td>";
-                                echo "<td align='center'>" . $row['horas'] . "</td>";
-                                echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
-                                echo "<td align='center'>
-                                      <select id='turnoSelect-" . $row['idcurso'] . "' class='form-select form-select-sm' name='turno_" . $row['idcurso'] . "'>
-                                        <option value='Indistinto'>Indistinto</option>
-                                        <option value='Mañana'>Mañana</option>
-                                        <option value='Tarde'>Tarde</option>
-                                        <option value='Noche'>Noche</option>
-                                      </select>
-                                    </td>";
-                                echo "<td class='dt-checkboxes-cell' style='text-align:center'>
-                                        <input type='checkbox' class='dt-checkboxes form-check-input' onchange='updateCounter(this, " . $row['creditos'] . ")' name='cursos_seleccionados[]' value='" . $row['idcurso'] . "'>
-                                      </td>";
-                                echo "<input type='text' hidden=true name='idcurso[]' value='" . $row['idcurso'] . "'>";
-                                //echo "<input type='text'  name='idcurso[]' value='" . $row['idcurso'] . "'>";
-                            
-                                // if (isset($row['checked']) && $row['checked']) {
-                                //   echo "<input type='text' hidden=true name='idcurso[]' value='" . $row['idcurso'] . "'>";
-                                // }
-                            
-                                echo "</tr>";
-                              }
-                            }
-                            ?>
-                          </tbody>
-                          <script>
+    foreach ($lcursos as $row) {
+        if (isset($row['checked']) && $row['checked']) {
+            $counter += $row['creditos'];
+            $selectedCourses[] = $row;
+        }
+
+        echo "<tr id='fila-" . $row['idcurso'] . "'>";
+        echo "<form action='view/detalle/constancia.php' method='POST' name='formss-" . $row['idcurso'] . "'>";
+        // echo "<input type='text' hidden=true name='alumno_codigo_alumno' value='" . $idalu . "'>";
+        echo "<td align='center'>" . $row['mallaid'] . "</td>";
+        echo "<td align='center'>" . $row['codigo'] . "</td>";
+        echo "<td>" . $row['nombre'] . "</td>";
+        echo "<td align='center'>" . $row['ciclo'] . "</td>";
+        echo "<td align='center'>" . $row['horas'] . "</td>";
+        echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
+        echo "<td align='center'>
+                <select id='turnoSelect-" . $row['idcurso'] . "' class='form-select form-select-sm' name='turno_" . $row['idcurso'] . "'>
+                    <option value='Indistinto'>Indistinto</option>
+                    <option value='Mañana'>Mañana</option>
+                    <option value='Tarde'>Tarde</option>
+                    <option value='Noche'>Noche</option>
+                </select>
+            </td>";
+        // echo "<input type='number' hidden=true name='cursos_idcursos' value='" . $row['idcurso'] . "'>";
+        echo "<input type='number' hidden=true name='cursos_idcursos_" . $row['idcurso'] . "' value='" . $row['idcurso'] . "'>";
+
+        echo "<td colspan='8' style='text-align: right;'>
+                <input type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='registerMatricula_" . $row['idcurso'] . "' value='Registrar'>
+            </td>";
+        echo "</form>";
+        echo "</tr>";
+    }
+}
+?>
+</tbody>
+
+                          
+
+                          <!-- <script>
                             document.addEventListener("DOMContentLoaded", function () {
                               // Reset the select options to "Indistinto"
                               var selectElements = document.querySelectorAll('select[name^="turno_"]');
@@ -139,15 +160,15 @@
                                 selectElements[i].value = "Indistinto";
                               }
                             });
-                          </script>
-                          <tfoot>
+                          </script> -->
+                          <!-- <tfoot>
                             <tr>
                               <td colspan="8" style="text-align: right;">
                                 <input type="submit" class="btn btn-primary" style="max-width:150px;margin:1rem"
                                   name="registerMatricula" value="Registrar">
                               </td>
                             </tr>
-                          </tfoot>
+                          </tfoot> -->
                         </table>
                       </form>
                       <!-- Modal con cursos -->
@@ -192,6 +213,14 @@
   </div>
 </body>
 <script>
+  function submitForms() {
+    var forms = document.getElementsByName("formss");
+    for (var i = 0; i < forms.length; i++) {
+      forms[i].submit();
+    }
+  }
+</script>
+<!-- <script>
   document.getElementById('myForm').addEventListener('submit', function (event) {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
     var idCursoInputs = document.querySelectorAll('input[name="idcurso[]"]');
@@ -216,7 +245,7 @@
       }
     });
   });
-</script>
+</script> -->
 
 <!-- JavaScript para la búsqueda dinámica -->
 <!-- <script>
@@ -255,7 +284,7 @@
     }
   });
 </script> -->
-<script>
+<!-- <script>
   // Función para filtrar la tabla
   function filterTable() {
     // Obtener referencia al campo de búsqueda
@@ -295,4 +324,4 @@
 
   // Llamar a la función filterTable al cargar la página
   window.addEventListener('load', filterTable);
-</script>
+</script> -->
