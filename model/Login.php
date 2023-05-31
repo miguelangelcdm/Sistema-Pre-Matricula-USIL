@@ -9,7 +9,7 @@ class Login {
 
     public function __destruct(){ }
 
-    public function __construct($codigo_alumno, $password) {
+    public function __construct($codigo_alumno, $password,$config) {
         $this->codigo_alumno = $codigo_alumno;
         $this->password = $password;
         $this->config = new Config(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -21,6 +21,9 @@ class Login {
 
     public function getPassword() {
         return $this->password;
+    }
+    public function getConfig() {
+        return $this->config;
     }
 
     public function verificarCredenciales() {

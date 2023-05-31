@@ -1,7 +1,7 @@
 <?php
 class conexion{
     private static $cn=null;
-
+    
     public   function __construct(){
         $dns='mysql:dbname=matricula;host=localhost';
         $user='root';

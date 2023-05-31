@@ -43,6 +43,12 @@
 
 
 <body>
+<?php 
+session_start();
+//require 'view/header/header.php'; 
+//require(realpath($_SERVER["DOCUMENT_ROOT"]) .'/view/header/header.php');
+?>
+
   <div class="layout-wrapper layout-content-navbar layout-without-menu">
     <div class="layout-container" style="min-height:87vh">
       <!-- Layout container -->
@@ -93,29 +99,62 @@
                         <div class="table-responsive text-nowrap">
                           <h1></h1>
                           <?php 
-                          require_once('../../controller/MatriculaController.php');
+                          // require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/controller/MatriculaController.php');
 
-                          if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                            if (isset($_POST['registerMatricula'])) {
-                              $alumno_codigo_alumno = $_POST['alumno_codigo_alumno'] ?? '';
-                              $cursos_seleccionados = isset($_POST['idcurso']) ? $_POST['idcurso'] : [];
-                              
-                              echo "<h1>Alumno:".$alumno_codigo_alumno."</h1>";
-                              foreach ($cursos_seleccionados as $row) {
-                                echo "<h1>Curso:".$row."</h1>";
-                              }
-                              
-
-                              $objM = new MatriculaController();
-                              $objM->registrarMatricula($alumno_codigo_alumno, $cursos_seleccionados);
-                              echo '<h1>Registrado correctamente</h1>';
-                            } else {
-                              echo '<h1>No Registrado</h1>';
-                            }
-                          } else {
-                            echo '<h1>Error: Método de solicitud incorrecto</h1>';
-                          }
+                          // if (isset($_POST['registerMatricula_' . $row['idcurso']])) {
+                          //   //$alumno_codigo_alumno = $_POST['alumno_codigo_alumno'];
+                          //   $cursos_idcursos = $_POST['cursos_idcursos'];                              
+                          //   echo "<h1>Alumno:".$alumno_codigo_alumno."</h1>";                         
+                          //   $objM = new MatriculaController();
+                          //   $objM->registrarMatricula($alumno_codigo_alumno, $cursos_idcursos);
+                          //   echo '<h1>Registrado correctamente</h1>';
+                          // } else {
+                          //   echo '<h1>No Registrado</h1>';
+                          // }
                           ?>
+<?php 
+  use controller\CursosController;
+  use controller\AlumnoController;
+  require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/controller/MatriculaController.php');
+  require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/controller/CursoController.php');
+  require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/controller/AlumnoController.php');
+  $objC = new CursosController();
+  $objA = new AlumnoController();
+  global $user;
+  if (isset($_SESSION['user_id'])) {
+    // Obtener el ID del usuario desde la sesión
+    $alumno_codigo_alumno = $_SESSION['user_id'];
+    $user = $objA->findById($alumno_codigo_alumno);
+    // Utilizar el ID del usuario como sea necesario
+    echo "ID del usuario: " . $user['codigo_alumno'];
+  } else {
+    // No se ha iniciado sesión, o el ID del usuario no está presente en la sesión
+    echo "No se ha iniciado sesión";
+  }
+    $user = $objA->findById($alumno_codigo_alumno);
+    $carrera=$user['carrera'];
+    echo "<h1>Carrera:".$carrera."</h1>";   
+    $lcursos = $objC->getCursos($carrera);
+
+  if (!empty($lcursos)) {
+    foreach ($lcursos as $row) {
+      if (isset($_POST['registerMatricula_' . $row['idcurso']])) {
+        
+        // $cursos_idcursos = $_POST['cursos_idcursos_' . $row['idcurso']];                             
+        $cursos_idcursos =$row['idcurso']; 
+        echo "<h1>Alumno:".$alumno_codigo_alumno."</h1>";     
+        echo "<h1>Curso:".$cursos_idcursos."</h1>";                     
+        $objM = new MatriculaController();
+        $objM->registrarMatricula($alumno_codigo_alumno, $cursos_idcursos);
+        echo '<h1>Registrado correctamente</h1>';
+      }
+      
+    }
+  } else {
+    echo '<h1>No Registrado</h1>';
+  }    
+?>
+
                         </div>
                       </div>
                     </div>

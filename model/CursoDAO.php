@@ -38,13 +38,19 @@ class cursoDAO{
             $obj = conexion::singleton();            
             if($carrera == 'Ingenieria en Sistemas de Informacion'){
                 $data = $obj->prepare("select * from cursos where mallaid='PC IS-16' || mallaid='PC IS-19' ||mallaid='PC IS-22' ||mallaid='PC IS-23'");
+                $data->execute();
+                return $data->fetchAll(PDO::FETCH_ASSOC);
             }elseif($carrera == 'Ingenieria de Software'){
                 $data = $obj->prepare("select * from cursos where mallaid='PC SW-19' || mallaid='PC SW-22' ||mallaid='PC SW-23'");
+                $data->execute();
+                return $data->fetchAll(PDO::FETCH_ASSOC);
             }elseif($carrera == 'Ciencia de Datos'){
                 $data = $obj->prepare("select * from cursos where mallaid='PC CDx-23'");
+                $data->execute();
+                return $data->fetchAll(PDO::FETCH_ASSOC);
             }
-            $data->execute();
-            return $data->fetchAll(PDO::FETCH_ASSOC);
+            
+            //return $data->fetchAll(PDO::FETCH_ASSOC);
         } catch(Exception $e) {
             throw $e;
         }

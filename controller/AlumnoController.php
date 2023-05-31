@@ -3,8 +3,9 @@ namespace controller;
 
 use alumnoDAO ;
 
-require_once('model/AlumnoDAO.php');
-require_once('model/Alumno.php');
+
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/model/AlumnoDAO.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/model/Alumno.php');
 
 class AlumnoController{
     

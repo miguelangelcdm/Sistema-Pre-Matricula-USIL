@@ -5,7 +5,8 @@ class MatriculaDAO{
     public function __construct(){
         $cn=new conexion();
     }
-    function registrarMatricula($objMatricula){
+    function registrarMatricula($objMatricula)
+    {
         try {
             $obj=conexion::singleton();
             $aid=$objMatricula->getAlumnoId();
