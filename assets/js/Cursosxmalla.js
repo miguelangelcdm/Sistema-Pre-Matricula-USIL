@@ -22,11 +22,11 @@ $(function () {
           targets: 0,
           visible:false,
         },
-        {
-          // For Turno
-          targets: 8,
-          visible:false,
-        },
+        // {
+
+        //   targets: 8,
+        //   visible:false,
+        // },
         {
           // For Checkboxes
           targets: 7,
@@ -43,9 +43,9 @@ $(function () {
         },
       ],
       dom: '<"card-header px-3"<"head-label text-center d-flex align-items-center"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
-      displayLength: 10,
-      lengthMenu: [10, 25, 50, 75, 100],
-      scrollY: 532,
+      displayLength: 265,
+      lengthMenu: [100,150,265],
+      scrollY: 532,    
       buttons: [
         {
           text: '<i class="bx bx-list-check"></i> <span class="d-none d-lg-inline-block">Confirmar</span>',
@@ -56,20 +56,19 @@ $(function () {
     // Dropdown de mallas
     var searchInput = document.getElementById("select-malla");
     // Event listener for external dropdown
-    searchInput.addEventListener("change", function (event) {
-      var searchText = event.target.value.toLowerCase();
-
-      // Filter the DataTable based on the selected value
-      dt_basic.column(0).search(searchText, true, false).draw();
+    searchInput.addEventListener("change", function (event) {      
+    var searchText = event.target.value.toLowerCase();
+    // Filter the DataTable based on the selected value
+    dt_basic.column(0).search(searchText, true, false).draw();
     });
     //Dropdown Ciclo
-    var ciclo = document.getElementById("select-ciclo");
-    ciclo.addEventListener("change", function (event) {
-      var searchciclo = event.target.value.toLowerCase();
+//     var ciclo = document.getElementById("select-ciclo");
+//     ciclo.addEventListener("change", function (event) {
+//       var searchciclo = event.target.value.toLowerCase();
 
-      // Filter the DataTable based on the selected value
-      dt_basic.column(3).search(searchciclo, true, false).draw();
-    });
+//       // Filter the DataTable based on the selected value
+//       dt_basic.column(3).search(searchciclo, true, false).draw();
+//     });
 
     var initialCounterValue = parseInt($(".head-label .counter").text());
     counter = initialCounterValue || 0;

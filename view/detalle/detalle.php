@@ -46,7 +46,7 @@
                           }
                           echo "</select>";
                         ?>
-                        <label class="form-label">Seleccionar Ciclo</label>
+                        <!-- <label class="form-label">Seleccionar Ciclo</label>
                         <select class='form-select' id='select-ciclo' aria-label='Default select example'>
                           <option value='' selected>Seleccione Ciclo</option>
                           <option value='1'>1</option>
@@ -59,7 +59,7 @@
                           <option value='8'>8</option>
                           <option value='9'>9</option>
                           <option value='10'>10</option>
-                        </select>
+                        </select> -->
                       </div>
                     </div>
                     <form action="view/detalle/constancia.php" method="POST">
@@ -71,73 +71,76 @@
                     <div class="card-datatable table-responsive py-0">
 
                     <form action="view/detalle/constancia.php" method="POST" id="myForm">
-  <table class="datatables-basic table border-top">
-    <thead>
-      <tr>
-        <th>Malla</th>
-        <th>Codigo</th>
-        <th>Nombre</th>
-        <th>Ciclo</th>
-        <th>Horas</th>
-        <th>Creditos</th>
-        <th>Turno</th>
-        <th>Agregar</th>
-        <!-- <th>Input</th> -->
-      </tr>
-    </thead>
-    <tbody class="table-border-bottom-0">
-      <?php
-      $lcursos = $obj->getCursos($carrera);
-      $idalu = $user['codigo_alumno'];
-      echo "<input type='text' hidden=true name='alumno_codigo_alumno' value='" . $idalu . "'>";
+                      <table class="datatables-basic table border-top">
+                        <thead>
+                          <tr>
+                            <th>Malla</th>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Ciclo</th>
+                            <th>Horas</th>
+                            <th>Creditos</th>
+                            <th>Turno</th>
+                            <th>Agregar</th>
+                            <!-- <th>Input</th> -->
+                          </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                          <?php
+                          $lcursos = $obj->getCursos($carrera);
+                          $idalu = $user['codigo_alumno'];
+                          echo "<input type='text' hidden=true name='alumno_codigo_alumno' value='" . $idalu . "'>";
 
-      if (!empty($lcursos)) {
-        $counter = 0; // Initialize the counter variable
+                          if (!empty($lcursos)) {
+                            $counter = 0; // Initialize the counter variable
 
-        foreach ($lcursos as $row) {
-          if (isset($row['checked']) && $row['checked']) {
-            $counter += $row['creditos'];
-          }
+                            foreach ($lcursos as $row) {
+                              if (isset($row['checked']) && $row['checked']) {
+                                $counter += $row['creditos'];
+                              }
 
-          echo "<tr id='fila-" . $row['idcurso'] . "'>";
-          echo "<td align='center'>" . $row['mallaid'] . "</td>";
-          echo "<td align='center'>" . $row['codigo'] . "</td>";
-          echo "<td>" . $row['nombre'] . "</td>";
-          echo "<td align='center'>" . $row['ciclo'] . "</td>";
-          echo "<td align='center'>" . $row['horas'] . "</td>";
-          echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
-          echo "<td align='center'>
-                <select id='smallSelect' class='form-select form-select-sm' name='turno_" . $row['idcurso'] . "'>
-                  <option value='1'>Indistinto</option>
-                  <option value='2'>Mañana</option>
-                  <option value='3'>Tarde</option>
-                  <option value='4'>Noche</option>
-                </select>
-              </td>";
-          echo "<td class='dt-checkboxes-cell' style='text-align:center'>
-                <input type='checkbox' class='dt-checkboxes form-check-input' onchange='updateCounter(this, " . $row['creditos'] . ")' name='checkCursos[" . $row['idcurso'] . "]' value='" . $row['idcurso'] . "'>
-              </td>";
-          echo "<input type='text' hidden=true name='idcurso[]' value='" . $row['idcurso'] . "'>";
-          //echo "<input type='text'  name='idcurso[]' value='" . $row['idcurso'] . "'>";
+                              echo "<tr id='fila-" . $row['idcurso'] . "'>";
+                              echo "<td align='center'>" . $row['mallaid'] . "</td>";
+                              echo "<td align='center'>" . $row['codigo'] . "</td>";
+                              echo "<td>" . $row['nombre'] . "</td>";
+                              echo "<td align='center'>" . $row['ciclo'] . "</td>";
+                              echo "<td align='center'>" . $row['horas'] . "</td>";
+                              echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
+                              echo "<td align='center'>
+                                    <select id='smallSelect' class='form-select form-select-sm' name='turno_" . $row['idcurso'] . "'>
+                                      <option value='1'>Indistinto</option>
+                                      <option value='2'>Mañana</option>
+                                      <option value='3'>Tarde</option>
+                                      <option value='4'>Noche</option>
+                                    </select>
+                                  </td>";
+                              echo "<td class='dt-checkboxes-cell' style='text-align:center'>
+                                    <input type='checkbox' class='dt-checkboxes form-check-input' onchange='updateCounter(this, " . $row['creditos'] . ")' name='checkCursos[" . $row['idcurso'] . "]' value='" . $row['idcurso'] . "'>
+                                  </td>";
+                              echo "<input type='text' hidden=true name='idcurso[]' value='" . $row['idcurso'] . "'></td>";
+                              //echo "<input type='text'  name='idcurso[]' value='" . $row['idcurso'] . "'>";
 
-          // if (isset($row['checked']) && $row['checked']) {
-          //   echo "<input type='text' hidden=true name='idcurso[]' value='" . $row['idcurso'] . "'>";
-          // }
+                              // if (isset($row['checked']) && $row['checked']) {
+                              //   echo "<input type='text' hidden=true name='idcurso[]' value='" . $row['idcurso'] . "'>";
+                              // }
 
-          echo "</tr>";
-        }
-      }
-      ?>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="8" style="text-align: right;">
-          <input type="submit" class="btn btn-primary" style="max-width:150px;margin:1rem" name="registerMatricula" value="Registrar">
-        </td>
-      </tr>
-    </tfoot>
-  </table>
-</form>
+                              echo "</tr>";
+                            }
+                          }
+                          ?>
+                          
+                          
+                        </tbody>
+                        <!-- <tfoot>
+                          <tr>
+                            <td colspan="8" style="text-align: right;">
+                              <input type="submit" class="btn btn-primary" style="max-width:150px;margin:1rem;" name="registerMatricula" value="Registrar">
+                            </td>
+                          </tr>
+                        </tfoot> -->
+                      </table>
+                      <div><input type="submit" class="btn btn-primary" style="max-width:150px;margin:1rem;" name="registerMatricula" value="Registrar"></div>
+                    </form>
 
 
                     </div>
