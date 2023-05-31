@@ -23,6 +23,11 @@ $(function () {
           visible:false,
         },
         {
+          // For Turno
+          targets: 8,
+          visible:false,
+        },
+        {
           // For Checkboxes
           targets: 7,
           orderable: false,

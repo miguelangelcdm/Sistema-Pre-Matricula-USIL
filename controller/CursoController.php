@@ -1,14 +1,15 @@
 <?php
 namespace controller;
 
-use Config;
-use Curso;
 use cursoDAO;
 
-require_once('configuration/Config.php');
 require_once('model/Curso.php');
 require_once('model/CursoDAO.php');
 
+if (isset($_POST['registerMatricula'])) {
+    require_once('../model/Curso.php');
+    require_once('../model/CursoDAO.php');
+}
 
 class CursosController{
     
