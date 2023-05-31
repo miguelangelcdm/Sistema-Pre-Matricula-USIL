@@ -4,11 +4,17 @@ require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/model/Matricula.php');
 
 
 class MatriculaController{
-    function registrarMatricula($alumno_codigo_alumno,$cursos_seleccionados) {
+    function registrarMatricula($alumno_codigo_alumno,$cursos_seleccionados,$turno) {
       $obj = new MatriculaDAO();    
       $objMatricula = new Matricula();
       $objMatricula->setAlumnoId($alumno_codigo_alumno);
       $objMatricula->setCursoId($cursos_seleccionados);
+      $objMatricula->setTurno($turno);
       $obj->registrarMatricula($objMatricula);
-    }      
+    }   
+    public function getCursosMatriculados($uid)
+    {
+        $obj = new MatriculaDAO();
+        return $obj->getCursosMatriculados($uid);
+    }   
 }

@@ -138,14 +138,14 @@ session_start();
 
   if (!empty($lcursos)) {
     foreach ($lcursos as $row) {
-      if (isset($_POST['registerMatricula_' . $row['idcurso']])) {
-        
-        // $cursos_idcursos = $_POST['cursos_idcursos_' . $row['idcurso']];                             
+      if (isset($_POST['registerMatricula_' . $row['idcurso']])) {        
+        $turno=$_POST["turno_" . $row['idcurso']];
         $cursos_idcursos =$row['idcurso']; 
         echo "<h1>Alumno:".$alumno_codigo_alumno."</h1>";     
-        echo "<h1>Curso:".$cursos_idcursos."</h1>";                     
+        echo "<h1>Curso:".$cursos_idcursos."</h1>";     
+        echo "<h1>Turno:".$turno."</h1>";                   
         $objM = new MatriculaController();
-        $objM->registrarMatricula($alumno_codigo_alumno, $cursos_idcursos);
+        $objM->registrarMatricula($alumno_codigo_alumno, $cursos_idcursos,$turno);
         echo '<h1>Registrado correctamente</h1>';
       }
       
