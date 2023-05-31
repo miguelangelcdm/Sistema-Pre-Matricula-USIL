@@ -3,8 +3,10 @@ namespace controller;
 
 use cursoDAO;
 
-require_once('model/Curso.php');
-require_once('model/CursoDAO.php');
+// require_once('model/Curso.php');
+// require_once('model/CursoDAO.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/model/Curso.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/model/CursoDAO.php');
 
 if (isset($_POST['registerMatricula'])) {
     require_once('../model/Curso.php');
