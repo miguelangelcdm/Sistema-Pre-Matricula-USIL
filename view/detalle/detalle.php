@@ -1,3 +1,59 @@
+<!-- Modal con cursos -->
+<div class="modal fade" id="modalCursos" tabindex="-1" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="modalCenterTitle">Cursos Matriculados</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <table class="datatables-basic2 table border-top" id="selectedCoursesTable">
+                                <thead>
+                                  <tr>
+                                    <!-- <th>Malla</th> -->
+                                    <th>Codigo</th>
+                                    <th>Nombre</th>
+                                    <th>Ciclo</th>
+                                    <th>Horas</th>
+                                    <th>Creditos</th>
+                                    <th>Turno</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="table-border-bottom-0">                                
+                                  <?php
+                                  global $credit_counter;
+                                  require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/controller/MatriculaController.php');
+                                  $objM=new MatriculaController();
+                                  $uid=$user['codigo_alumno'];;
+                                  $cmatriculados=$objM->getCursosMatriculados($uid);
+                                  foreach($cmatriculados as $row){
+                                    $credit_counter+=$row['creditos'];
+                                    echo"<tr>";
+                                    echo "<td>".$row['codigo']."</td>";
+                                    echo "<td>".$row['nombre']."</td>";
+                                    echo "<td>".$row['ciclo']."</td>";
+                                    echo "<td>".$row['horas']."</td>";
+                                    echo "<td>".$row['creditos']."</td>";
+                                    echo "<td>".$row['turno']."</td>";
+                                    echo"</tr>";
+
+                                  }
+                                  ?>
+
+                                  <!-- <td align='center'>prueba</td>
+                                  <td align='center'>prueba</td>
+                                  <td align='center'>prueba</td>
+                                  <td align='center'>prueba</td>
+                                  <td align='center'>prueba</td>
+                                  <td align='center'>prueba</td> -->
+                                </tbody>
+                              </table>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
 <body class="bg2">
   <!-- Layout wrapper -->
   <div class="layout-wrapper layout-content-navbar layout-without-menu" style="flex-direction: column;">
@@ -20,7 +76,7 @@
                         <?php
                         use controller\CursosController;
 
-                        require_once('controller/CursoController.php');
+                        require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/controller/CursoController.php');
 
 
                         $obj = new CursosController();
@@ -78,19 +134,24 @@ if (session_status() === PHP_SESSION_ACTIVE) {
                           <option value='8'>8</option>
                           <option value='9'>9</option>
                           <option value='10'>10</option>
-                        </select>
-                        </select>
+                        </select>     
+                                       
                       </div>
                     </div>
                     <!-- <form action="view/detalle/constancia.php" method="POST">
                       <input type="hidden" name="action" value="constancia">
                       <input type="submit" value="Constancia" class="btn btn-primary"
                         style="max-width:150px;margin:1rem" name="btn_malla">
-                    </form> -->
+                    </form> -->                
                   </div>
+                  
+                      
                   <div class="card" style="width:72%">
                     <div class="card-datatable table-responsive py-0">
-
+                    <?php
+                      echo "<div>".$credit_counter."</div>";
+                      ?>    
+                    
 
                         <table class="datatables-basic table border-top" id="main-dt">
                           <thead>
@@ -130,15 +191,15 @@ if (!empty($lcursos)) {
         echo "<td align='center'>" . $row['horas'] . "</td>";
         echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
         echo "<td align='center'>
-                <select id='turnoSelect-" . $row['idcurso'] . "' class='form-select form-select-sm' name='turno_" . $row['idcurso'] . "'>
-                    <option value='Indistinto'>Indistinto</option>
-                    <option value='Mañana'>Mañana</option>
-                    <option value='Tarde'>Tarde</option>
-                    <option value='Noche'>Noche</option>
+                <select id='turnoSelect-" . $row['idcurso'] . "' class='form-select form-select-sm' name='turno_" . $row['idcurso'] . "'>                    
+                    <option value='mañana'>Mañana</option>
+                    <option value='tarde'>Tarde</option>
+                    <option value='noche'>Noche</option>
                 </select>
             </td>";
-        // echo "<input type='number' hidden=true name='cursos_idcursos' value='" . $row['idcurso'] . "'>";
+        //echo "<input type='number' hidden=true name='cursos_idcursos' value='" . $row['idcurso'] . "'>";
         echo "<input type='number' hidden=true name='cursos_idcursos_" . $row['idcurso'] . "' value='" . $row['idcurso'] . "'>";
+
 
         echo "<td colspan='8' style='text-align: right;'>
                 <input type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='registerMatricula_" . $row['idcurso'] . "' value='Registrar'>
@@ -171,36 +232,7 @@ if (!empty($lcursos)) {
                           </tfoot> -->
                         </table>
                       </form>
-                      <!-- Modal con cursos -->
-                      <div class="modal fade" id="modalCursos" tabindex="-1" style="display: none;" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="modalCenterTitle">Cursos Matriculados</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <table class="datatables-basic2 table border-top" id="selectedCoursesTable">
-                                <thead>
-                                  <tr>
-                                    <!-- <th>Malla</th> -->
-                                    <th>Codigo</th>
-                                    <th>Nombre</th>
-                                    <th>Ciclo</th>
-                                    <th>Horas</th>
-                                    <th>Creditos</th>
-                                    <th>Turno</th>
-                                  </tr>
-                                </thead>
-                                <tbody class="table-border-bottom-0">
-                                  <!-- Js Generated Content -->
-                                </tbody>
-                              </table>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      
                     </div>
                   </div>
                 </div>
