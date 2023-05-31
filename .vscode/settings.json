@@ -1,0 +1,6 @@
+{
+  "php.validate.enable": false,
+  "php.suggest.basic": false,
+  "php.executablePath": "c:/php8.2/php.exe",
+  "php.version": "8.2"
+}

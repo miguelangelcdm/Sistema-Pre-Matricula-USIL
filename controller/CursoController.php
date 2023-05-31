@@ -24,7 +24,6 @@ class CursosController{
         //get all courses from database
         $obj = new cursoDAO();
         return $obj->getMalla($carrera);
-
     }
     public function getAllCursos()
     {
