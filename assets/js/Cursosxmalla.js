@@ -1,4 +1,4 @@
-$(function () {
+document.addEventListener("DOMContentLoaded", function () {
   "use strict";
   var selectedCourses = [];
   // var dt_basic_table = $(".datatables-basic");
@@ -11,25 +11,14 @@ $(function () {
   if (dt_basic_table.length) {
     var dt_basic = dt_basic_table.DataTable({
       columnDefs: [
+        { targets: 0, visible: false }, // Hide the "Malla" column
         {
-          // For Turno
-          targets: 6,
-          orderable: false,
-          responsivePriority: 3,
-          searchable: false,
-        },
-        {
-          // For Turno
-          targets: 0,
-          visible: false,
-        },
-        {
-          // For Checkboxes
           targets: 7,
           orderable: false,
           responsivePriority: 3,
           searchable: false,
           render: function (data, type, row, meta) {
+            // Checkbox render function
             if (type === "display" && row.creditos + counter > maxCreditos) {
               return '<input type="checkbox" class="dt-checkboxes form-check-input" disabled>';
             } else {
@@ -38,9 +27,12 @@ $(function () {
           },
         },
       ],
-      dom: '<"card-header px-3"<"head-label text-center d-flex align-items-center justify-content-between"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
-      displayLength: 10,
-      lengthMenu: [10, 25, 50, 75, 100],
+      dom: '<"card-header px-3"<"head-label text-center d-flex align-items-center justify-content-between"><"dt-action-buttons text-end">><"d-flex justify-content-between align-items-center row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+      // dom: '<"card-header px-3"<"d-flex align-items-center justify-content-between"<"head-label text-center"<"dt-action-buttons text-end"B>><"d-flex align-items-center"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>>t<"d-flex justify-content-between row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+      pageLength: 100,
+      lengthMenu: [100],
+      paging: false,
+      info:false,
       scrollY: 532,
       buttons: [
         {
@@ -99,6 +91,7 @@ $(function () {
       $("#modalCursos").modal("show");
     });
   }
+
   function updateCounter(checkbox, creditos) {
     var counterElement = $(".head-label .counter");
     var counterValue = parseInt(counterElement.text());
@@ -138,17 +131,15 @@ $(function () {
     });
     //Agregar los cursos seleccionados a un array para desplegarlos en el modal
     if (checkbox.checked) {
-      var turnoSelect = document.getElementById("turnoSelect");
       // Get the row data
       var rowData = checkbox.parentNode.parentNode;
-      // var mallaid = rowData.cells[0].innerText;
       var codigo = rowData.cells[0].innerText;
       var nombre = rowData.cells[1].innerText;
       var ciclo = rowData.cells[2].innerText;
       var horas = rowData.cells[3].innerText;
       var creditos = rowData.cells[4].innerText;
-
-      var turno = turnoSelect.value;
+      var selectElement = $(rowData.cells[5]).find("select");
+      var turno = selectElement.val();
       // Create an object to represent the selected course
       var selectedCourse = {
         codigo: codigo,
@@ -160,7 +151,6 @@ $(function () {
       };
       // Add the selected course to the array
       selectedCourses.push(selectedCourse);
-      // console.log("Selected course:", selectedCourse);
     } else {
       // Get the row data
       var rowData = checkbox.parentNode.parentNode;
@@ -197,55 +187,4 @@ $(function () {
       tbody.append(row);
     });
   }
-
-  //Datatable para cursos seleccionados
-  //  --------------------------------------------------------------------
-  // $("#selectedCoursesTable").DataTable({
-  //   columnDefs: [
-  //     // Define column-specific configurations if needed
-  //   ],
-  //   // paging: true,
-  //   lengthMenu: [10, 25, 50, 75, 100],
-  //   scrollY: 400, // Set the desired height of the table body
-  //   // Add other configuration options as required
-  // });
 });
-
-//Dropdown de botones con opciones de exportar
-// {
-//   extend: "collection",
-//   className: "btn btn-label-primary dropdown-toggle me-2",
-//   text: '<i class="bx bx-show me-1"></i>Export',
-//   buttons: [
-//     {
-//       extend: "print",
-//       text: '<i class="bx bx-printer me-1"></i>Print',
-//       className: "dropdown-item",
-//       exportOptions: { columns: [0, 1, 2, 3, 4] },
-//     },
-//     {
-//       extend: "csv",
-//       text: '<i class="bx bx-file me-1"></i>Csv',
-//       className: "dropdown-item",
-//       exportOptions: { columns: [0, 1, 2, 3, 4] },
-//     },
-//     {
-//       extend: "excel",
-//       text: "<i class='bx bx-spreadsheet me-1'></i>Excel",
-//       className: "dropdown-item",
-//       exportOptions: { columns: [0, 1, 2, 3, 4] },
-//     },
-//     {
-//       extend: "pdf",
-//       text: '<i class="bx bxs-file-pdf me-1"></i>Pdf',
-//       className: "dropdown-item",
-//       exportOptions: { columns: [0, 1, 2, 3, 4] },
-//     },
-//     {
-//       extend: "copy",
-//       text: '<i class="bx bx-copy me-1"></i>Copy',
-//       className: "dropdown-item",
-//       exportOptions: { columns: [0, 1, 2, 3, 4] },
-//     },
-//   ],
-// },
