@@ -109,16 +109,16 @@
                                 echo "<td align='center'>" . $row['horas'] . "</td>";
                                 echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
                                 echo "<td align='center'>
-                <select id='turnoSelect-" . $row['idcurso'] . "' class='form-select form-select-sm' name='turno_" . $row['idcurso'] . "'>
-                  <option value='Indistinto'>Indistinto</option>
-                  <option value='Mañana'>Mañana</option>
-                  <option value='Tarde'>Tarde</option>
-                  <option value='Noche'>Noche</option>
-                </select>
-              </td>";
+                                      <select id='turnoSelect-" . $row['idcurso'] . "' class='form-select form-select-sm' name='turno_" . $row['idcurso'] . "'>
+                                        <option value='Indistinto'>Indistinto</option>
+                                        <option value='Mañana'>Mañana</option>
+                                        <option value='Tarde'>Tarde</option>
+                                        <option value='Noche'>Noche</option>
+                                      </select>
+                                    </td>";
                                 echo "<td class='dt-checkboxes-cell' style='text-align:center'>
-                <input type='checkbox' class='dt-checkboxes form-check-input' onchange='updateCounter(this, " . $row['creditos'] . ")' name='cursos_seleccionados[]' value='" . $row['idcurso'] . "'>
-              </td>";
+                                        <input type='checkbox' class='dt-checkboxes form-check-input' onchange='updateCounter(this, " . $row['creditos'] . ")' name='cursos_seleccionados[]' value='" . $row['idcurso'] . "'>
+                                      </td>";
                                 echo "<input type='text' hidden=true name='idcurso[]' value='" . $row['idcurso'] . "'>";
                                 //echo "<input type='text'  name='idcurso[]' value='" . $row['idcurso'] . "'>";
                             
@@ -192,14 +192,14 @@
   </div>
 </body>
 <script>
-  document.getElementById('myForm').addEventListener('submit', function(event) {
+  document.getElementById('myForm').addEventListener('submit', function (event) {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
     var idCursoInputs = document.querySelectorAll('input[name="idcurso[]"]');
 
     // Crear una matriz para almacenar los valores seleccionados
     var selectedIdCursos = [];
 
-    checkboxes.forEach(function(checkbox, index) {
+    checkboxes.forEach(function (checkbox, index) {
       if (checkbox.checked) {
         // Agregar el valor correspondiente a la matriz
         selectedIdCursos.push(idCursoInputs[index].getAttribute('value'));
@@ -207,7 +207,7 @@
     });
 
     // Asignar los valores seleccionados al campo de entrada 'idcurso[]'
-    document.querySelectorAll('input[name="idcurso[]"]').forEach(function(input) {
+    document.querySelectorAll('input[name="idcurso[]"]').forEach(function (input) {
       // Verificar si el valor está presente en la matriz de valores seleccionados
       if (selectedIdCursos.includes(input.getAttribute('value'))) {
         input.removeAttribute('disabled');
@@ -218,7 +218,7 @@
   });
 </script>
 
-  <!-- JavaScript para la búsqueda dinámica -->
+<!-- JavaScript para la búsqueda dinámica -->
 <!-- <script>
   // Obtener referencia al campo de búsqueda
   var searchInput = document.getElementById('exampleFormControlSelect1');
@@ -296,10 +296,3 @@
   // Llamar a la función filterTable al cargar la página
   window.addEventListener('load', filterTable);
 </script>
-
-
-
-
-
-
-
