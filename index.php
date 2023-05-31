@@ -30,13 +30,6 @@ switch ($action) {
         break;
     default:
     break;
-/*
-    // Otras acciones y enrutamientos del controlador...
-    // ...
-    default:
-        // Acción desconocida, redireccionar a una página de error o hacer algo en consecuencia
-        require 'view/login/Login.php'; // retornar a login por defecto o errorMessages 
-        break;*/
 }
 
 

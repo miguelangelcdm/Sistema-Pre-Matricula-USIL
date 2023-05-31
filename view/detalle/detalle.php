@@ -19,27 +19,32 @@
                       <div class="mb-3">
                         <label class="form-label">Seleccionar Malla</label>
                         <?php
-                        use controller\CursosController;
-                        if (!isset($_POST['registerMatricula'])) {
+                          use controller\CursosController;
                           require_once('controller/CursoController.php');
-                          require_once('controller/MatriculaController.php');
-                        }
-                                        
-                        $obj = new CursosController();
-                        $carrera = $user['carrera'];
-                        $data = $obj->getMallas($carrera);
+                          
 
-                        echo "<select name='mallaid' class='form-select' id='select-malla' aria-label='Default select example'>";
+                          $obj = new CursosController();
+                          $carrera = $user['carrera'];
+                          $data = $obj->getMallas($carrera);
 
-                        if (empty($data)) {
-                          echo "<option value=''>No hay datos disponibles</option>";
-                        } else {
-                          echo "<option value=''>Selecciona una malla</option>";
-                          foreach ($data as $row) {
-                            echo "<option value='" . $row['mallaid'] . "'>" . $row['mallaid'] . "</option>";
+                          echo "<select name='mallaid' class='form-select' id='select-malla' aria-label='Default select example'>";
+                          
+
+                          if (empty($data)) {
+                            echo "<option value=''>No hay datos disponibles</option>";
+                          } else {                            
+                            $v = 0;
+                            foreach ($data as $row) {
+                              if($v=0){
+                                echo "<option value='" . $row['mallaid'] . "' selected>" . $row['mallaid'] . "</option>";
+                                $v+=1;
+                              }else{
+                                echo "<option value='" . $row['mallaid'] . "'>" . $row['mallaid'] . "</option>";
+                              }
+                              
+                            }
                           }
-                        }
-                        echo "</select>";
+                          echo "</select>";
                         ?>
                         <label class="form-label">Seleccionar Ciclo</label>
                         <select class='form-select' id='select-ciclo' aria-label='Default select example'>
@@ -57,94 +62,84 @@
                         </select>
                       </div>
                     </div>
-                    <form action="view/constancia.php" method="POST">
+                    <form action="view/detalle/constancia.php" method="POST">
                       <input type="hidden" name="action" value="constancia">
                       <input type="submit" value="Constancia" class="btn btn-primary" style="max-width:150px;margin:1rem" name="btn_malla">
                     </form>
                   </div>
                   <div class="card" style="width:72%">
                     <div class="card-datatable table-responsive py-0">
-                    <?php
-                    
-                    
 
-                    if (isset($_POST['registerMatricula'])) {
-                      require_once('../../controller/CursoController.php');
-                      require_once('../../controller/MatriculaController.php');
-                      $alumno_codigo_alumno = $_POST['alumno_codigo_alumno'];
-                      $cursos_seleccionados = $_POST['cursos_seleccionados'];
+                    <form action="view/detalle/constancia.php" method="POST" id="myForm">
+  <table class="datatables-basic table border-top">
+    <thead>
+      <tr>
+        <th>Malla</th>
+        <th>Codigo</th>
+        <th>Nombre</th>
+        <th>Ciclo</th>
+        <th>Horas</th>
+        <th>Creditos</th>
+        <th>Turno</th>
+        <th>Agregar</th>
+        <!-- <th>Input</th> -->
+      </tr>
+    </thead>
+    <tbody class="table-border-bottom-0">
+      <?php
+      $lcursos = $obj->getCursos($carrera);
+      $idalu = $user['codigo_alumno'];
+      echo "<input type='text' hidden=true name='alumno_codigo_alumno' value='" . $idalu . "'>";
 
-                      $objM = new MatriculaController();
-                      $objM->registrarMatricula($alumno_codigo_alumno, $cursos_seleccionados);
-                    }
+      if (!empty($lcursos)) {
+        $counter = 0; // Initialize the counter variable
 
-                    ?>
+        foreach ($lcursos as $row) {
+          if (isset($row['checked']) && $row['checked']) {
+            $counter += $row['creditos'];
+          }
 
-                    <form action="view/detalle/detalle.php" method="POST">
-                      <table class="datatables-basic table border-top">
-                        <thead>
-                          <tr>
-                            <th>Malla</th>
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Ciclo</th>
-                            <th>Horas</th>
-                            <th>Creditos</th>
-                            <th>Turno</th>
-                            <th>Agregar</th>
-                          </tr>
-                        </thead>
-                        <tbody class="table-border-bottom-0">
-                          <?php
-                          $objCurso = new CursosController();
-                          $lcursos = $objCurso->getCursos($carrera);
-                          $idalu = $user['codigo_alumno'];
-                          echo "<input type='hidden' name='alumno_codigo_alumno' value='" . $idalu . "'>";
+          echo "<tr id='fila-" . $row['idcurso'] . "'>";
+          echo "<td align='center'>" . $row['mallaid'] . "</td>";
+          echo "<td align='center'>" . $row['codigo'] . "</td>";
+          echo "<td>" . $row['nombre'] . "</td>";
+          echo "<td align='center'>" . $row['ciclo'] . "</td>";
+          echo "<td align='center'>" . $row['horas'] . "</td>";
+          echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
+          echo "<td align='center'>
+                <select id='smallSelect' class='form-select form-select-sm' name='turno_" . $row['idcurso'] . "'>
+                  <option value='1'>Indistinto</option>
+                  <option value='2'>Mañana</option>
+                  <option value='3'>Tarde</option>
+                  <option value='4'>Noche</option>
+                </select>
+              </td>";
+          echo "<td class='dt-checkboxes-cell' style='text-align:center'>
+                <input type='checkbox' class='dt-checkboxes form-check-input' onchange='updateCounter(this, " . $row['creditos'] . ")' name='checkCursos[" . $row['idcurso'] . "]' value='" . $row['idcurso'] . "'>
+              </td>";
+          echo "<input type='text' hidden=true name='idcurso[]' value='" . $row['idcurso'] . "'>";
+          //echo "<input type='text'  name='idcurso[]' value='" . $row['idcurso'] . "'>";
 
-                          if (!empty($lcursos)) {
-                            $counter = 0; // Initialize the counter variable
-                            foreach ($lcursos as $row) {
-                              if (isset($row['checked']) && $row['checked']) {
-                                $counter += $row['creditos'];
-                              }
+          // if (isset($row['checked']) && $row['checked']) {
+          //   echo "<input type='text' hidden=true name='idcurso[]' value='" . $row['idcurso'] . "'>";
+          // }
 
-                              echo "<tr id='fila-" . $row['idcurso'] . "'>";
-                              echo "<td align='center'>" . $row['mallaid'] . "</td>";
-                              echo "<td align='center'>" . $row['codigo'] . "</td>";
-                              echo "<td>" . $row['nombre'] . "</td>";
-                              echo "<td align='center'>" . $row['ciclo'] . "</td>";
-                              echo "<td align='center'>" . $row['horas'] . "</td>";
-                              echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
-                              echo "<td align='center'>
-                                    <select id='smallSelect' class='form-select form-select-sm' name='turno_" . $row['idcurso'] . "'>
-                                      <option value='1'>Indistinto</option>
-                                      <option value='2'>Mañana</option>
-                                      <option value='3'>Tarde</option>
-                                      <option value='4'>Noche</option>
-                                    </select>
-                                  </td>";
-                              echo "<td class='dt-checkboxes-cell' style='text-align:center'>
-                                    <input type='checkbox' class='dt-checkboxes form-check-input' onchange='updateCounter(this, " . $row['creditos'] . ")' name='cursos_seleccionados[]' value='" . $row['idcurso'] . "'>
-                                  </td>";
-                              echo "</tr>";
-                            }
-                          }
-                          ?>
-                        </tbody>
-                        <tfoot>
-                          <tr>
-                            <td colspan="6"></td>
-                            <td style="background-color: aliceblue; text-align: right; font-weight: bold;">Total Créditos:</td>
-                            <td style="text-align: center;"><span id="creditos-counter">0</span></td>
-                          </tr>
-                          <tr>
-                            <td colspan="8" style="text-align: right;">
-                              <input type="submit" class="btn btn-primary" style="max-width:150px;margin:1rem" name="registerMatricula" value="Registrar">
-                            </td>
-                          </tr>
-                        </tfoot>
-                      </table>
-                    </form>
+          echo "</tr>";
+        }
+      }
+      ?>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="8" style="text-align: right;">
+          <input type="submit" class="btn btn-primary" style="max-width:150px;margin:1rem" name="registerMatricula" value="Registrar">
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</form>
+
+
                     </div>
                   </div>
                 </div>
@@ -156,3 +151,115 @@
     </div>
   </div>
 </body>
+<script>
+  document.getElementById('myForm').addEventListener('submit', function(event) {
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    var idCursoInputs = document.querySelectorAll('input[name="idcurso[]"]');
+
+    // Crear una matriz para almacenar los valores seleccionados
+    var selectedIdCursos = [];
+
+    checkboxes.forEach(function(checkbox, index) {
+      if (checkbox.checked) {
+        // Agregar el valor correspondiente a la matriz
+        selectedIdCursos.push(idCursoInputs[index].getAttribute('value'));
+      }
+    });
+
+    // Asignar los valores seleccionados al campo de entrada 'idcurso[]'
+    document.querySelectorAll('input[name="idcurso[]"]').forEach(function(input) {
+      // Verificar si el valor está presente en la matriz de valores seleccionados
+      if (selectedIdCursos.includes(input.getAttribute('value'))) {
+        input.removeAttribute('disabled');
+      } else {
+        input.setAttribute('disabled', 'disabled');
+      }
+    });
+  });
+</script>
+
+  <!-- JavaScript para la búsqueda dinámica -->
+<!-- <script>
+  // Obtener referencia al campo de búsqueda
+  var searchInput = document.getElementById('exampleFormControlSelect1');
+
+  // Obtener referencia a la tabla
+  var table = document.getElementsByTagName('table')[0];
+
+  // Obtener todas las filas de la tabla
+  var rows = table.getElementsByTagName('tr');
+
+  // Agregar evento input al campo de búsqueda
+  searchInput.addEventListener('change', function (event) {
+    var searchText = event.value.toLowerCase();
+    // Recorrer todas las filas de la tabla
+    for (var i = 1; i < rows.length; i++) {
+      var row = rows[i];
+      var rowData = row.getElementsByTagName('td');
+      var found = false;
+      // Verificar si el texto de búsqueda coincide con alguna celda de la fila
+      for (var j = 0; j < rowData.length; j++) {
+        var cellData = rowData[j].textContent.toLowerCase();
+        if (cellData.includes(searchText)) {
+          found = true;
+          break;
+        }
+      }
+
+      // Mostrar u ocultar la fila según si se encuentra el texto de búsqueda
+      if (found) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    }
+  });
+</script> -->
+<script>
+  // Función para filtrar la tabla
+  function filterTable() {
+    // Obtener referencia al campo de búsqueda
+    var searchInput = document.getElementById('exampleFormControlSelect1');
+
+    // Obtener referencia a la tabla
+    var table = document.getElementsByTagName('table')[0];
+
+    // Obtener todas las filas de la tabla
+    var rows = table.getElementsByTagName('tr');
+
+    // Obtener el valor de búsqueda
+    var searchText = searchInput.value.toLowerCase();
+
+    // Recorrer todas las filas de la tabla
+    for (var i = 1; i < rows.length; i++) {
+      var row = rows[i];
+      var rowData = row.getElementsByTagName('td');
+      var found = false;
+      // Verificar si el texto de búsqueda coincide con alguna celda de la fila
+      for (var j = 0; j < rowData.length; j++) {
+        var cellData = rowData[j].textContent.toLowerCase();
+        if (cellData.includes(searchText)) {
+          found = true;
+          break;
+        }
+      }
+
+      // Mostrar u ocultar la fila según si se encuentra el texto de búsqueda
+      if (found) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    }
+  }
+
+  // Llamar a la función filterTable al cargar la página
+  window.addEventListener('load', filterTable);
+</script>
+
+
+
+
+
+
+
