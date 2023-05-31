@@ -130,14 +130,7 @@
                           ?>
                           
                           
-                        </tbody>
-                        <!-- <tfoot>
-                          <tr>
-                            <td colspan="8" style="text-align: right;">
-                              <input type="submit" class="btn btn-primary" style="max-width:150px;margin:1rem;" name="registerMatricula" value="Registrar">
-                            </td>
-                          </tr>
-                        </tfoot> -->
+                        </tbody>                
                       </table>
                       <div><input type="submit" class="btn btn-primary" style="max-width:150px;margin:1rem;" name="registerMatricula" value="Registrar"></div>
                     </form>

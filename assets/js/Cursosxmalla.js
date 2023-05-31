@@ -45,13 +45,27 @@ $(function () {
       dom: '<"card-header px-3"<"head-label text-center d-flex align-items-center"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
       displayLength: 265,
       lengthMenu: [100,150,265],
-      scrollY: 532,    
+      scrollY: 532,  
       buttons: [
         {
           text: '<i class="bx bx-list-check"></i> <span class="d-none d-lg-inline-block">Confirmar</span>',
           className: "create-new btn btn-primary",
-        },
-      ],
+          attr: {
+            name: "RegistrarMatricula"
+          },
+          action: function () {
+            // Acción a realizar al hacer clic en el botón
+            // Puedes agregar aquí tu código para enviar el formulario o realizar cualquier otra acción
+            document.getElementsByName('RegistrarMatricula')[0].click();
+          }
+        }
+      ]
+      // buttons: [
+      //   {
+      //     text: '<i class="bx bx-list-check"></i> <span class="d-none d-lg-inline-block">Confirmar</span>',
+      //     className: "create-new btn btn-primary",          
+      //   },
+      // ],
     });
     // Dropdown de mallas
     var searchInput = document.getElementById("select-malla");
