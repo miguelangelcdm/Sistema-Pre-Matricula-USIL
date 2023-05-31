@@ -40,6 +40,8 @@
   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
   <script src="../../assets/js/config.js"></script>
 </head>
+
+
 <body>
   <div class="layout-wrapper layout-content-navbar layout-without-menu">
     <div class="layout-container" style="min-height:87vh">
@@ -83,12 +85,37 @@
                       </div>
                     </div>
                   </div>
-
+                  
                   <div class="card" style="width:70%">
                     <h5 class="card-header">Listado de Cursos</h5>
                     <div class="card-body">
                       <div class="card mt-3 p-3" style="height:90%">
                         <div class="table-responsive text-nowrap">
+                          <h1></h1>
+                          <?php 
+                          require_once('../../controller/MatriculaController.php');
+
+                          if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            if (isset($_POST['registerMatricula'])) {
+                              $alumno_codigo_alumno = $_POST['alumno_codigo_alumno'] ?? '';
+                              $cursos_seleccionados = isset($_POST['idcurso']) ? $_POST['idcurso'] : [];
+                              
+                              echo "<h1>Alumno:".$alumno_codigo_alumno."</h1>";
+                              foreach ($cursos_seleccionados as $row) {
+                                echo "<h1>Curso:".$row."</h1>";
+                              }
+                              
+
+                              $objM = new MatriculaController();
+                              $objM->registrarMatricula($alumno_codigo_alumno, $cursos_seleccionados);
+                              echo '<h1>Registrado correctamente</h1>';
+                            } else {
+                              echo '<h1>No Registrado</h1>';
+                            }
+                          } else {
+                            echo '<h1>Error: Método de solicitud incorrecto</h1>';
+                          }
+                          ?>
                         </div>
                       </div>
                     </div>

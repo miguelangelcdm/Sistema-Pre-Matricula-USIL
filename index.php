@@ -30,7 +30,6 @@ switch ($action) {
         $logController->logout();
         break;
     default:
-        break;
-
+    break;
 }
 ?>
