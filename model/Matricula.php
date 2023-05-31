@@ -3,6 +3,7 @@
 class Matricula{
     private String $alumno_codigo_alumno;
     private int $cursos_idcursos;
+    private String $turno;
 
     //destructor
     // public function __destruct(){} 
@@ -24,6 +25,12 @@ class Matricula{
     }
     public function setCursoId(int $cursos_idcursos){
         $this->cursos_idcursos = $cursos_idcursos;
+    }
+    public function getTurno(){
+        return $this->turno;
+    }
+    public function setTurno(String $turno){
+        $this->turno = $turno;
     }
 }
     
