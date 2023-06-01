@@ -12,18 +12,19 @@
         <a class="navbar-brand" href="javascript:void(0)">Sistema de Pseudomatrícula</a>
       </div>
       <div class="nav-item d-flex align-items-center">
-        <h6>
-          <?php
-            use controller\AlumnoController;
-            require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/controller/AlumnoController.php');
-            
-            $obj = new AlumnoController();
-            global $user;
-            $user = $obj->findById($id);
-            // $name=$user['fullName'];
-            echo $user['fullName'];
-          ?>
-        </h6>
+        <?php
+          use controller\AlumnoController;
+          require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/controller/AlumnoController.php');
+          
+          $obj = new AlumnoController();
+          global $user;
+          $user = $obj->findById($id);
+          echo "<li class='nav-item'>
+          <a class='nav-link d-flex align-items-center' href='javascript:void(0);'><i class='tf-icons navbar-icon bx bx-user'></i> ".$user['fullName']."</a>
+          </li>";
+          // $name=$user['fullName'];
+          // echo $user['fullName'];
+        ?>
         <a href="index.php?action=logout">
           <img src="../../assets/img/icons/unicons/logout.png" alt="" style="max-width:20px">
         </a>
