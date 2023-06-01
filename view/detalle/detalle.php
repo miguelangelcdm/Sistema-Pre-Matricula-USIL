@@ -17,6 +17,7 @@
               <th>Horas</th>
               <th>Creditos</th>
               <th>Turno</th>
+                                    <th>Actions</th>
             </tr>
           </thead>
           <tbody class="table-border-bottom-0">
@@ -35,9 +36,19 @@
               echo "<td>" . $row['horas'] . "</td>";
               echo "<td>" . $row['creditos'] . "</td>";
               echo "<td>" . $row['turno'] . "</td>";
+                                    echo "<td>
+                                    <form action='controller/MatriculaController.php' method='POST'>
+                                    <!-- Campo para enviar el ID del registro a borrar -->
+                                    <input type='hidden'  name='curso_id" . $row['idcurso'] . "' value='" . $row['idcurso'] . "'>  
+                                    <input type='hidden'  name='alumno_id" . $row['idcurso'] . "' value='".$uid."'>  
+                                    <!-- Botón para confirmar el borrado -->
+                                    <input type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='delete_matricula" . $row['idcurso'] . "' value='Eliminar'>
+                                  </form>
+                                    </td>";
               echo "</tr>";
             }
             ?>
+
           </tbody>
         </table>
       </div>
@@ -214,3 +225,116 @@
     </div>
   </div>
 </body>
+<script>
+  function submitForms() {
+    var forms = document.getElementsByName("formss");
+    for (var i = 0; i < forms.length; i++) {
+      forms[i].submit();
+    }
+  }
+</script>
+<!-- <script>
+  document.getElementById('myForm').addEventListener('submit', function (event) {
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    var idCursoInputs = document.querySelectorAll('input[name="idcurso[]"]');
+
+    // Crear una matriz para almacenar los valores seleccionados
+    var selectedIdCursos = [];
+
+    checkboxes.forEach(function (checkbox, index) {
+      if (checkbox.checked) {
+        // Agregar el valor correspondiente a la matriz
+        selectedIdCursos.push(idCursoInputs[index].getAttribute('value'));
+      }
+    });
+
+    // Asignar los valores seleccionados al campo de entrada 'idcurso[]'
+    document.querySelectorAll('input[name="idcurso[]"]').forEach(function (input) {
+      // Verificar si el valor está presente en la matriz de valores seleccionados
+      if (selectedIdCursos.includes(input.getAttribute('value'))) {
+        input.removeAttribute('disabled');
+      } else {
+        input.setAttribute('disabled', 'disabled');
+      }
+    });
+  });
+</script> -->
+
+<!-- JavaScript para la búsqueda dinámica -->
+<!-- <script>
+  // Obtener referencia al campo de búsqueda
+  var searchInput = document.getElementById('exampleFormControlSelect1');
+
+  // Obtener referencia a la tabla
+  var table = document.getElementsByTagName('table')[0];
+
+  // Obtener todas las filas de la tabla
+  var rows = table.getElementsByTagName('tr');
+
+  // Agregar evento input al campo de búsqueda
+  searchInput.addEventListener('change', function (event) {
+    var searchText = event.value.toLowerCase();
+    // Recorrer todas las filas de la tabla
+    for (var i = 1; i < rows.length; i++) {
+      var row = rows[i];
+      var rowData = row.getElementsByTagName('td');
+      var found = false;
+      // Verificar si el texto de búsqueda coincide con alguna celda de la fila
+      for (var j = 0; j < rowData.length; j++) {
+        var cellData = rowData[j].textContent.toLowerCase();
+        if (cellData.includes(searchText)) {
+          found = true;
+          break;
+        }
+      }
+
+      // Mostrar u ocultar la fila según si se encuentra el texto de búsqueda
+      if (found) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    }
+  });
+</script> -->
+<!-- <script>
+  // Función para filtrar la tabla
+  function filterTable() {
+    // Obtener referencia al campo de búsqueda
+    var searchInput = document.getElementById('exampleFormControlSelect1');
+
+    // Obtener referencia a la tabla
+    var table = document.getElementsByTagName('table')[0];
+
+    // Obtener todas las filas de la tabla
+    var rows = table.getElementsByTagName('tr');
+
+    // Obtener el valor de búsqueda
+    var searchText = searchInput.value.toLowerCase();
+
+    // Recorrer todas las filas de la tabla
+    for (var i = 1; i < rows.length; i++) {
+      var row = rows[i];
+      var rowData = row.getElementsByTagName('td');
+      var found = false;
+      // Verificar si el texto de búsqueda coincide con alguna celda de la fila
+      for (var j = 0; j < rowData.length; j++) {
+        var cellData = rowData[j].textContent.toLowerCase();
+        if (cellData.includes(searchText)) {
+          found = true;
+          break;
+        }
+      }
+
+      // Mostrar u ocultar la fila según si se encuentra el texto de búsqueda
+      if (found) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    }
+  }
+
+  // Llamar a la función filterTable al cargar la página
+  window.addEventListener('load', filterTable);
+</script> -->

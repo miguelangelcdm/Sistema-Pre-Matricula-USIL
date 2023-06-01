@@ -4,12 +4,12 @@ require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/model/Matricula.php');
 
 
 
+
 class MatriculaDAO{
     public function __construct(){
         $cn=new conexion();
     }
-    function registrarMatricula($objMatricula)
-    {
+    function registrarMatricula($objMatricula){
         try {
             $obj=conexion::singleton();
             $aid=$objMatricula->getAlumnoId();
@@ -28,13 +28,24 @@ class MatriculaDAO{
     {
         try {
             $obj = conexion::singleton();
-            $data = $obj->prepare("SELECT c.codigo, c.nombre, c.ciclo, c.horas, c.creditos, m.turno
+            $data = $obj->prepare("SELECT c.idcurso, c.codigo, c.nombre, c.ciclo, c.horas, c.creditos, m.turno
             FROM alumno as a
             JOIN matricula as m ON a.codigo_alumno = m.alumno_codigo_alumno
             JOIN cursos as c ON c.idCurso = m.cursos_idcursos
             where a.codigo_alumno='".$uid."';");
             $data->execute();
             return $data;
+        } catch(Exception $e) {
+            throw $e;
+        }
+    }
+
+    function deleteMatricula($uid,$cid)
+    {
+        try {
+            $obj = conexion::singleton();
+            $data = $obj->prepare("delete from matricula where alumno_codigo_alumno='".$uid."' and cursos_idcursos=".$cid.";");
+            $data->execute();            
         } catch(Exception $e) {
             throw $e;
         }

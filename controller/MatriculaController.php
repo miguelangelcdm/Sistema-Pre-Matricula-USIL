@@ -1,4 +1,5 @@
 <?php
+
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/model/MatriculaDAO.php');
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/model/Matricula.php');
 
@@ -17,4 +18,10 @@ class MatriculaController{
         $obj = new MatriculaDAO();
         return $obj->getCursosMatriculados($uid);
     }   
+    public function deleteMatricula($uid,$cid)
+    {
+        $obj = new MatriculaDAO();
+        // $matricula= new Matricula()
+        return $obj->deleteMatricula($uid,$cid);
+    }  
 }
