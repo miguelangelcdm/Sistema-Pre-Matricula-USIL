@@ -1,0 +1,11 @@
+[02-Jun-2023 05:58:44 Europe/Berlin] Inicio appweb
+[02-Jun-2023 05:58:44 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs/model/Matricula.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\Matricula--WAMP\model\MatriculaDAO.php on line 3
+[02-Jun-2023 05:58:44 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs/model/Matricula.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\Matricula--WAMP\model\MatriculaDAO.php:3
+Stack trace:
+#0 C:\xampp\htdocs\Matricula--WAMP\controller\MatriculaController.php(5): require_once()
+#1 C:\xampp\htdocs\Matricula--WAMP\view\detalle\detalle.php(27): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Matricula--WAMP\view\session.php(61): require('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\Matricula--WAMP\controller\LoginController.php(64): require('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\Matricula--WAMP\index.php(24): controller\LoginController->login('1921023', 'password1')
+#5 {main}
+  thrown in C:\xampp\htdocs\Matricula--WAMP\model\MatriculaDAO.php on line 3
