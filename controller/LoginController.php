@@ -62,7 +62,8 @@ class LoginController{
             // Verificar si la sesión está iniciada
             if (session_status() === PHP_SESSION_ACTIVE) {
                 require 'view/session.php'; /* Acción cuando la sesión está iniciada */
-            } else {
+                return;
+            }else {
                 require 'view/login/login.php'; /* Acción cuando la sesión no está iniciada */
             }
         } else {

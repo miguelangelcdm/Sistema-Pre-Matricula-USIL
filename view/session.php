@@ -1,3 +1,6 @@
+<?php
+session_start()
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,9 +52,10 @@
 </head>
 
 <body>
-    <?php require 'view/header/header.php'; ?>
-    <?php require 'view/detalle/detalle.php'; ?>
-    <?php require 'view/footer/footer.php'; ?>
+
+    <?php require "".realpath($_SERVER["DOCUMENT_ROOT"]) .'/view/header/header.php'.""; ?>
+    <?php require "".realpath($_SERVER["DOCUMENT_ROOT"]) .'/view/detalle/detalle.php'.""; ?>
+    <?php require "".realpath($_SERVER["DOCUMENT_ROOT"]) .'/view/footer/footer.php'.""; ?>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
     <script src="../assets/vendor/libs/jquery/jquery.js"></script>
     <script src="../assets/vendor/libs/highlight/highlight.js"></script>

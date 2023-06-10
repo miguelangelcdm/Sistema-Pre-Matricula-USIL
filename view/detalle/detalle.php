@@ -24,8 +24,14 @@
             <?php
             global $credit_counter;
             require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/MatriculaController.php');
+            require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/AlumnoController.php');
             $objM = new MatriculaController();
             $uid = $user['codigo_alumno'];
+            if(isset($_GET['codigo'])){
+              echo "<h1>TRUE</h1>";
+              $cid=$_GET['codigo'];    
+              $objM->deleteMatricula($uid,$cid);
+          }else{
             $cmatriculados = $objM->getCursosMatriculados($uid);
             foreach ($cmatriculados as $row) {
               $credit_counter += $row['creditos'];
@@ -36,19 +42,11 @@
               echo "<td>" . $row['horas'] . "</td>";
               echo "<td>" . $row['creditos'] . "</td>";
               echo "<td>" . $row['turno'] . "</td>";
-                                    echo "<td>
-                                    <form action='controller/MatriculaController.php' method='POST'>
-                                    <!-- Campo para enviar el ID del registro a borrar -->
-                                    <input type='hidden'  name='curso_id" . $row['idcurso'] . "' value='" . $row['idcurso'] . "'>  
-                                    <input type='hidden'  name='alumno_id" . $row['idcurso'] . "' value='".$uid."'>  
-                                    <!-- Botón para confirmar el borrado -->
-                                    <input type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='delete_matricula" . $row['idcurso'] . "' value='Eliminar'>
-                                  </form>
-                                    </td>";
+              echo "<td><a class='btn btn-primary' style='max-width:150px;margin:1rem' href='". $_SERVER['PHP_SELF'] ."?codigo=". $row['codigo'] ."'>Eliminar</a></td>";                  
               echo "</tr>";
             }
-            ?>
-
+          }            
+          ?>
           </tbody>
         </table>
       </div>
@@ -72,50 +70,19 @@
               <div class="card" style="width:100%;height:100%">
                 <div class="card card-header justify-content-between" style="flex-direction:row;padding:1rem">
                   <div class="d-flex flex-row align-items-center">
-                    <div class="me-3" style="width: auto;">
-                      <?php
-                      use controller\CursosController;
-
-                      require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/CursoController.php');
-                      $obj = new CursosController();
-                      $carrera = $user['carrera'];
-                      $data = $obj->getMallas($carrera);
-                      echo "<select name='mallaid' class='form-select' id='select-malla' aria-label='Default select example'>";
-                      if (empty($data)) {
-                        echo "<option value=''>No hay datos disponibles</option>";
-                      } else {
-                        $v = 0;
-                        echo "<option value='0'>Seleccione una malla</option>";
-                        foreach ($data as $row) {
-                          if ($v = 0) {
-                            echo "<option value='" . $row['mallaid'] . "' selected>" . $row['mallaid'] . "</option>";
-                            $v += 1;
-                          } else {
-                            echo "<option value='" . $row['mallaid'] . "'>" . $row['mallaid'] . "</option>";
-                          }
-
-                        }
-                      }
-                      echo "</select>";
-                      //session_start();
-                      // Verificar si la sesión está iniciada
-                      if (session_status() === PHP_SESSION_ACTIVE) {
-                        // Verificar si la variable $_SESSION['user_id'] está definida
-                        if (isset($_SESSION['user_id'])) {
-                          // Obtener el valor de 'user_id'
-                          $userId = $_SESSION['user_id'];
-
-                          // Utilizar el valor de 'user_id' como sea necesario
-                          // echo "User ID: " . $userId;
-                        } else {
-                          // La variable $_SESSION['user_id'] no está definida
-                          echo "No se ha establecido el ID de usuario en la sesión";
-                        }
-                      } else {
-                        // La sesión no está iniciada
-                        echo "No se ha iniciado sesión";
-                      }
-                      ?>
+                    <div class="me-3">
+                      <select class='form-select' id='select-carrera' aria-label='Default select example'>
+                        <option value='' selected>Seleccione Carrera</option>
+                        <option value='Ingenieria en Sistemas de Informacion'>Ingenieria en Sistemas de Información</option>
+                        <option value='Ingenieria de Software'>Ingenieria de Software</option>
+                        <option value='Ciencia de Datos'>Ciencia de Datos</option>
+                   
+                      </select>
+                    </div>
+                    <div class="me-3">
+                      <select class='form-select' id='select-malla' aria-label='Default select example'>
+                      <option value="">-</option>                   
+                      </select>
                     </div>
                     <div>
                       <select class='form-select' id='select-ciclo' aria-label='Default select example'>
@@ -151,6 +118,7 @@
                   <table class="datatables-basic table border-top" id="main-dt">
                     <thead>
                       <tr>
+                        <th>Carrera</th>
                         <th>Malla</th>
                         <th>Codigo</th>
                         <th>Nombre</th>
@@ -164,43 +132,65 @@
                     </thead>
                     <tbody class="table-border-bottom-0">
                       <?php
-                      $lcursos = $obj->getCursos($carrera);
+
+use controller\AlumnoController;
+use controller\CursosController;
+
+                      require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/CursoController.php');
+              
+
+                      $obj = new CursosController();
+                      $objA=new AlumnoController();
+                      //$lcursos = $obj->getCursos($carrera);
+                      $lcursos = $obj->getAllCursos();
                       $idalu = $user['codigo_alumno'];
+
+
+
 
                       if (!empty($lcursos)) {
                         $counter = 0; // Inicializar la variable de contador
                       
                         foreach ($lcursos as $row) {
-                          if (isset($row['checked']) && $row['checked']) {
-                            $counter += $row['creditos'];
-                            $selectedCourses[] = $row;
-                          }
+                          if (isset($_POST['registerMatricula_' . $row['idcurso']])) {
+                            $turno=$_POST["turno_" . $row['idcurso']];
+                            $cursos_idcursos =$row['idcurso']; 
+                            
+                            // echo "<h1>Alumno:".$idalu."</h1>";     
+                            // echo "<h1>Curso:".$cursos_idcursos."</h1>";     
+                            // echo "<h1>Turno:".$turno."</h1>";                   
+                            $objM = new MatriculaController();
+                            $objM->registrarMatricula($idalu, $cursos_idcursos,$turno);
+                            //echo '<h1>Registrado correctamente</h1>';
+                          }else{
+                            echo "<tr id='fila-" . $row['idcurso'] . "'>";
+                            echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='POST' name='formss-" . $row['idcurso'] . "'>";
+                            // echo "<form action='view/detalle/constancia.php' method='POST' name='formss-" . $row['idcurso'] . "'>";
+                            // echo "<input type='text' hidden=true name='alumno_codigo_alumno' value='" . $idalu . "'>";
+                            echo "<td align='center'>" . $row['carrera'] . "</td>";
+                            echo "<td align='center'>" . $row['mallaid'] . "</td>";
+                            echo "<td align='center'>" . $row['codigo'] . "</td>";
+                            echo "<td>" . $row['nombre'] . "</td>";
+                            echo "<td align='center'>" . $row['ciclo'] . "</td>";
+                            echo "<td align='center'>" . $row['horas'] . "</td>";
+                            echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
+                            echo "<td align='center'>
+                                      <select id='turnoSelect-" . $row['idcurso'] . "' class='form-select form-select-sm' name='turno_" . $row['idcurso'] . "'>                    
+                                          <option value='mañana'>Mañana</option>
+                                          <option value='tarde'>Tarde</option>
+                                          <option value='noche'>Noche</option>
+                                      </select>
+                                  </td>";
+                            //echo "<input type='number' hidden=true name='cursos_idcursos' value='" . $row['idcurso'] . "'>";
+                            echo "<input type='number' hidden=true name='cursos_idcursos_" . $row['idcurso'] . "' value='" . $row['idcurso'] . "'>";
 
-                          echo "<tr id='fila-" . $row['idcurso'] . "'>";
-                          echo "<form action='view/detalle/constancia.php' method='POST' name='formss-" . $row['idcurso'] . "'>";
-                          // echo "<input type='text' hidden=true name='alumno_codigo_alumno' value='" . $idalu . "'>";
-                          echo "<td align='center'>" . $row['mallaid'] . "</td>";
-                          echo "<td align='center'>" . $row['codigo'] . "</td>";
-                          echo "<td>" . $row['nombre'] . "</td>";
-                          echo "<td align='center'>" . $row['ciclo'] . "</td>";
-                          echo "<td align='center'>" . $row['horas'] . "</td>";
-                          echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
-                          echo "<td align='center'>
-                                    <select id='turnoSelect-" . $row['idcurso'] . "' class='form-select form-select-sm' name='turno_" . $row['idcurso'] . "'>                    
-                                        <option value='mañana'>Mañana</option>
-                                        <option value='tarde'>Tarde</option>
-                                        <option value='noche'>Noche</option>
-                                    </select>
-                                </td>";
-                          //echo "<input type='number' hidden=true name='cursos_idcursos' value='" . $row['idcurso'] . "'>";
-                          echo "<input type='number' hidden=true name='cursos_idcursos_" . $row['idcurso'] . "' value='" . $row['idcurso'] . "'>";
 
-
-                          echo "<td colspan='8' style='text-align: right;'>
-                                    <input type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='registerMatricula_" . $row['idcurso'] . "' value='Registrar'>
-                                </td>";
-                          echo "</form>";
-                          echo "</tr>";
+                            echo "<td colspan='8' style='text-align: right;'>
+                                      <input type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='registerMatricula_" . $row['idcurso'] . "' value='Registrar'>
+                                  </td>";
+                            echo "</form>";
+                            echo "</tr>";
+                          }                        
                         }
                       }
                       ?>
@@ -233,6 +223,52 @@
     }
   }
 </script>
+
+<script>
+    // Obtener referencias a los elementos select
+    var selectCarrera = document.getElementById("select-carrera");
+    var selectMalla = document.getElementById("select-malla");
+
+    // Definir las opciones para el select de malla
+    var opcionesMalla = {
+      "Ingenieria en Sistemas de Informacion": ['PC IS-16', 'PC IS-19', 'PC IS-22', 'PC IS-23'],
+      "Ingenieria de Software": ['PC SW-19', 'PC SW-22', 'PC SW-23'],
+      "Ciencia de Datos": ['PC CDx-23']
+    };
+
+    // Función para actualizar las opciones del select de malla
+    function actualizarSelectMalla() {
+      // Obtener el valor seleccionado del select de carrera
+      var valorCarrera = selectCarrera.value;
+
+      // Obtener las opciones correspondientes del objeto opcionesMalla
+      var opciones = opcionesMalla[valorCarrera];
+
+      // Limpiar el select de malla
+      selectMalla.innerHTML = "";
+      var option = document.createElement("option");
+          option.text = 'Seleccione Malla';
+          option.value = '';
+          selectMalla.appendChild(option);
+
+      // Agregar las nuevas opciones al select de malla
+      if (opciones) {
+        opciones.forEach(function(opcion) {
+          var option = document.createElement("option");
+          option.text = opcion;
+          option.value = opcion;
+          selectMalla.appendChild(option);
+        });
+      }
+    }
+
+    // Llamar a la función actualizarSelectMalla cuando cambie la selección del select de carrera
+    selectCarrera.addEventListener("change", actualizarSelectMalla);
+
+    // Llamar a la función actualizarSelectMalla al iniciar la página para dejar el select de malla vacío
+    actualizarSelectMalla();
+  </script>
+
 <!-- <script>
   document.getElementById('myForm').addEventListener('submit', function (event) {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
