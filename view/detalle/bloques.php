@@ -113,40 +113,9 @@ session_start()
                     
                     <div class="card" style="height:100%">
                       <h5 class="card-header">Listado de Cursos</h5>
-                        <div class="card-body">
-                          <table class="datatables-basic table border-top" id="bloquesDT">
-                            <thead>
-                              <tr>
-                                <th>Carrera</th>
-                                <th>Malla</th>
-                                <th>Ciclo</th>
-                                <th>Codigo</th>
-                                <th>Curso</th>
-                                <th></th>
-                              </tr>
-                            </thead>
-                            <tbody class="table-border-bottom-0">
-                              <?php
-                              $lcursos = $objC->getAllCursos();
-                              foreach ($lcursos as $row) {
-                                echo "<tr>";
-                                echo "<td align='center'>" . $row['carrera'] . "</td>";
-                                echo "<td align='center'>" . $row['mallaid'] . "</td>";
-                                echo "<td align='center'>" . $row['ciclo'] . "</td>";
-                                echo "<td>" . $row['codigo'] . "</td>";
-                                echo "<td>" . $row['nombre'] . "</td>";
-                                echo "<td>
-                                  <form method='post' action='#'>
-                                    <input type='hidden' name='codigo' value='" . $row['codigo'] . "'>
-                                    <button type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='deleteMatricula'>Eliminar</button>
-                                  </form>
-                                </td>";
-                                echo "</tr>";
-                              }
-                              ?>
-                            </tbody>
-                          </table>
-                        </div>
+                      <div class="card-body">
+
+                      </div>
                     </div>
                   </div>
 
@@ -162,27 +131,6 @@ session_start()
                     <div class="card-body">
                       <div class="card mt-3 p-3" style="height:90%">
                         <div class="table-responsive text-nowrap">
-                          <table class="datatables-basic table border-top" id="main-dt">
-                            <thead>
-                              <tr>
-                                <th>Codigo Alumno</th>
-                                <th>Nombre Completo</th>
-                                <th>Carrera</th>
-                               
-                                <!-- <th>Input</th> -->
-                              </tr>
-                            </thead>
-                            <tbody class="table-border-bottom-0">
-                              <tr>
-                                <td>1920853</td>
-                                <td>Christian Castro Ortiz</td>
-                                <td>Ingenieria en Sistemas de Informacion</td>
-                              </tr>
-
-                            </tbody>                    
-                          </table>
-
-
                         </div>
                       </div>
                     </div>
@@ -242,5 +190,68 @@ session_start()
   actualizarSelectMalla();
 </script>
 <script src="../../assets/js/bloques.js"></script>
+
+<script>
+  // Obtener referencias a los elementos select
+  var selectCarrera = document.getElementById("select-carrera");
+  var selectMalla = document.getElementById("select-malla");
+
+  // Definir las opciones para el select de malla
+  var opcionesMalla = {
+    "Ingenieria en Sistemas de Informacion": ['PC IS-16', 'PC IS-19', 'PC IS-22', 'PC IS-23'],
+    "Ingenieria de Software": ['PC SW-19', 'PC SW-22', 'PC SW-23'],
+    "Ciencia de Datos": ['PC CDx-23']
+  };
+
+  // Función para actualizar las opciones del select de malla
+  function actualizarSelectMalla() {
+    // Obtener el valor seleccionado del select de carrera
+    var valorCarrera = selectCarrera.value;
+
+    // Obtener las opciones correspondientes del objeto opcionesMalla
+    var opciones = opcionesMalla[valorCarrera];
+
+    // Limpiar el select de malla
+    selectMalla.innerHTML = "";
+    var option = document.createElement("option");
+    option.text = 'Seleccione Malla';
+    option.value = '';
+    selectMalla.appendChild(option);
+
+    // Agregar las nuevas opciones al select de malla
+    if (opciones) {
+      opciones.forEach(function (opcion) {
+        var option = document.createElement("option");
+        option.text = opcion;
+        option.value = opcion;
+        selectMalla.appendChild(option);
+      });
+    }
+  }
+
+  // Llamar a la función actualizarSelectMalla cuando cambie la selección del select de carrera
+  selectCarrera.addEventListener("change", actualizarSelectMalla);
+
+  // Llamar a la función actualizarSelectMalla al iniciar la página para dejar el select de malla vacío
+  actualizarSelectMalla();
+</script>
+
+<script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../../assets/vendor/libs/highlight/highlight.js"></script>
+<script src="../../assets/vendor/libs/clipboard/clipboard.js"></script>
+<script src="../../assets/vendor/libs/popper/popper.js"></script>
+<script src="../../assets/vendor/js/bootstrap.js"></script>
+<script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../../assets/vendor/js/menu.js"></script>
+<script src="../../assets/js/main.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+<script src="../../assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+<script src="../../assets/js/docs.js"></script>
+<script src="../../assets/js/bloques.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 </html>
