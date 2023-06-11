@@ -1,71 +1,15 @@
-<!-- Modal con cursos -->
-<div class="modal fade" id="modalCursos" tabindex="-1" style="display: none;" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalCenterTitle">Cursos Matriculados</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" style="padding:0.5rem">
-        <table class="datatables-basic2 table border-top" id="selectedCoursesTable">
-          <thead>
-            <tr>
-              <!-- <th>Malla</th> -->
-              <th>Codigo</th>
-              <th>Nombre</th>
-              <th>Ciclo</th>
-              <th>Horas</th>
-              <th>Creditos</th>
-              <th>Turno</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody class="table-border-bottom-0">
-            <?php
-            use controller\CursosController;
-            use controller\AlumnoController;
-            global $credit_counter;
-            require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/MatriculaController.php');
-            require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/AlumnoController.php');
-            require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/CursoController.php');
+<?php
+  use controller\CursosController;
+  use controller\AlumnoController;
+  global $credit_counter;
+  require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/MatriculaController.php');
+  require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/AlumnoController.php');
+  require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/CursoController.php');
 
-            global $obj;
-            global $objM;
-            $obj=new CursosController();
-            $objM = new MatriculaController();
-            
-            $uid = $user['codigo_alumno'];
-            if (isset($_GET['codigo'])) {
-              echo "<h1>TRUE</h1>";
-              $cid=$_GET['codigo'];    
-              //$ca=$objC->findById($cid);
-              $objM->deleteMatricula($uid,$cid);
-              //$credit_counter += $ca['creditos'];
-              //echo $credit_counter;
-          }else{
-            $cmatriculados = $objM->getCursosMatriculados($uid);
-            foreach ($cmatriculados as $row) {
-              $credit_counter += $row['creditos'];
-              echo "<tr>";
-              echo "<td>" . $row['codigo'] . "</td>";
-              echo "<td>" . $row['nombre'] . "</td>";
-              echo "<td>" . $row['ciclo'] . "</td>";
-              echo "<td>" . $row['horas'] . "</td>";
-              echo "<td>" . $row['creditos'] . "</td>";
-              echo "<td>" . $row['turno'] . "</td>";
-              echo "<td><a class='btn btn-primary' style='max-width:150px;margin:1rem' href='". $_SERVER['PHP_SELF'] ."?codigo=". $row['codigo'] ."'>Eliminar</a></td>";                  
-              echo "</tr>";
-            }
-          }            
-          ?>
-          </tbody>
-        </table>
-      </div>
-
-    </div>
-  </div>
-</div>
-
+  global $obj;
+  global $objM;
+  global $credit_counter;
+?>
 <body class="bg2">
   <!-- Layout wrapper -->
   <div class="layout-wrapper layout-content-navbar layout-without-menu" style="flex-direction: column;">
@@ -116,7 +60,7 @@
                   <div>
                     <div class="btn btn-outline-primary me-3" type="button" data-bs-toggle="modal"
                       data-bs-target="#modalCursos" style="cursor:alias">
-                      <span class="dismin">Créditos:</span><span class="badge bg-white text-primary ms-1 "><span class="counter"><?php echo $credit_counter ?></span>/22</span>
+                      <span class="dismin">Créditos:</span><span class="badge bg-white text-primary ms-1 "><span class="counter"></span>/22</span>
                     </div>
                     <a href="detalle/bloques.php">
                       <div class="create-new btn btn-primary">
@@ -144,13 +88,6 @@
                     </thead>
                     <tbody class="table-border-bottom-0">
                       <?php
-
-    
-
-
-                      
-              
-
                       $obj = new CursosController();
                       $objA = new AlumnoController();
                       //$lcursos = $obj->getCursos($carrera);
@@ -162,7 +99,9 @@
                       
                         foreach ($lcursos as $row) {
                           if (isset($_POST['registerMatricula_' . $row['idcurso']])) {
-                            $turno = $_POST["turno_" . $row['idcurso']];
+                            //$turno = $_POST["turno_" . $row['idcurso']];
+                            $turno = isset($_POST["turno_" . $row['idcurso']]) ? $_POST["turno_" . $row['idcurso']] : null;
+
                             $cursos_idcursos = $row['idcurso'];
 
                             // echo "<h1>Alumno:".$idalu."</h1>";     
@@ -171,10 +110,12 @@
                             $objM = new MatriculaController();
                             
                             $ca=$obj->findById($cursos_idcursos);
-                            $credit_counter += $ca['creditos'];
+                            //$credit_counter += $ca['creditos'];
                             //echo $credit_counter;
-                            echo "<h1 id='counter' style='display:none'>Contador:".$credit_counter."</h1>";
-                            $objM->registrarMatricula($idalu, $cursos_idcursos,$turno);     
+                            //echo "<h1 id='counter' style='display:none'>".$credit_counter."</h1>";
+                            $objM->registrarMatricula($idalu, $cursos_idcursos,$turno);    
+                            // header("Location: " . $_SERVER['PHP_SELF']);
+                            // exit;
                             //echo "<h1>CC:".$ca['creditos']."</h1>";     
 
                             //echo '<h1>Registrado correctamente</h1>';
@@ -192,7 +133,7 @@
                             echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
                             echo "<td align='center'>
                                       <select id='turnoSelect-" . $row['idcurso'] . "' class='form-select form-select-sm' name='turno_" . $row['idcurso'] . "'>                    
-                                          <option value='mañana'>Mañana</option>
+                                          <option value='mañana' selected>Mañana</option>
                                           <option value='tarde'>Tarde</option>
                                           <option value='noche'>Noche</option>
                                       </select>
@@ -210,17 +151,7 @@
                         }
                       }
                       ?>
-                    </tbody>
-                    <script>
-                      document.addEventListener("DOMContentLoaded", function () {
-                        // Reset the select options to "Indistinto"
-                        var selectElements = document.querySelectorAll('select[name^="turno_"]');
-                        for (var i = 0; i < selectElements.length; i++) {
-                          selectElements[i].value = "Indistinto";
-                        }
-                      });
-                    </script>
-                    
+                    </tbody>                    
                   </table>
                 </div>
               </div>
@@ -230,6 +161,75 @@
       </div>
     </div>
   </div>
+
+<!-- Modal con cursos -->
+<div class="modal fade" id="modalCursos" tabindex="-1" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalCenterTitle">Cursos Matriculados</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="padding:0.5rem">
+        <table class="datatables-basic2 table border-top" id="selectedCoursesTable">
+          <thead>
+            <tr>
+              <!-- <th>Malla</th> -->
+              <th>Codigo</th>
+              <th>Nombre</th>
+              <th>Ciclo</th>
+              <th>Horas</th>
+              <th>Creditos</th>
+              <th>Turno</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody class="table-border-bottom-0">          
+          <?php
+          $obj = new CursosController();
+          $objM = new MatriculaController();
+          $uid = $user['codigo_alumno'];
+          global $cmatriculados;
+          $cmatriculados = $objM->getCursosMatriculados($uid); 
+
+          if (!empty($cmatriculados)) {
+            foreach ($cmatriculados as $row) {
+              if(isset($_POST['deleteMatricula' . $row['idcurso']])){
+                $cid = $_POST['codigo'];
+                $objM->deleteMatricula($uid, $cid);
+              }else{
+                $credit_counter += $row['creditos'];
+                echo "<tr>";
+                echo "<td>" . $row['codigo'] . "</td>";
+                echo "<td>" . $row['nombre'] . "</td>";
+                echo "<td>" . $row['ciclo'] . "</td>";
+                echo "<td>" . $row['horas'] . "</td>";
+                echo "<td>" . $row['creditos'] . "</td>";
+                echo "<td>" . $row['turno'] . "</td>";
+                echo "<td>
+                        <form method='post' action='" . $_SERVER['PHP_SELF'] . "'>
+                            <input type='hidden' name='codigo' value='" . $row['idcurso'] . "'>
+                            <button type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='deleteMatricula" . $row['idcurso'] . "'>Eliminar</button>
+                        </form>
+                    </td>";
+                echo "</tr>";
+              }                        
+            } 
+            echo "<h1 id='counter' style='display:none'>" . $credit_counter . "</h1>";             
+          }else{
+
+          }               
+          ?>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+  <!-- gagh -->
 </body>
 <script>
   function submitForms() {
@@ -240,15 +240,15 @@
   }
 </script>
 <script>
-  // // Obtener el valor del H1
-  // var h1Value = document.getElementById('counter').innerText;
-  // console.log(h1Value);
+  // Obtener el valor del H1
+  var h1Value = document.getElementById('counter').innerText;
+  console.log(h1Value);
 
-  // // Buscar el span con "###"
-  // var spanElement = document.querySelector('.counter');
+  // Buscar el span con "###"
+  var spanElement = document.querySelector('.counter');
 
-  // // Asignar el valor del H1 al span
-  // spanElement.innerText = h1Value;
+  // Asignar el valor del H1 al span
+  spanElement.innerText = h1Value;
 </script>
 
 <script>
