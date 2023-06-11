@@ -22,15 +22,26 @@
           </thead>
           <tbody class="table-border-bottom-0">
             <?php
+            use controller\CursosController;
+            use controller\AlumnoController;
             global $credit_counter;
             require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/MatriculaController.php');
             require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/AlumnoController.php');
+            require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/CursoController.php');
+
+            global $obj;
+            global $objM;
+            $obj=new CursosController();
             $objM = new MatriculaController();
+            
             $uid = $user['codigo_alumno'];
             if(isset($_GET['codigo'])){
               echo "<h1>TRUE</h1>";
               $cid=$_GET['codigo'];    
+              //$ca=$objC->findById($cid);
               $objM->deleteMatricula($uid,$cid);
+              //$credit_counter += $ca['creditos'];
+              //echo $credit_counter;
           }else{
             $cmatriculados = $objM->getCursosMatriculados($uid);
             foreach ($cmatriculados as $row) {
@@ -103,10 +114,7 @@
                   <div>
                     <div class="btn btn-outline-primary me-3" type="button" data-bs-toggle="modal"
                       data-bs-target="#modalCursos" style="cursor:alias">
-                      <span class="dismin">Créditos:</span><span class="badge bg-white text-primary ms-1 "><span
-                          class="counter">
-                          <?php echo $credit_counter; ?>
-                        </span>/22</span>
+                      <span class="dismin">Créditos:</span><span class="badge bg-white text-primary ms-1 "><span class="counter"><?php echo $credit_counter ?></span>/22</span>
                     </div>
                     <div class="create-new btn btn-primary">
                       <i class="bx bx-list-check"></i> <span class="d-none d-lg-inline-block">Listado de
@@ -133,10 +141,10 @@
                     <tbody class="table-border-bottom-0">
                       <?php
 
-use controller\AlumnoController;
-use controller\CursosController;
+    
 
-                      require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/CursoController.php');
+
+                      
               
 
                       $obj = new CursosController();
@@ -160,7 +168,14 @@ use controller\CursosController;
                             // echo "<h1>Curso:".$cursos_idcursos."</h1>";     
                             // echo "<h1>Turno:".$turno."</h1>";                   
                             $objM = new MatriculaController();
-                            $objM->registrarMatricula($idalu, $cursos_idcursos,$turno);
+                            
+                            $ca=$obj->findById($cursos_idcursos);
+                            $credit_counter += $ca['creditos'];
+                            //echo $credit_counter;
+                            echo "<h1 id='counter' style='display:none'>Contador:".$credit_counter."</h1>";
+                            $objM->registrarMatricula($idalu, $cursos_idcursos,$turno);     
+                            //echo "<h1>CC:".$ca['creditos']."</h1>";     
+
                             //echo '<h1>Registrado correctamente</h1>';
                           }else{
                             echo "<tr id='fila-" . $row['idcurso'] . "'>";
@@ -222,6 +237,17 @@ use controller\CursosController;
       forms[i].submit();
     }
   }
+</script>
+<script>
+  // // Obtener el valor del H1
+  // var h1Value = document.getElementById('counter').innerText;
+  // console.log(h1Value);
+
+  // // Buscar el span con "###"
+  // var spanElement = document.querySelector('.counter');
+
+  // // Asignar el valor del H1 al span
+  // spanElement.innerText = h1Value;
 </script>
 
 <script>

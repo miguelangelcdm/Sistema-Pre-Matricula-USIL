@@ -77,5 +77,16 @@ class cursoDAO{
             throw $e;
         }
     }
+
+    function findById($cid) {
+        try {
+            $obj = conexion::singleton();
+            $data = $obj->prepare("SELECT * FROM cursos WHERE idcurso LIKE '" . $cid . "'");
+            $data->execute();
+            return $data->fetch(PDO::FETCH_ASSOC);
+        } catch(Exception $e) {
+            throw $e;
+        }
+    }
 }
 ?>

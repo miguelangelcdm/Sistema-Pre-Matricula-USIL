@@ -34,6 +34,12 @@ class CursosController{
         return $obj->getAllCursos();
     }
 
+    public function findById($cid){
+        //get all courses from database
+        $obj = new cursoDAO();
+        return $obj->findById($cid);
+    }
+
     // public function getCursosByMalla($mallaId)
     // {
     //     // Assuming you have a data source or database connection established
