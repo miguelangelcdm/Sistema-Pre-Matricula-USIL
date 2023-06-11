@@ -13,22 +13,30 @@
       </div>
       <div class="nav-item d-flex align-items-center">
         <?php
-          use controller\AlumnoController;
-          require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/controller/AlumnoController.php');
-          
-          $obj = new AlumnoController();
-          global $user;
-          $id=$_SESSION['user_id'];
-          $user = $obj->findById($id);
-          echo "<li class='nav-item'>
-          <a class='nav-link d-flex align-items-center' href='javascript:void(0);'><i class='tf-icons navbar-icon bx bx-user'></i> ".$user['fullName']."</a>
-          </li>";
-          // $name=$user['fullName'];
-          // echo $user['fullName'];
+        use controller\AlumnoController;
+
+        require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/AlumnoController.php');
+        $obj = new AlumnoController();
+        global $user;
+        $id = $_SESSION['user_id'];
+        $user = $obj->findById($id);
+        echo "
+          <a class='nav-link d-flex align-items-center' href='javascript:void(0);' style='border: 2px solid #566a7f;border-radius: 10px;padding-inline: 0.5rem;padding-block: .15rem;'> " . $user['fullName'] . "<i class='tf-icons navbar-icon bx bx-user' style='font-size:1.5rem;color:#566a7f; margin-left:0.5rem'></i></a>";
+        // $name=$user['fullName'];
+        // echo $user['fullName'];
         ?>
-        <a href="logout.php">
-          <img src="../../assets/img/icons/unicons/logout.png" alt="" style="max-width:20px">
-        </a>
+        <div
+          style="border: 2px solid #566a7f; border-radius: 10px; padding-inline: 0.5rem; padding-block: .15rem; margin-left: 1rem; position: relative;">
+          <a href="Home.php">
+            <i class='bx bx-home' style="font-size: 1.5rem; color: #566a7f;"></i>
+          </a>
+          <a href="logout.php" style="margin-left: 1rem;">
+            <!-- <img src="../../assets/img/icons/unicons/logout.png" alt="" style="max-width: 20px;"> -->
+            <i class='bx bx-exit' style="font-size: 1.5rem; color: #566a7f;"></i>
+          </a>
+          <span style="position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background-color: #566a7f;"></span>
+        </div>
+
       </div>
     </div>
   </div>
