@@ -1,4 +1,5 @@
 <?php
+
 include_once 'conexion.php';
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/model/Matricula.php');
 

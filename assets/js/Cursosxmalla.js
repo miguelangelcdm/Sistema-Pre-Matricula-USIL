@@ -11,12 +11,15 @@ document.addEventListener("DOMContentLoaded", function () {
     var dt_basic = dt_basic_table.DataTable({
       columnDefs: [
         { targets: 0, visible: false }, // Hide the "Malla" column
+        { targets: 1, visible: false },
+        { targets: 2, orderable: false },
         {
           targets: 7,
           orderable: false,
           responsivePriority: 3,
-          searchable: false,
+          searchable: false
         },
+        { targets: 8, orderable: false,searchable: false},
       ],
       dom: '<"d-flex justify-content-between align-items-center row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
       // pageLength: 20,
@@ -25,6 +28,15 @@ document.addEventListener("DOMContentLoaded", function () {
       info: true,
       scrollY: 570,
     });
+    // Dropdown de Carrera
+    var carrera = document.getElementById("select-carrera");
+    // Event listener for external dropdown
+    carrera.addEventListener("change", function (event) {
+      var searchCarrera = event.target.value.toLowerCase();
+
+      // Filter the DataTable based on the selected value
+      dt_basic.column(0).search(searchCarrera, true, false).draw();
+    });
     // Dropdown de mallas
     var searchInput = document.getElementById("select-malla");
     // Event listener for external dropdown
@@ -32,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var searchText = event.target.value.toLowerCase();
 
       // Filter the DataTable based on the selected value
-      dt_basic.column(0).search(searchText, true, false).draw();
+      dt_basic.column(1).search(searchText, true, false).draw();
     });
     //Dropdown Ciclo
     var ciclo = document.getElementById("select-ciclo");
@@ -40,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var searchciclo = event.target.value.toLowerCase();
 
       // Filter the DataTable based on the selected value
-      dt_basic.column(3).search(searchciclo, true, false).draw();
+      dt_basic.column(4).search(searchciclo, true, false).draw();
     });
 
     var initialCounterValue = parseInt($(".head-label .counter").text());

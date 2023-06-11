@@ -1,3 +1,6 @@
+<?php
+session_start()
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,17 +52,12 @@
 </head>
 
 <body>
-    <?php require 'view/header/header.php'; ?>
-    <?php
-    error_reporting(E_ALL);
-    ini_set('ignore_repeated_errrors', TRUE);
-    ini_set('display_errors', FALSE);
-    ini_set('log_errors', TRUE);
-    //ini_set("error_log", "/laragon/www/Matricula--WAMP/php-error.log");
-    ini_set("error_log", "C:/xampp/htdocs/Matricula--WAMP/errors/errors.log");
-    error_log("Inicio appweb");
-    require 'view/detalle/detalle.php'; ?>
-    <?php require 'view/footer/footer.php'; ?>
+
+
+    <?php require "".realpath($_SERVER["DOCUMENT_ROOT"]) .'/view/header/header.php'.""; ?>
+    <?php require "".realpath($_SERVER["DOCUMENT_ROOT"]) .'/view/detalle/detalle.php'.""; ?>
+    <?php require "".realpath($_SERVER["DOCUMENT_ROOT"]) .'/view/footer/footer.php'.""; ?>
+
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
     <script src="../assets/vendor/libs/jquery/jquery.js"></script>
     <script src="../assets/vendor/libs/highlight/highlight.js"></script>

@@ -18,6 +18,7 @@
           
           $obj = new AlumnoController();
           global $user;
+          $id=$_SESSION['user_id'];
           $user = $obj->findById($id);
           echo "<li class='nav-item'>
           <a class='nav-link d-flex align-items-center' href='javascript:void(0);'><i class='tf-icons navbar-icon bx bx-user'></i> ".$user['fullName']."</a>
@@ -25,7 +26,7 @@
           // $name=$user['fullName'];
           // echo $user['fullName'];
         ?>
-        <a href="index.php?action=logout">
+        <a href="logout.php">
           <img src="../../assets/img/icons/unicons/logout.png" alt="" style="max-width:20px">
         </a>
       </div>
