@@ -6,7 +6,7 @@
         <h5 class="modal-title" id="modalCenterTitle">Cursos Matriculados</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="padding:0.5rem">
         <table class="datatables-basic2 table border-top" id="selectedCoursesTable">
           <thead>
             <tr>
@@ -17,7 +17,7 @@
               <th>Horas</th>
               <th>Creditos</th>
               <th>Turno</th>
-                                    <th>Actions</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody class="table-border-bottom-0">
@@ -35,7 +35,7 @@
             $objM = new MatriculaController();
             
             $uid = $user['codigo_alumno'];
-            if(isset($_GET['codigo'])){
+            if (isset($_GET['codigo'])) {
               echo "<h1>TRUE</h1>";
               $cid=$_GET['codigo'];    
               //$ca=$objC->findById($cid);
@@ -75,7 +75,8 @@
         <!-- Content wrapper -->
         <div class="content-wrapper">
           <!-- Content -->
-          <div class="container-xxl flex-grow-1 container-p-y" style="max-width:100%;padding-top:0.3rem!important;">
+          <div class="container-xxl flex-grow-1 container-p-y"
+            style="max-width:100%;padding-top:0.3rem!important;opacity:0.9">
             <!-- Layout Demo -->
             <div class="layout-demo-wrapper" style="height:100%">
               <div class="card" style="width:100%;height:100%">
@@ -84,15 +85,16 @@
                     <div class="me-3">
                       <select class='form-select' id='select-carrera' aria-label='Default select example'>
                         <option value='' selected>Seleccione Carrera</option>
-                        <option value='Ingenieria en Sistemas de Informacion'>Ingenieria en Sistemas de Información</option>
+                        <option value='Ingenieria en Sistemas de Informacion'>Ingenieria en Sistemas de Información
+                        </option>
                         <option value='Ingenieria de Software'>Ingenieria de Software</option>
                         <option value='Ciencia de Datos'>Ciencia de Datos</option>
-                   
+
                       </select>
                     </div>
                     <div class="me-3">
                       <select class='form-select' id='select-malla' aria-label='Default select example'>
-                      <option value="">-</option>                   
+                        <option value="">-</option>
                       </select>
                     </div>
                     <div>
@@ -116,10 +118,12 @@
                       data-bs-target="#modalCursos" style="cursor:alias">
                       <span class="dismin">Créditos:</span><span class="badge bg-white text-primary ms-1 "><span class="counter"><?php echo $credit_counter ?></span>/22</span>
                     </div>
-                    <div class="create-new btn btn-primary">
-                      <i class="bx bx-list-check"></i> <span class="d-none d-lg-inline-block">Listado de
-                        bloques</span>
-                    </div>
+                    <a href="detalle/bloques.php">
+                      <div class="create-new btn btn-primary">
+                        <i class="bx bx-list-check"></i> <span class="d-none d-lg-inline-block">Listado de
+                          bloques</span>
+                      </div>
+                    </a>
                   </div>
                 </div>
                 <div class="card card-body card-datatable table-responsive py-0">
@@ -148,22 +152,19 @@
               
 
                       $obj = new CursosController();
-                      $objA=new AlumnoController();
+                      $objA = new AlumnoController();
                       //$lcursos = $obj->getCursos($carrera);
                       $lcursos = $obj->getAllCursos();
                       $idalu = $user['codigo_alumno'];
-
-
-
 
                       if (!empty($lcursos)) {
                         $counter = 0; // Inicializar la variable de contador
                       
                         foreach ($lcursos as $row) {
                           if (isset($_POST['registerMatricula_' . $row['idcurso']])) {
-                            $turno=$_POST["turno_" . $row['idcurso']];
-                            $cursos_idcursos =$row['idcurso']; 
-                            
+                            $turno = $_POST["turno_" . $row['idcurso']];
+                            $cursos_idcursos = $row['idcurso'];
+
                             // echo "<h1>Alumno:".$idalu."</h1>";     
                             // echo "<h1>Curso:".$cursos_idcursos."</h1>";     
                             // echo "<h1>Turno:".$turno."</h1>";                   
@@ -177,7 +178,7 @@
                             //echo "<h1>CC:".$ca['creditos']."</h1>";     
 
                             //echo '<h1>Registrado correctamente</h1>';
-                          }else{
+                          } else {
                             echo "<tr id='fila-" . $row['idcurso'] . "'>";
                             echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='POST' name='formss-" . $row['idcurso'] . "'>";
                             // echo "<form action='view/detalle/constancia.php' method='POST' name='formss-" . $row['idcurso'] . "'>";
@@ -200,17 +201,17 @@
                             echo "<input type='number' hidden=true name='cursos_idcursos_" . $row['idcurso'] . "' value='" . $row['idcurso'] . "'>";
 
 
-                            echo "<td colspan='8' style='text-align: right;'>
+                            echo "<td colspan='8' style='text-align: center;'>
                                       <input type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='registerMatricula_" . $row['idcurso'] . "' value='Registrar'>
                                   </td>";
                             echo "</form>";
                             echo "</tr>";
-                          }                        
+                          }
                         }
                       }
                       ?>
                     </tbody>
-                    <!-- <script>
+                    <script>
                       document.addEventListener("DOMContentLoaded", function () {
                         // Reset the select options to "Indistinto"
                         var selectElements = document.querySelectorAll('select[name^="turno_"]');
@@ -218,9 +219,9 @@
                           selectElements[i].value = "Indistinto";
                         }
                       });
-                    </script> -->
+                    </script>
+                    
                   </table>
-                  </form>
                 </div>
               </div>
             </div>
@@ -251,49 +252,49 @@
 </script>
 
 <script>
-    // Obtener referencias a los elementos select
-    var selectCarrera = document.getElementById("select-carrera");
-    var selectMalla = document.getElementById("select-malla");
+  // Obtener referencias a los elementos select
+  var selectCarrera = document.getElementById("select-carrera");
+  var selectMalla = document.getElementById("select-malla");
 
-    // Definir las opciones para el select de malla
-    var opcionesMalla = {
-      "Ingenieria en Sistemas de Informacion": ['PC IS-16', 'PC IS-19', 'PC IS-22', 'PC IS-23'],
-      "Ingenieria de Software": ['PC SW-19', 'PC SW-22', 'PC SW-23'],
-      "Ciencia de Datos": ['PC CDx-23']
-    };
+  // Definir las opciones para el select de malla
+  var opcionesMalla = {
+    "Ingenieria en Sistemas de Informacion": ['PC IS-16', 'PC IS-19', 'PC IS-22', 'PC IS-23'],
+    "Ingenieria de Software": ['PC SW-19', 'PC SW-22', 'PC SW-23'],
+    "Ciencia de Datos": ['PC CDx-23']
+  };
 
-    // Función para actualizar las opciones del select de malla
-    function actualizarSelectMalla() {
-      // Obtener el valor seleccionado del select de carrera
-      var valorCarrera = selectCarrera.value;
+  // Función para actualizar las opciones del select de malla
+  function actualizarSelectMalla() {
+    // Obtener el valor seleccionado del select de carrera
+    var valorCarrera = selectCarrera.value;
 
-      // Obtener las opciones correspondientes del objeto opcionesMalla
-      var opciones = opcionesMalla[valorCarrera];
+    // Obtener las opciones correspondientes del objeto opcionesMalla
+    var opciones = opcionesMalla[valorCarrera];
 
-      // Limpiar el select de malla
-      selectMalla.innerHTML = "";
-      var option = document.createElement("option");
-          option.text = 'Seleccione Malla';
-          option.value = '';
-          selectMalla.appendChild(option);
+    // Limpiar el select de malla
+    selectMalla.innerHTML = "";
+    var option = document.createElement("option");
+    option.text = 'Seleccione Malla';
+    option.value = '';
+    selectMalla.appendChild(option);
 
-      // Agregar las nuevas opciones al select de malla
-      if (opciones) {
-        opciones.forEach(function(opcion) {
-          var option = document.createElement("option");
-          option.text = opcion;
-          option.value = opcion;
-          selectMalla.appendChild(option);
-        });
-      }
+    // Agregar las nuevas opciones al select de malla
+    if (opciones) {
+      opciones.forEach(function (opcion) {
+        var option = document.createElement("option");
+        option.text = opcion;
+        option.value = opcion;
+        selectMalla.appendChild(option);
+      });
     }
+  }
 
-    // Llamar a la función actualizarSelectMalla cuando cambie la selección del select de carrera
-    selectCarrera.addEventListener("change", actualizarSelectMalla);
+  // Llamar a la función actualizarSelectMalla cuando cambie la selección del select de carrera
+  selectCarrera.addEventListener("change", actualizarSelectMalla);
 
-    // Llamar a la función actualizarSelectMalla al iniciar la página para dejar el select de malla vacío
-    actualizarSelectMalla();
-  </script>
+  // Llamar a la función actualizarSelectMalla al iniciar la página para dejar el select de malla vacío
+  actualizarSelectMalla();
+</script>
 
 <!-- <script>
   document.getElementById('myForm').addEventListener('submit', function (event) {

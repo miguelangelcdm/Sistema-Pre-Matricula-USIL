@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Realizar la conexión a la base de datos
     $db_host = 'localhost';
     $db_user = 'root';
-    $db_password = 'root';
+    $db_password = 'blackN10';
     $db_name = 'matricula';
     $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
 
@@ -32,7 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_id'] = $codigo_alumno;
 
         // Redirigir al usuario a la página deseada
-        header('Location: view/session.php');
+        // header('Location: view/session.php');
+        header('Location: view/Home.php');
         exit();
     } else {
         echo "Credenciales inválidas. Por favor, intenta nuevamente.";
@@ -85,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../assets/js/config.js"></script>
 </head>
-<body>
+<body class="bg">
     <!-- Content -->
     <div class="container-xxl">
       <div class="authentication-wrapper authentication-basic container-p-y">
