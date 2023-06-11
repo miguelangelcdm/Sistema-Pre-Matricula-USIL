@@ -3,10 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // var dt_basic_table = $(".datatables-basic");
   var dt_basic_table = $("#main-dt");
   var counter = 0;
-  var maxCreditos = 22;
   // DataTable para cursos
   //  --------------------------------------------------------------------
-
   if (dt_basic_table.length) {
     var dt_basic = dt_basic_table.DataTable({
       columnDefs: [
@@ -17,9 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
           targets: 7,
           orderable: false,
           responsivePriority: 3,
-          searchable: false
+          searchable: false,
         },
-        { targets: 8, orderable: false,searchable: false},
+        { targets: 8, orderable: false, searchable: false },
       ],
       dom: '<"d-flex justify-content-between align-items-center row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
       // pageLength: 20,
@@ -74,5 +72,5 @@ document.addEventListener("DOMContentLoaded", function () {
       $("div.head-label .btn span").addClass("stm");
     }
   }
-
 });
+

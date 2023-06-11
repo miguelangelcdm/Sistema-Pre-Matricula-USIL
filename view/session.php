@@ -52,8 +52,6 @@ session_start()
 </head>
 
 <body>
-
-
     <?php require "".realpath($_SERVER["DOCUMENT_ROOT"]) .'/view/header/header.php'.""; ?>
     <?php require "".realpath($_SERVER["DOCUMENT_ROOT"]) .'/view/detalle/detalle.php'.""; ?>
     <?php require "".realpath($_SERVER["DOCUMENT_ROOT"]) .'/view/footer/footer.php'.""; ?>
