@@ -1,7 +1,6 @@
 <?php
   use controller\CursosController;
   use controller\AlumnoController;
-  global $credit_counter;
   require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/MatriculaController.php');
   require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/AlumnoController.php');
   require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/CursoController.php');
@@ -195,7 +194,7 @@
           if (!empty($cmatriculados)) {
             foreach ($cmatriculados as $row) {
               if(isset($_POST['deleteMatricula' . $row['idcurso']])){
-                $cid = $_POST['codigo'];
+                $cid = $_POST['idcurso'];                
                 $objM->deleteMatricula($uid, $cid);
               }else{
                 $credit_counter += $row['creditos'];
@@ -208,7 +207,7 @@
                 echo "<td>" . $row['turno'] . "</td>";
                 echo "<td>
                         <form method='post' action='" . $_SERVER['PHP_SELF'] . "'>
-                            <input type='hidden' name='codigo' value='" . $row['idcurso'] . "'>
+                            <input type='hidden' name='idcurso' value='" . $row['idcurso'] . "'>
                             <button type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='deleteMatricula" . $row['idcurso'] . "'>Eliminar</button>
                         </form>
                     </td>";
@@ -295,109 +294,3 @@
   // Llamar a la función actualizarSelectMalla al iniciar la página para dejar el select de malla vacío
   actualizarSelectMalla();
 </script>
-
-<!-- <script>
-  document.getElementById('myForm').addEventListener('submit', function (event) {
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    var idCursoInputs = document.querySelectorAll('input[name="idcurso[]"]');
-
-    // Crear una matriz para almacenar los valores seleccionados
-    var selectedIdCursos = [];
-
-    checkboxes.forEach(function (checkbox, index) {
-      if (checkbox.checked) {
-        // Agregar el valor correspondiente a la matriz
-        selectedIdCursos.push(idCursoInputs[index].getAttribute('value'));
-      }
-    });
-
-    // Asignar los valores seleccionados al campo de entrada 'idcurso[]'
-    document.querySelectorAll('input[name="idcurso[]"]').forEach(function (input) {
-      // Verificar si el valor está presente en la matriz de valores seleccionados
-      if (selectedIdCursos.includes(input.getAttribute('value'))) {
-        input.removeAttribute('disabled');
-      } else {
-        input.setAttribute('disabled', 'disabled');
-      }
-    });
-  });
-</script> -->
-
-<!-- JavaScript para la búsqueda dinámica -->
-<!-- <script>
-  // Obtener referencia al campo de búsqueda
-  var searchInput = document.getElementById('exampleFormControlSelect1');
-
-  // Obtener referencia a la tabla
-  var table = document.getElementsByTagName('table')[0];
-
-  // Obtener todas las filas de la tabla
-  var rows = table.getElementsByTagName('tr');
-
-  // Agregar evento input al campo de búsqueda
-  searchInput.addEventListener('change', function (event) {
-    var searchText = event.value.toLowerCase();
-    // Recorrer todas las filas de la tabla
-    for (var i = 1; i < rows.length; i++) {
-      var row = rows[i];
-      var rowData = row.getElementsByTagName('td');
-      var found = false;
-      // Verificar si el texto de búsqueda coincide con alguna celda de la fila
-      for (var j = 0; j < rowData.length; j++) {
-        var cellData = rowData[j].textContent.toLowerCase();
-        if (cellData.includes(searchText)) {
-          found = true;
-          break;
-        }
-      }
-
-      // Mostrar u ocultar la fila según si se encuentra el texto de búsqueda
-      if (found) {
-        row.style.display = '';
-      } else {
-        row.style.display = 'none';
-      }
-    }
-  });
-</script> -->
-<!-- <script>
-  // Función para filtrar la tabla
-  function filterTable() {
-    // Obtener referencia al campo de búsqueda
-    var searchInput = document.getElementById('exampleFormControlSelect1');
-
-    // Obtener referencia a la tabla
-    var table = document.getElementsByTagName('table')[0];
-
-    // Obtener todas las filas de la tabla
-    var rows = table.getElementsByTagName('tr');
-
-    // Obtener el valor de búsqueda
-    var searchText = searchInput.value.toLowerCase();
-
-    // Recorrer todas las filas de la tabla
-    for (var i = 1; i < rows.length; i++) {
-      var row = rows[i];
-      var rowData = row.getElementsByTagName('td');
-      var found = false;
-      // Verificar si el texto de búsqueda coincide con alguna celda de la fila
-      for (var j = 0; j < rowData.length; j++) {
-        var cellData = rowData[j].textContent.toLowerCase();
-        if (cellData.includes(searchText)) {
-          found = true;
-          break;
-        }
-      }
-
-      // Mostrar u ocultar la fila según si se encuentra el texto de búsqueda
-      if (found) {
-        row.style.display = '';
-      } else {
-        row.style.display = 'none';
-      }
-    }
-  }
-
-  // Llamar a la función filterTable al cargar la página
-  window.addEventListener('load', filterTable);
-</script> -->

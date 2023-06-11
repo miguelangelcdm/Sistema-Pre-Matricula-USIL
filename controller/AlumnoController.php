@@ -10,9 +10,14 @@ require_once(realpath($_SERVER["DOCUMENT_ROOT"]) .'/model/Alumno.php');
 class AlumnoController{
     
     public function findById($codigo_alumno){
-        //get all courses from database
         $obj = new alumnoDAO();
         return $obj->findById($codigo_alumno);
+    }
+
+    public function getAlumnosCurso($cid){
+        //get alumnos matriculados a curso from database
+        $obj = new alumnoDAO();
+        return $obj->getAlumnosCurso($cid);
     }
      
 }
