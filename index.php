@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Realizar la conexión a la base de datos
     $db_host = 'localhost';
     $db_user = 'root';
-    $db_password = 'blackN10';
+    $db_password = 'root';
     $db_name = 'matricula';
     $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
 
