@@ -27,7 +27,7 @@
         ?>
         <div
           style="border: 2px solid #566a7f; border-radius: 10px; padding-inline: 0.5rem; padding-block: .15rem; margin-left: 1rem; position: relative;">
-          <a href="Home.php">
+          <a href="../../view/Home.php">
             <i class='bx bx-home' style="font-size: 1.5rem; color: #566a7f;"></i>
           </a>
           <a href="logout.php" style="margin-left: 1rem;">

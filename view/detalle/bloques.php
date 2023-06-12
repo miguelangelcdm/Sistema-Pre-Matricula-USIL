@@ -213,7 +213,17 @@ $objM = new MatriculaController();
   </div>
   <?php require '../../view/footer/footer.php'; ?>
 </body>
+<script>
+  // Obtener el valor del H1
+  var h1Value = document.getElementById('count').innerText;
+  console.log(h1Value);
 
+  // Buscar el span con "###"
+  var spanElement = document.querySelector('.contador');
+
+  // Asignar el valor del H1 al span
+  spanElement.innerText = h1Value;
+</script>
 <script>
   // Obtener referencias a los elementos select
   var selectCarrera = document.getElementById("select-carrera");

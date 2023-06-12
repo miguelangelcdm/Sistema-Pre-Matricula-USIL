@@ -197,21 +197,22 @@ global $credit_counter;
               global $cmatriculados;
               $cmatriculados = $objM->getCursosMatriculados($uid);
 
-              if (!empty($cmatriculados)) {
-                foreach ($cmatriculados as $row) {
-                  if (isset($_POST['deleteMatricula' . $row['idcurso']])) {
-                    $cid = $_POST['idcurso'];
-                    $objM->deleteMatricula($uid, $cid);
-                  } else {
-                    $credit_counter += $row['creditos'];
-                    echo "<tr>";
-                    echo "<td>" . $row['codigo'] . "</td>";
-                    echo "<td>" . $row['nombre'] . "</td>";
-                    echo "<td>" . $row['ciclo'] . "</td>";
-                    echo "<td>" . $row['horas'] . "</td>";
-                    echo "<td>" . $row['creditos'] . "</td>";
-                    echo "<td>" . $row['turno'] . "</td>";
-                    echo "<td>
+          if (!empty($cmatriculados)) {
+            foreach ($cmatriculados as $row) {
+              if(isset($_POST['deleteMatricula' . $row['idcurso']])){
+                $cid = $_POST['idcurso'];                
+                $objM->deleteMatricula($uid, $cid);
+                break;
+              }else{
+                $credit_counter += $row['creditos'];
+                echo "<tr>";
+                echo "<td>" . $row['codigo'] . "</td>";
+                echo "<td>" . $row['nombre'] . "</td>";
+                echo "<td>" . $row['ciclo'] . "</td>";
+                echo "<td>" . $row['horas'] . "</td>";
+                echo "<td>" . $row['creditos'] . "</td>";
+                echo "<td>" . $row['turno'] . "</td>";
+                echo "<td>
                         <form method='post' action='" . $_SERVER['PHP_SELF'] . "'>
                             <input type='hidden' name='idcurso' value='" . $row['idcurso'] . "'>
                             <button type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='deleteMatricula" . $row['idcurso'] . "'>Eliminar</button>
