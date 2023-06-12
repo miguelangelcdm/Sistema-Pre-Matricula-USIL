@@ -9,7 +9,7 @@
                 <input type="text" class="form-control border-0 shadow-none" placeholder="Search..."
                     aria-label="Search..." /> -->
         <img src="../../assets/img/elements/usil.png" alt="" style="max-width:50px; margin-right:0.5rem">
-        <a class="navbar-brand" href="javascript:void(0)">Sistema de Pseudomatrícula</a>
+        <a class="navbar-brand" href="javascript:void(0)">Sistema de Pre-matrícula</a>
       </div>
       <div class="nav-item d-flex align-items-center">
         <?php

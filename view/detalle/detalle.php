@@ -1,9 +1,10 @@
 <?php
-  use controller\CursosController;
-  use controller\AlumnoController;
-  require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/MatriculaController.php');
-  require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/AlumnoController.php');
-  require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/CursoController.php');
+use controller\CursosController;
+use controller\AlumnoController;
+
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/MatriculaController.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/AlumnoController.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/CursoController.php');
 
 global $obj;
 global $objM;
@@ -36,11 +37,14 @@ global $credit_counter;
 
                       </select>
                     </div>
-                    <div class="me-3">
+                    <div>
                       <select class='form-select' id='select-malla' aria-label='Default select example'>
                         <option value="">-</option>
                       </select>
                     </div>
+                    <i class='bx bx-question-mark' style="margin-right:0.5rem; font-size:1.5rem" data-bs-toggle="tooltip" data-bs-offset="0,4"
+                      data-bs-placement="top" data-bs-html="true"
+                      data-bs-original-title="<span>Consulta tu malla en infosil</span>"></i>
                     <div>
                       <select class='form-select' id='select-ciclo' aria-label='Default select example'>
                         <option value='' selected>Seleccione Ciclo</option>
@@ -193,21 +197,21 @@ global $credit_counter;
               global $cmatriculados;
               $cmatriculados = $objM->getCursosMatriculados($uid);
 
-          if (!empty($cmatriculados)) {
-            foreach ($cmatriculados as $row) {
-              if(isset($_POST['deleteMatricula' . $row['idcurso']])){
-                $cid = $_POST['idcurso'];                
-                $objM->deleteMatricula($uid, $cid);
-              }else{
-                $credit_counter += $row['creditos'];
-                echo "<tr>";
-                echo "<td>" . $row['codigo'] . "</td>";
-                echo "<td>" . $row['nombre'] . "</td>";
-                echo "<td>" . $row['ciclo'] . "</td>";
-                echo "<td>" . $row['horas'] . "</td>";
-                echo "<td>" . $row['creditos'] . "</td>";
-                echo "<td>" . $row['turno'] . "</td>";
-                echo "<td>
+              if (!empty($cmatriculados)) {
+                foreach ($cmatriculados as $row) {
+                  if (isset($_POST['deleteMatricula' . $row['idcurso']])) {
+                    $cid = $_POST['idcurso'];
+                    $objM->deleteMatricula($uid, $cid);
+                  } else {
+                    $credit_counter += $row['creditos'];
+                    echo "<tr>";
+                    echo "<td>" . $row['codigo'] . "</td>";
+                    echo "<td>" . $row['nombre'] . "</td>";
+                    echo "<td>" . $row['ciclo'] . "</td>";
+                    echo "<td>" . $row['horas'] . "</td>";
+                    echo "<td>" . $row['creditos'] . "</td>";
+                    echo "<td>" . $row['turno'] . "</td>";
+                    echo "<td>
                         <form method='post' action='" . $_SERVER['PHP_SELF'] . "'>
                             <input type='hidden' name='idcurso' value='" . $row['idcurso'] . "'>
                             <button type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='deleteMatricula" . $row['idcurso'] . "'>Eliminar</button>
