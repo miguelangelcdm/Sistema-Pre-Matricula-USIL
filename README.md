@@ -33,4 +33,4 @@
 - Diseño responsive
 - Roles y permisos
 ---
-El sistema fue, es y pretende ser desarrollado entera y voluntariamente por alumnos de la carrera de ingeniería de Sistemas de información de la Universidad San Ignacio de Loyola.
+El sistema es y pretende ser desarrollado entera y voluntariamente por alumnos de la carrera de ingeniería de Sistemas de información de la Universidad San Ignacio de Loyola.
