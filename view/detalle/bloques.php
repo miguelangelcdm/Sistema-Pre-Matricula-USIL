@@ -26,7 +26,7 @@ $objM = new MatriculaController();
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-  <title>Pseudomatricula USIL</title>
+  <title>Pre-matricula USIL</title>
 
   <meta name="description" content="" />
 
@@ -128,6 +128,8 @@ $objM = new MatriculaController();
                     <?php
                     $lcursos = $objC->getAllCursos();
                     foreach ($lcursos as $curso) {
+                      // $idc=$curso['idcurso'];
+                      // $count=$objA->cantidadMatriculadosCurso($idc);
                       echo "<tr>";
                       echo "<td align='center'>" . $curso['carrera'] . "</td>";
                       echo "<td align='center'>" . $curso['mallaid'] . "</td>";
@@ -136,10 +138,10 @@ $objM = new MatriculaController();
                       echo "<td>" . $curso['nombre'] . "</td>";
                       echo "<td>
                                       <form method='post' action='" . $_SERVER['PHP_SELF'] . "'>
-                                        <input type='hidden' name='idcurso' value='" . $curso['idcurso'] . "'>
-                                        <button type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='select" . $curso['idcurso'] . "'>?</button>
+                                          <input type='hidden' name='idcurso' value='" . $curso['idcurso'] . "'>
+                                          <button type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='select" . $curso['idcurso'] . "'><i class='bx bx-right-arrow-alt' ></i></button>
                                       </form>
-                                    </td>";
+                                  </td>";
                       echo "</tr>";
                     }
                     ?>
@@ -151,16 +153,16 @@ $objM = new MatriculaController();
             <!-- Columna Inscritos -->
             <div class="card" style="width:55%">
               <div class="card-header d-flex align-items-center justify-content-between">
-                <h5 class="mb-0">Alumnos</h5>
+                <h5 class="mb-0">Alumnos: <span class="contador"></span></h5>
                 <a href="../session.php">
                   <div class="create-new btn btn-primary">
                     <i class="bx bx-list-check"></i> <span class="d-none d-lg-inline-block">Pre-matricularse</span>
                   </div>
                 </a>
               </div>
-              <div class="card-body">
+              <div class="card-body" style="marging-inline:1rem">
                 <div class="table-responsive text-nowrap">
-                  <table class="datatables-basic table border-top" id="main-dt">
+                  <table class="datatables-basic table border-top" id="alumnosdt">
                     <thead>
                       <tr>
                         <th>Codigo Alumno</th>
@@ -170,34 +172,35 @@ $objM = new MatriculaController();
                     </thead>
                     <tbody class="table-border-bottom-0">
                       <?php
-                      if (!empty($lcursos)) {
-                        foreach ($lcursos as $curso) {
+                      $count = 0;
+                      $lcursos2 = $objC->getAllCursos();
+                      if (!empty($lcursos2)) {
+                        foreach ($lcursos2 as $curso) {
                           if (isset($_POST['select' . $curso['idcurso']])) {
-                            //$cid = $_POST['idcurso'];
                             $cid = $curso['idcurso'];
-                            $lalumnos = $objA->getAlumnosCurso($cid);
-                            if (!empty($lalumnos)) {
-                              foreach ($lalumnos as $alumno) {
-                                echo "<tr>";
-                                echo "<td>" . $alumno['codigo_alumno'] . "</td>";
-                                echo "<td>" . $alumno['fullName'] . "</td>";
-                                echo "<td>" . $alumno['carrera'] . "</td>";
-                                echo "</tr>";
-                              }
-                            } else {
-                              echo "<script>console.log('No hay datos888');</script>";
-                              echo "<h1>No hay datos888</h1>";
-                            }
-                            echo "<script>console.log('No hay datos81');</script>";
-                            echo "<h1>No hay datos81</h1>";
-                          }
+                            $curso = $objC->findById($cid);
 
+                            echo "<h1 id='ncurso' style='display:none'>" . $curso['nombre'] . "</h1>";
+                            echo "<script>console.log('" . $curso['nombre'] . "');</script>";
+                            $lalumnos = $objA->getAlumnosCurso($cid);
+                            foreach ($lalumnos as $row) {
+                              $count += 1;
+                              echo "<tr>";
+                              echo "<td>" . $row['codigo_alumno'] . "</td>";
+                              echo "<td>" . $row['fullName'] . "</td>";
+                              echo "<td>" . $row['turno'] . "</td>";
+                              echo "</tr>";
+                            }
+                            echo "<h1 id='count' style='display:none'>" . $count . "</h1>";
+                            //echo "<script>console.log(".$count.");</script>";
+                            // Terminar la ejecución del bucle foreach
+                            break;
+                          }
                         }
-                        echo "<script>console.log('No hay datos777');</script>";
-                        echo "<h1>No hay datos777</h1>";
+
                       } else {
-                        echo "<script>console.log('No hay datos Lista vacia66');</script>";
-                        echo "<h1>No hay datos Lista vacia66</h1>";
+                        echo "<script>console.log('No hay datos: Lista vacía');</script>";
+                        echo "<h1>No hay datos: Lista vacía</h1>";
                       }
                       ?>
                     </tbody>
@@ -285,6 +288,7 @@ $objM = new MatriculaController();
 <script src="../../assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
 <script src="../../assets/js/docs.js"></script>
 <script src="../../assets/js/bloques.js"></script>
+<script src="../../assets/js/alumnos.js"></script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
 </html>
