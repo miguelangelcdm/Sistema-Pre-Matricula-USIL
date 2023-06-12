@@ -115,45 +115,46 @@ session_start()
                       <h5 class="card-header">Listado de Cursos</h5>
                         <div class="card-body">
                         <table class="datatables-basic table border-top" id="bloquesDT">
-  <thead>
-    <tr>
-      <th>Carrera</th>
-      <th>Malla</th>
-      <th>Ciclo</th>
-      <th>Codigo</th>
-      <th>Curso</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody class="table-border-bottom-0">
-    <?php
-    $lcursos = $objC->getAllCursos();
-    foreach ($lcursos as $curso) {
-      echo "<tr>";
-      echo "<td align='center'>" . $curso['carrera'] . "</td>";
-      echo "<td align='center'>" . $curso['mallaid'] . "</td>";
-      echo "<td align='center'>" . $curso['ciclo'] . "</td>";
-      echo "<td>" . $curso['codigo'] . "</td>";
-      echo "<td>" . $curso['nombre'] . "</td>";
-      echo "<td>
-          <form method='post' action='" . $_SERVER['PHP_SELF'] . "'>
-            <input type='hidden' name='idcurso' value='" . $curso['idcurso'] . "'>
-            <button type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='select" . $curso['idcurso'] . "'>?</button>
-          </form>
-        </td>";
-      echo "</tr>";
-    }
-    ?>
-  </tbody>
-</table>
-
+                          <thead>
+                            <tr>
+                              <th>Carrera</th>
+                              <th>Malla</th>
+                              <th>Ciclo</th>
+                              <th>Codigo</th>
+                              <th>Curso</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody class="table-border-bottom-0">
+                            <?php
+                            $lcursos = $objC->getAllCursos();
+                            foreach ($lcursos as $curso) {
+                              // $idc=$curso['idcurso'];
+                              // $count=$objA->cantidadMatriculadosCurso($idc);
+                              echo "<tr>";
+                              echo "<td align='center'>" . $curso['carrera'] . "</td>";
+                              echo "<td align='center'>" . $curso['mallaid'] . "</td>";
+                              echo "<td align='center'>" . $curso['ciclo'] . "</td>";
+                              echo "<td>" . $curso['codigo'] . "</td>";
+                              echo "<td>" . $curso['nombre'] . "</td>";
+                              echo "<td>
+                                      <form method='post' action='" . $_SERVER['PHP_SELF'] . "'>
+                                          <input type='hidden' name='idcurso' value='" . $curso['idcurso'] . "'>
+                                          <button type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='select" . $curso['idcurso'] . "'><i class='bx bx-right-arrow-alt' ></i></button>
+                                      </form>
+                                  </td>";
+                              echo "</tr>";
+                            }
+                            ?>
+                          </tbody>
+                        </table>
                         </div>
                     </div>
                   </div>
 
                   <div class="card" style="width:60%">
                     <div class="card-header d-flex align-items-center justify-content-between">
-                      <h5 class="mb-0">Alumnos</h5>
+                      <h5 class="mb-0">Alumnos:<span class="contador"></span></h5>
                       <a href="../session.php">
                         <div class="create-new btn btn-primary">
                           <i class="bx bx-list-check"></i> <span class="d-none d-lg-inline-block">Pseudomatricularse</span>
@@ -164,47 +165,48 @@ session_start()
                       <div class="card mt-3 p-3" style="height:90%">
                         <div class="table-responsive text-nowrap">
                         <table class="datatables-basic table border-top" id="main-dt">
-  <thead>
-    <tr>
-      <th>Codigo Alumno</th>
-      <th>Nombre Completo</th>
-      <th>Carrera</th>
-    </tr>
-  </thead>
-  <tbody class="table-border-bottom-0">
-    <?php
-    if (!empty($lcursos)) {
-      foreach ($lcursos as $curso) {
-        if (isset($_POST['select' . $curso['idcurso']])) {
-          $cid = $_POST['idcurso'];
-          $lalumnos = $objA->getAlumnosCurso($cid);
-          if (!empty($lalumnos)) {
-            foreach ($lalumnos as $alumno) {
-              echo "<tr>";
-              echo "<td>" . $alumno['codigo_alumno'] . "</td>";
-              echo "<td>" . $alumno['fullName'] . "</td>";
-              echo "<td>" . $alumno['carrera'] . "</td>";
-              echo "</tr>";
-            }
-          } else {
-            echo "<script>console.log('No hay datos888');</script>";
-            echo "<h1>No hay datos</h1>";
-          }
-          return;
-        }
-      }
-      echo "<script>console.log('No hay datos777');</script>";
-      echo "<h1>No hay datos</h1>";
-    } else {
-      echo "<script>console.log('No hay datos Lista vacia');</script>";
-      echo "<h1>No hay datos Lista vacia</h1>";
-    }
-    ?>
-  </tbody>
-</table>
+                          <thead>
+                            <tr>
+                              <th>Codigo Alumno</th>
+                              <th>Nombre Completo</th>
+                              <th>Turno</th>
+                            </tr>
+                          </thead>
+                          <tbody class="table-border-bottom-0">
+                            <?php
+                            $count=0;
+                            $lcursos2 = $objC->getAllCursos();
+                            if (!empty($lcursos2)) {
+                              foreach ($lcursos2 as $curso) {
+                                if (isset($_POST['select' . $curso['idcurso']])) {
+                                  $cid = $curso['idcurso'];
+                                  $curso=$objC->findById($cid);
 
+                                  echo "<h1 id='ncurso' style='display:none'>".$curso['nombre']."</h1>";
+                                  echo "<script>console.log('".$curso['nombre']."');</script>";
+                                  $lalumnos = $objA->getAlumnosCurso($cid);
+                                  foreach ($lalumnos as $row) {
+                                    $count+=1;
+                                    echo "<tr>";
+                                    echo "<td>".$row['codigo_alumno']."</td>";
+                                    echo "<td>".$row['fullName']."</td>";
+                                    echo "<td>".$row['turno']."</td>";               
+                                    echo "</tr>";                                    
+                                  }
+                                  echo "<h1 id='count' style='display:none'>".$count."</h1>";
+                                  //echo "<script>console.log(".$count.");</script>";
+                                  // Terminar la ejecución del bucle foreach
+                                  break;
+                                }
+                              }
 
-
+                            } else {
+                              echo "<script>console.log('No hay datos: Lista vacía');</script>";
+                              echo "<h1>No hay datos: Lista vacía</h1>";
+                            }
+                            ?>
+                          </tbody>                    
+                        </table>
                         </div>
                       </div>
                     </div>
@@ -219,7 +221,17 @@ session_start()
   </div>
   <?php require '../../view/footer/footer.php'; ?>
 </body>
+<script>
+  // Obtener el valor del H1
+  var h1Value = document.getElementById('count').innerText;
+  console.log(h1Value);
 
+  // Buscar el span con "###"
+  var spanElement = document.querySelector('.contador');
+
+  // Asignar el valor del H1 al span
+  spanElement.innerText = h1Value;
+</script>
 <script>
   // Obtener referencias a los elementos select
   var selectCarrera = document.getElementById("select-carrera");
