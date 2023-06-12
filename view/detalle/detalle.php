@@ -1,14 +1,16 @@
 <?php
-  use controller\CursosController;
-  use controller\AlumnoController;
-  require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/MatriculaController.php');
-  require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/AlumnoController.php');
-  require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/CursoController.php');
+use controller\CursosController;
+use controller\AlumnoController;
 
-  global $obj;
-  global $objM;
-  global $credit_counter;
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/MatriculaController.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/AlumnoController.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/controller/CursoController.php');
+
+global $obj;
+global $objM;
+global $credit_counter;
 ?>
+
 <body class="bg2">
   <!-- Layout wrapper -->
   <div class="layout-wrapper layout-content-navbar layout-without-menu" style="flex-direction: column;">
@@ -35,11 +37,14 @@
 
                       </select>
                     </div>
-                    <div class="me-3">
+                    <div>
                       <select class='form-select' id='select-malla' aria-label='Default select example'>
                         <option value="">-</option>
                       </select>
                     </div>
+                    <i class='bx bx-question-mark' style="margin-right:0.5rem; font-size:1.5rem" data-bs-toggle="tooltip" data-bs-offset="0,4"
+                      data-bs-placement="top" data-bs-html="true"
+                      data-bs-original-title="<span>Consulta tu malla en infosil</span>"></i>
                     <div>
                       <select class='form-select' id='select-ciclo' aria-label='Default select example'>
                         <option value='' selected>Seleccione Ciclo</option>
@@ -59,7 +64,8 @@
                   <div>
                     <div class="btn btn-outline-primary me-3" type="button" data-bs-toggle="modal"
                       data-bs-target="#modalCursos" style="cursor:alias">
-                      <span class="dismin">Créditos:</span><span class="badge bg-white text-primary ms-1 "><span class="counter"></span>/22</span>
+                      <span class="dismin">Créditos:</span><span class="badge bg-white text-primary ms-1 "><span
+                          class="counter">0</span>/22</span>
                     </div>
                     <a href="detalle/bloques.php">
                       <div class="create-new btn btn-primary">
@@ -107,16 +113,16 @@
                             // echo "<h1>Curso:".$cursos_idcursos."</h1>";     
                             // echo "<h1>Turno:".$turno."</h1>";                   
                             $objM = new MatriculaController();
-                            
-                            $ca=$obj->findById($cursos_idcursos);
+
+                            $ca = $obj->findById($cursos_idcursos);
                             //$credit_counter += $ca['creditos'];
                             //echo $credit_counter;
                             //echo "<h1 id='counter' style='display:none'>".$credit_counter."</h1>";
-                            $objM->registrarMatricula($idalu, $cursos_idcursos,$turno);    
+                            $objM->registrarMatricula($idalu, $cursos_idcursos, $turno);
                             // header("Location: " . $_SERVER['PHP_SELF']);
                             // exit;
                             //echo "<h1>CC:".$ca['creditos']."</h1>";     
-
+                      
                             //echo '<h1>Registrado correctamente</h1>';
                           } else {
                             echo "<tr id='fila-" . $row['idcurso'] . "'>";
@@ -129,7 +135,7 @@
                             echo "<td>" . $row['nombre'] . "</td>";
                             echo "<td align='center'>" . $row['ciclo'] . "</td>";
                             echo "<td align='center'>" . $row['horas'] . "</td>";
-                            echo "<td align='center' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
+                            echo "<td align='center' id='cred' style='background-color:aliceblue'>" . $row['creditos'] . "</td>";
                             echo "<td align='center'>
                                       <select id='turnoSelect-" . $row['idcurso'] . "' class='form-select form-select-sm' name='turno_" . $row['idcurso'] . "'>                    
                                           <option value='mañana' selected>Mañana</option>
@@ -142,7 +148,7 @@
 
 
                             echo "<td colspan='8' style='text-align: center;'>
-                                      <input type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='registerMatricula_" . $row['idcurso'] . "' value='Registrar'>
+                                      <input id='buts' type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='registerMatricula_" . $row['idcurso'] . "' value='Registrar'>
                                   </td>";
                             echo "</form>";
                             echo "</tr>";
@@ -150,7 +156,7 @@
                         }
                       }
                       ?>
-                    </tbody>                    
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -161,42 +167,42 @@
     </div>
   </div>
 
-<!-- Modal con cursos -->
-<div class="modal fade" id="modalCursos" tabindex="-1" style="display: none;" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalCenterTitle">Cursos Matriculados</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" style="padding:0.5rem">
-        <table class="datatables-basic2 table border-top" id="selectedCoursesTable">
-          <thead>
-            <tr>
-              <!-- <th>Malla</th> -->
-              <th>Codigo</th>
-              <th>Nombre</th>
-              <th>Ciclo</th>
-              <th>Horas</th>
-              <th>Creditos</th>
-              <th>Turno</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody class="table-border-bottom-0">          
-          <?php
-          $obj = new CursosController();
-          $objM = new MatriculaController();
-          $uid = $user['codigo_alumno'];
-          global $cmatriculados;
-          $cmatriculados = $objM->getCursosMatriculados($uid); 
+  <!-- Modal con cursos -->
+  <div class="modal fade" id="modalCursos" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCenterTitle">Cursos Matriculados</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="padding:0.5rem">
+          <table class="datatables-basic2 table border-top" id="selectedCoursesTable">
+            <thead>
+              <tr>
+                <!-- <th>Malla</th> -->
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Ciclo</th>
+                <th>Horas</th>
+                <th>Creditos</th>
+                <th>Turno</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+              <?php
+              $obj = new CursosController();
+              $objM = new MatriculaController();
+              $uid = $user['codigo_alumno'];
+              global $cmatriculados;
+              $cmatriculados = $objM->getCursosMatriculados($uid);
 
           if (!empty($cmatriculados)) {
             foreach ($cmatriculados as $row) {
               if(isset($_POST['deleteMatricula' . $row['idcurso']])){
                 $cid = $_POST['idcurso'];                
                 $objM->deleteMatricula($uid, $cid);
-                break;
+                // break;
               }else{
                 $credit_counter += $row['creditos'];
                 echo "<tr>";
@@ -212,24 +218,24 @@
                             <button type='submit' class='btn btn-primary' style='max-width:150px;margin:1rem' name='deleteMatricula" . $row['idcurso'] . "'>Eliminar</button>
                         </form>
                     </td>";
-                echo "</tr>";
-              }                        
-            } 
-            echo "<h1 id='counter' style='display:none'>" . $credit_counter . "</h1>";             
-          }else{
+                    echo "</tr>";
+                  }
+                }
+                echo "<h1 id='counter' style='display:none'>" . $credit_counter . "</h1>";
+              } else {
 
-          }               
-          ?>
-          </tbody>
-        </table>
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
+
       </div>
-
     </div>
   </div>
-</div>
 
 
-  <!-- gagh -->
+  <!-- Contadores & Dropdowns -->
 </body>
 <script>
   function submitForms() {
@@ -243,12 +249,38 @@
   // Obtener el valor del H1
   var h1Value = document.getElementById('counter').innerText;
   console.log(h1Value);
-
   // Buscar el span con "###"
   var spanElement = document.querySelector('.counter');
-
   // Asignar el valor del H1 al span
   spanElement.innerText = h1Value;
+
+  // Verificar si el valor del contador es mayor o igual a 22
+  if (parseInt(h1Value) >= 22) {
+    // Obtener todos los botones con el nombre "registerMatricula_"
+    var buttons = document.querySelectorAll("[name^='registerMatricula_']");
+
+    // Recorrer los botones y deshabilitarlos
+    buttons.forEach(function (button) {
+      button.disabled = true;
+    });
+  } else {
+    // Obtener todos los formularios con los botones "registerMatricula_"
+    var forms = document.querySelectorAll("tr[id^='fila-']");
+
+    // Obtener el valor máximo permitido para el contador
+    var maxCredits = 22 - h1Value;
+
+    // Recorrer los formularios y deshabilitar los botones si los créditos superan el límite
+    forms.forEach(function (form) {
+      var creditosElement = form.querySelector("#cred");
+      var creditos = parseInt(creditosElement.innerText);
+      if (creditos > maxCredits) {
+        var targetButton = form.querySelector("input[name^='registerMatricula_']");
+        targetButton.disabled = true;
+      }
+    });
+  }
+
 </script>
 
 <script>

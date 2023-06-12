@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Realizar la conexión a la base de datos
     $db_host = 'localhost';
     $db_user = 'root';
-    $db_password = 'root';
+    $db_password = 'blackN10';
     $db_name = 'matricula';
     $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
 
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
 
-    <title>Pseudomatrícula USIL</title>
+    <title>Pre-matrícula USIL</title>
 
     <meta name="description" content="" />
 
@@ -102,11 +102,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               </div>
               <!-- /Logo -->
               <h4 class="mb-2">Bienvenido al sistema de</h4>
-              <h4 class="mb-2">Pseudo-Matricula USIL! 👋</h4>
+              <h4 class="mb-2">Pre-Matricula USIL! 👋</h4>
               <p class="mb-3">Ingresa tus datos de alumno y tu contraseña de infosil</p>
               <form id="formAuthentication" class="mb-3" action="index.php" method="POST">
                 <div class="mb-3">
-                  <label for="email" class="form-label">Codigo de Alumno</label>
+                  <label for="email" class="form-label">Código de Alumno</label>
                   <input
                     type="text"
                     class="form-control"
@@ -119,10 +119,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
-                    <label class="form-label" for="password">Password</label>
-                    <a href="auth-forgot-password-basic.html">
+                    <label class="form-label" for="password">Contraseña</label>
+                    <!-- <a href="auth-forgot-password-basic.html">
                       <small>Forgot Password?</small>
-                    </a>
+                    </a> -->
                   </div>
                   <div class="input-group input-group-merge">
                     <input
