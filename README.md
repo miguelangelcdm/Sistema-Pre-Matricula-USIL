@@ -1,5 +1,4 @@
 # Sistema de Pre-Matricula USIL
----
 
 1. Hecho con PHP Nativo + Javascript + Mysql 8.0.32
 2. Para levantar el proyecto en dev:
@@ -34,4 +33,4 @@
 - Diseño responsive
 - Roles y permisos
 ---
-El sistema fue desarrollado voluntariamente por alumnos de la carrera de ingeniería de Sistemas de información de la Universidad San Ignacio de Loyola.
+El sistema fue, es y pretende ser desarrollado entera y voluntariamente por alumnos de la carrera de ingeniería de Sistemas de información de la Universidad San Ignacio de Loyola.
