@@ -196,6 +196,7 @@
               if(isset($_POST['deleteMatricula' . $row['idcurso']])){
                 $cid = $_POST['idcurso'];                
                 $objM->deleteMatricula($uid, $cid);
+                break;
               }else{
                 $credit_counter += $row['creditos'];
                 echo "<tr>";

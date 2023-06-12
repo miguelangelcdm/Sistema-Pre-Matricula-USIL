@@ -20,4 +20,9 @@ class AlumnoController{
         return $obj->getAlumnosCurso($cid);
     }
      
+    public function cantidadMatriculadosCurso($cid){
+        //get alumnos matriculados a curso from database
+        $obj = new alumnoDAO();
+        return $obj->cantidadMatriculadosCurso($cid);
+    }
 }
